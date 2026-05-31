@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { portfolioItems } from '../data/site';
+---
+
+<Layout path="/portfolio" title="Portfolio | Pancatz">
+  <section class="section py-14 sm:py-20">
+    <h1 class="text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl">Portfolio & Gallery</h1>
+    <p class="mt-4 max-w-3xl text-base leading-7 text-zinc-600">A snapshot of the type of work we do for local brands, families, schools, and SMEs. Visuals shown are representative of service categories and style.</p>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {portfolioItems.map((item) => (
+        <article class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
+          <img src={item.image} alt={item.title} class="h-56 w-full object-cover" loading="lazy" />
+          <div class="p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{item.category}</p>
+            <h2 class="mt-1 text-lg font-bold text-zinc-900">{item.title}</h2>
+            <p class="mt-2 text-sm text-zinc-600">{item.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

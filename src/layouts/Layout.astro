@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import { site, navItems } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title = `${site.name} | ${site.tagline}`,
+  description = site.description,
+  path = '/',
+} = Astro.props;
+
+const url = new URL(path, Astro.site ?? 'https://pancatz.com').toString();
+const socialImage = new URL('/og-image.svg', Astro.site ?? 'https://pancatz.com').toString();
+const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="canonical" href={url} />
+  </head>
+  <body class="bg-paper text-zinc-800 antialiased">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="sticky top-0 z-40 border-b border-zinc-200/70 bg-paper/95 backdrop-blur-sm">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="/" class="text-lg font-bold tracking-tight text-zinc-900">{site.name}</a>
+        <nav aria-label="Main navigation">
+          <ul class="flex items-center gap-2 sm:gap-4">
+            {navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'rounded-full px-3 py-2 text-sm font-medium transition-colors',
+                    path === item.href ? 'bg-zinc-900 text-white' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="mt-16 border-t border-zinc-200 bg-white">
+      <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-3 lg:px-8">
+        <div>
+          <h2 class="text-base font-semibold text-zinc-900">{site.name}</h2>
+          <p class="mt-2 text-sm leading-6 text-zinc-600">{site.description}</p>
+        </div>
+        <div>
+          <h2 class="text-base font-semibold text-zinc-900">Service Area</h2>
+          <p class="mt-2 text-sm text-zinc-600">{site.area}</p>
+          <p class="mt-1 text-sm text-zinc-600">{site.address}</p>
+        </div>
+        <div>
+          <h2 class="text-base font-semibold text-zinc-900">Contact</h2>
+          <ul class="mt-2 space-y-2 text-sm text-zinc-600">
+            <li><a class="hover:text-zinc-900" href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><a class="hover:text-zinc-900" href={waLink} target="_blank" rel="noreferrer">WhatsApp: {site.phoneDisplay}</a></li>
+            <li><a class="hover:text-zinc-900" href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-zinc-200 py-4 text-center text-xs text-zinc-500">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+    </footer>
+
+    <a href={waLink} class="wa-fab" target="_blank" rel="noreferrer" aria-label="Chat with Pancatz on WhatsApp">
+      WhatsApp
+    </a>
+  </body>
+</html>

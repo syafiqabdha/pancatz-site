@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+---
+
+<Layout path="/contact" title={`Contact | ${site.name}`}>
+  <section class="section py-14 sm:py-20">
+    <h1 class="text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl">Contact</h1>
+    <p class="mt-4 max-w-3xl text-base leading-7 text-zinc-600">Need a quote, booking, or repair appointment? Message us with your requirement and preferred timeline.</p>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      <article class="card">
+        <h2 class="text-xl font-bold text-zinc-900">Fastest response: WhatsApp</h2>
+        <p class="mt-3 text-sm leading-6 text-zinc-600">Include your service type, quantity, and deadline for faster quotation.</p>
+        <a class="btn-primary mt-5" href={waLink} target="_blank" rel="noreferrer">Open WhatsApp Chat</a>
+      </article>
+
+      <article class="card">
+        <h2 class="text-xl font-bold text-zinc-900">Other channels</h2>
+        <ul class="mt-3 space-y-2 text-sm text-zinc-700">
+          <li>Email: <a class="text-[var(--link)] hover:underline" href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li>Phone: {site.phoneDisplay}</li>
+          <li>Instagram: <a class="text-[var(--link)] hover:underline" href={site.instagramUrl} target="_blank" rel="noreferrer">@pancatz.design</a></li>
+          <li>Area: {site.area}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>
