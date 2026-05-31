@@ -2,9 +2,26 @@
 
 :root {
   --paper: #f8f6f1;
+  --surface: #fffdf8;
+  --surface-border: #ddd9cf;
+  --ink: #171717;
+  --muted-ink: #52525b;
   --primary: #0a7f5a;
+  --primary-ink: #065f46;
   --link: #2563eb;
   --accent: #f97360;
+  --grid-line: rgb(24 24 27 / 0.08);
+  --ease-out-soft: cubic-bezier(.22, 1, .36, 1);
+  --motion-fast: 160ms;
+  --motion-medium: 280ms;
+  --mono: "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+
+  --step--1: clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+  --step-0: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.12rem + 0.65vw, 1.625rem);
+  --step-2: clamp(1.625rem, 1.35rem + 1.35vw, 2.25rem);
+  --step-3: clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem);
+  --step-4: clamp(3rem, 2.25rem + 4vw, 5.25rem);
 }
 
 @theme {
@@ -18,6 +35,7 @@
 body {
   font-family: "DM Sans", "Inter", system-ui, -apple-system, sans-serif;
   line-height: 1.5;
+  color: var(--ink);
 }
 
 h1,
@@ -31,39 +49,107 @@ p {
   text-wrap: pretty;
 }
 
+.page-title {
+  font-size: var(--step-3);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.hero-title {
+  font-size: var(--step-4);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.lead {
+  font-size: var(--step-0);
+  line-height: 1.65;
+}
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .section {
   @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 
+.focus-ring:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary), white 20%);
+  outline-offset: 3px;
+}
+
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)];
+  @apply inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-semibold text-white;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50;
+  @apply inline-flex min-h-11 items-center justify-center rounded-full border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-800;
 }
 
 .card {
   @apply rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm;
 }
 
+.raw-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.studio-card {
+  position: relative;
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 0 rgb(24 24 27 / 0.04);
+}
+
+.studio-card::before,
+.studio-card::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.studio-card::before {
+  top: 10px;
+  left: 10px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+
+.studio-card::after {
+  right: 10px;
+  bottom: 10px;
+  border-right: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
 .wa-fab {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   border-radius: 999px;
+  border: 1px solid #1faa57;
   background: #25d366;
   color: white;
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
-  padding: 0.8rem 1rem;
+  padding: 0.75rem 1rem;
   box-shadow: 0 10px 25px rgb(0 0 0 / 0.18);
   z-index: 50;
-}
-
-.wa-fab:hover {
-  filter: brightness(1.08);
 }
 
 .skip-link {
@@ -80,4 +166,32 @@ p {
   background: #111827;
   color: #fff;
   padding: 0.5rem 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .interactive-lift {
+    transition:
+      transform var(--motion-fast) var(--ease-out-soft),
+      box-shadow var(--motion-fast) var(--ease-out-soft),
+      border-color var(--motion-fast) var(--ease-out-soft),
+      background-color var(--motion-fast) var(--ease-out-soft),
+      filter var(--motion-fast) var(--ease-out-soft);
+  }
+
+  .interactive-lift:hover,
+  .interactive-lift:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgb(24 24 27 / 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

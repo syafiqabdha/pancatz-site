@@ -5,23 +5,29 @@ import { site } from '../data/site';
 
 <Layout path="/about" title={`About | ${site.name}`}>
   <section class="section py-14 sm:py-20">
-    <h1 class="text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl">About Pancatz</h1>
-    <p class="mt-4 max-w-3xl text-base leading-7 text-zinc-600">Pancatz is a local service brand built around one simple idea: make creative and technical support easier for people around Kelapa Sawit and Kulai.</p>
+    <h1 class="page-title font-extrabold text-zinc-900">About Pancatz</h1>
+    <p class="lead mt-4 max-w-3xl text-zinc-600">Pancatz is a local service brand built around one simple idea: make creative and technical support easier for people around Kelapa Sawit and Kulai.</p>
 
     <div class="mt-10 grid gap-5 md:grid-cols-2">
-      <article class="card">
+      <article class="studio-card p-5">
         <h2 class="text-xl font-bold text-zinc-900">Our mission</h2>
         <p class="mt-3 text-sm leading-6 text-zinc-600">Help businesses and families look professional, work efficiently, and solve tech issues quickly through reliable, practical service.</p>
       </article>
-      <article class="card">
+      <article class="studio-card p-5">
         <h2 class="text-xl font-bold text-zinc-900">How we work</h2>
         <p class="mt-3 text-sm leading-6 text-zinc-600">We start with your goal, suggest the simplest solution, and keep communication clear via WhatsApp from quote to final delivery.</p>
       </article>
-      <article class="card">
-        <h2 class="text-xl font-bold text-zinc-900">Who we serve</h2>
-        <p class="mt-3 text-sm leading-6 text-zinc-600">SMEs, retailers, food businesses, schools, and families who need quality output without complicated processes.</p>
+      <article class="studio-card p-5 md:col-span-2">
+        <h2 class="text-xl font-bold text-zinc-900">Operating model</h2>
+        <ol class="mt-4 grid gap-3 text-sm text-zinc-700 sm:grid-cols-5">
+          <li class="rounded-xl border border-zinc-200 bg-white p-3"><span class="kicker text-zinc-500">01</span><p class="mt-1 font-semibold">Goal</p></li>
+          <li class="rounded-xl border border-zinc-200 bg-white p-3"><span class="kicker text-zinc-500">02</span><p class="mt-1 font-semibold">Scope</p></li>
+          <li class="rounded-xl border border-zinc-200 bg-white p-3"><span class="kicker text-zinc-500">03</span><p class="mt-1 font-semibold">Quote</p></li>
+          <li class="rounded-xl border border-zinc-200 bg-white p-3"><span class="kicker text-zinc-500">04</span><p class="mt-1 font-semibold">Produce</p></li>
+          <li class="rounded-xl border border-zinc-200 bg-white p-3"><span class="kicker text-zinc-500">05</span><p class="mt-1 font-semibold">Deliver</p></li>
+        </ol>
       </article>
-      <article class="card">
+      <article class="studio-card p-5 md:col-span-2">
         <h2 class="text-xl font-bold text-zinc-900">Coverage area</h2>
         <p class="mt-3 text-sm leading-6 text-zinc-600">Primary: {site.area}. Additional Johor coverage available for selected scopes and schedules.</p>
       </article>
