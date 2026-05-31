@@ -1,0 +1,20 @@
+services:
+  pancatz:
+    build: .
+    container_name: pancatz-site
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8088}:80"
+    networks:
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pancatz.rule=Host(`pancatz.com`) || Host(`www.pancatz.com`)"
+      - "traefik.http.routers.pancatz.entrypoints=websecure"
+      - "traefik.http.routers.pancatz.tls=true"
+      - "traefik.http.services.pancatz.loadbalancer.server.port=80"
+
+networks:
+  coolify:
+    external: true
+    name: coolify
