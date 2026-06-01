@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, portfolioItems, faqs, whatsappIntents } from '../data/site';
+import { site, faqs, whatsappIntents } from '../data/site';
 
 const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
 const serviceGroups = [
@@ -58,27 +58,6 @@ const serviceGroups = [
               <li class="card-quiet px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-700">{chip}</li>
             ))}
           </ul>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section py-10 sm:py-14">
-    <div class="flex items-end justify-between gap-4">
-      <h2 class="page-title font-bold tracking-tight text-zinc-900">Recent Work Highlights</h2>
-      <a href="/portfolio" class="focus-ring rounded text-sm font-semibold text-[var(--link)] hover:underline">See gallery →</a>
-    </div>
-    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {portfolioItems.slice(0, 3).map((item) => (
-        <article class="studio-card interactive-lift overflow-hidden">
-          <div class="overflow-hidden">
-            <img src={item.image} alt={item.title} width="1600" height="1000" class="h-48 w-full object-cover" loading="lazy" />
-          </div>
-          <div class="p-4">
-            <p class="kicker text-zinc-500">{item.category}</p>
-            <h3 class="mt-1 text-lg font-semibold text-zinc-900">{item.title}</h3>
-            <p class="mt-2 text-sm text-zinc-600">{item.summary}</p>
-          </div>
         </article>
       ))}
     </div>

@@ -10,6 +10,7 @@ export const site = {
   phoneDisplay: '+60 13-757 2507',
   email: 'hello@pancatz.com',
   instagramUrl: 'https://www.instagram.com/pancatz.design',
+  facebookUrl: 'https://www.facebook.com/pancatz',
   address: 'Online-first / appointment-based',
 };
 
