@@ -17,7 +17,6 @@ export const site = {
 export const navItems = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -74,63 +73,6 @@ export const services = [
     bestFor: ['Admin automation', 'Team onboarding', 'Digital ops setup', 'AI starter workflows'],
     quoteNeeds: ['Current workflow', 'Team size', 'Tools in use', 'Main pain point'],
     bullets: ['Plain-language onboarding', 'Secure setup guidance', 'Focus on measurable efficiency'],
-  },
-];
-
-export const portfolioItems = [
-  {
-    title: 'Starter Brand Kit for New Business',
-    category: 'Creative Hub',
-    status: 'sample',
-    image: '/portfolio-brand-kit.svg',
-    summary: 'Built a compact identity system with logo refinement, colour direction, typography, and launch-ready social templates.',
-    deliverables: ['Logo refinement', 'Brand mini-guide', 'Social launch templates'],
-    turnaround: '3–5 days',
-  },
-  {
-    title: 'Menu, Flyer & Counter Display Set',
-    category: 'Creative Hub',
-    status: 'sample',
-    image: '/portfolio-print-set.svg',
-    summary: 'Prepared a coordinated print pack so promotions, in-store signage, and take-away materials feel consistent.',
-    deliverables: ['Menu layout', 'Flyer artwork', 'Print-ready files'],
-    turnaround: '3–5 days',
-  },
-  {
-    title: 'Retail Sticker & Label Batch',
-    category: 'Creative Hub',
-    status: 'sample',
-    image: '/portfolio-labels.svg',
-    summary: 'Designed and prepared label artwork with practical sizing, material notes, and a repeat-order production flow.',
-    deliverables: ['Label design', 'Material test notes', 'Final print batch'],
-    turnaround: '2 days',
-  },
-  {
-    title: 'Laptop Recovery & Speed Upgrade',
-    category: 'IT Services',
-    status: 'sample',
-    image: '/portfolio-repair.svg',
-    summary: 'Diagnosed a slow workstation, protected key files, upgraded performance, and returned a cleaner daily-use setup.',
-    deliverables: ['Device diagnosis', 'Backup check', 'SSD/RAM upgrade plan'],
-    turnaround: '1 day',
-  },
-  {
-    title: 'Small Office Device Maintenance',
-    category: 'IT Services',
-    status: 'sample',
-    image: '/portfolio-maintenance.svg',
-    summary: 'Created a simple maintenance routine for multiple workstations covering updates, storage cleanup, and basic security.',
-    deliverables: ['Health checklist', 'Cleanup session', 'Maintenance guide'],
-    turnaround: '1–2 days',
-  },
-  {
-    title: 'Admin Workflow Automation Setup',
-    category: 'IT Services',
-    status: 'sample',
-    image: '/portfolio-ai-workflow.svg',
-    summary: 'Mapped repetitive admin tasks into templates and lightweight AI-assisted workflows that reduce manual follow-up.',
-    deliverables: ['Workflow map', 'Automation setup', 'Team handover notes'],
-    turnaround: '1 week',
   },
 ];
 
