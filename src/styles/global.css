@@ -21,7 +21,7 @@
   --step-1: clamp(1.25rem, 1.12rem + 0.65vw, 1.625rem);
   --step-2: clamp(1.625rem, 1.35rem + 1.35vw, 2.25rem);
   --step-3: clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem);
-  --step-4: clamp(3rem, 2.25rem + 4vw, 5.25rem);
+  --step-4: clamp(2.45rem, 1.35rem + 5vw, 5.25rem);
 }
 
 @theme {
@@ -135,8 +135,8 @@ p {
 
 .wa-fab {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -168,6 +168,19 @@ p {
   padding: 0.5rem 0.75rem;
 }
 
+.card-quiet {
+  border: 1px solid color-mix(in srgb, var(--surface-border), transparent 25%);
+  background: color-mix(in srgb, var(--surface), white 40%);
+  border-radius: 1rem;
+}
+
+.card-emphasis {
+  border: 1px solid var(--ink);
+  background: var(--surface);
+  border-radius: 1.5rem;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .interactive-lift {
     transition:
@@ -193,5 +206,31 @@ p {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+
+  .raw-grid {
+    background-size: 24px 24px;
+  }
+
+  .wa-fab span {
+    display: none;
+  }
+
+  .wa-fab {
+    width: 3.25rem;
+    height: 3.25rem;
+    justify-content: center;
+    padding: 0;
+  }
+
+  body {
+    padding-bottom: 4.5rem;
   }
 }

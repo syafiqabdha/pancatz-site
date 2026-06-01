@@ -2,55 +2,66 @@
 import Layout from '../layouts/Layout.astro';
 import { site, services, whatsappIntents } from '../data/site';
 
-const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
+const intentBySlug = {
+  'creative-hub-design': whatsappIntents.creativeHub,
+  'creative-hub-print': whatsappIntents.printing,
+  'it-services-repair': whatsappIntents.repair,
+  'it-services-ai': whatsappIntents.itAi,
+};
 ---
 
 <Layout path="/services" title={`Services | ${site.name}`}>
   <section class="section py-14 sm:py-20">
     <h1 class="page-title font-extrabold text-zinc-900">Services</h1>
-    <p class="lead mt-4 max-w-3xl text-zinc-600">Pancatz combines creative production and technical problem-solving so you can manage branding, marketing, and IT needs in one place.</p>
+    <p class="lead mt-4 max-w-3xl text-zinc-600">Pancatz is now organised around two clear lanes: Creative Hub for design and print, and IT Services for repair, maintenance, AI, and digital workflow support.</p>
 
     <div class="mt-10 grid gap-5 md:grid-cols-2">
-      {services.map((service) => (
-        <article id={service.slug} class="studio-card interactive-lift p-5">
-          <p class="kicker text-zinc-500">{service.eyebrow}</p>
-          <h2 class="mt-2 text-xl font-bold text-zinc-900">{service.title}</h2>
-          <p class="mt-3 text-sm leading-6 text-zinc-600">{service.description}</p>
+      {services.map((service) => {
+        const serviceWaLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(intentBySlug[service.slug])}`;
+        return (
+          <article id={service.slug} class="studio-card interactive-lift p-5">
+            <p class="kicker text-zinc-500">{service.eyebrow}</p>
+            <h2 class="mt-2 text-xl font-bold text-zinc-900">{service.title}</h2>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">{service.group}</p>
+            <p class="mt-3 text-sm leading-6 text-zinc-600">{service.description}</p>
 
-          <div class="mt-4 grid gap-3 sm:grid-cols-2">
-            <div>
-              <h3 class="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Best for</h3>
-              <ul class="mt-2 space-y-1 text-sm text-zinc-700">
-                {service.bestFor.map((item) => (
-                  <li>• {item}</li>
-                ))}
-              </ul>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Best for</h3>
+                <ul class="mt-2 space-y-1 text-sm text-zinc-700">
+                  {service.bestFor.map((item) => (
+                    <li>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Quote needs</h3>
+                <ul class="mt-2 space-y-1 text-sm text-zinc-700">
+                  {service.quoteNeeds.map((item) => (
+                    <li>• {item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Quote needs</h3>
-              <ul class="mt-2 space-y-1 text-sm text-zinc-700">
-                {service.quoteNeeds.map((item) => (
-                  <li>• {item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
 
-          <ul class="mt-4 space-y-2 text-sm text-zinc-700">
-            {service.bullets.map((bullet) => (
-              <li>• {bullet}</li>
-            ))}
-          </ul>
-        </article>
-      ))}
+            <ul class="mt-4 space-y-2 text-sm text-zinc-700">
+              {service.bullets.map((bullet) => (
+                <li>• {bullet}</li>
+              ))}
+            </ul>
+
+            <a href={serviceWaLink} class="btn-secondary interactive-lift focus-ring mt-5" target="_blank" rel="noreferrer">Ask about {service.group}</a>
+          </article>
+        );
+      })}
     </div>
   </section>
 
   <section class="section pb-16">
     <div class="studio-card p-6 sm:p-8">
       <h2 class="text-2xl font-bold text-zinc-900">Request a custom package</h2>
-      <p class="mt-2 text-zinc-600">Tell us your budget, target date, and goals. We can combine design, print, photography, and support into one smooth delivery plan.</p>
-      <a href={waLink} class="btn-primary interactive-lift focus-ring mt-6" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+      <p class="mt-2 text-zinc-600">Tell us your budget, target date, and goal. We can combine design, print, repair, and AI workflow support into one practical delivery plan.</p>
+      <a href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`} class="btn-primary interactive-lift focus-ring mt-6" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
     </div>
   </section>
 </Layout>

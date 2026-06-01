@@ -48,17 +48,20 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
   <body class="bg-paper text-zinc-800 antialiased">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="sticky top-0 z-40 border-b border-zinc-200/70 bg-paper/95 backdrop-blur-sm">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="/" class="text-lg font-bold tracking-tight text-zinc-900 focus-ring rounded-md px-1">{site.name}</a>
-        <nav aria-label="Main navigation">
-          <ul class="flex items-center gap-2 sm:gap-4">
+    <header class="sticky top-0 z-40 border-b border-zinc-200 bg-paper">
+      <div class="section flex items-center justify-between gap-3 py-3">
+        <a href="/" class="focus-ring flex shrink-0 items-center gap-2 rounded-md">
+          <img src="/pancatz-logo.webp" alt="Pancatz" width="36" height="36" class="h-9 w-9 rounded-xl object-cover" />
+          <span class="hidden text-lg font-bold tracking-tight text-zinc-900 sm:inline">{site.name}</span>
+        </a>
+        <nav aria-label="Main navigation" class="min-w-0 overflow-x-auto">
+          <ul class="flex min-w-max items-center gap-1 sm:gap-3">
             {navItems.map((item) => (
               <li>
                 <a
                   href={item.href}
                   class:list={[
-                    'focus-ring rounded-full px-3 py-2 text-sm font-medium transition-colors',
+                    'focus-ring rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors',
                     path === item.href ? 'bg-zinc-900 text-white' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900',
                   ]}
                 >
@@ -75,16 +78,26 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
       <slot />
     </main>
 
-    <footer class="mt-16 border-t border-zinc-200 bg-white">
-      <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-3 lg:px-8">
+    <section class="section py-8">
+      <div class="grid gap-3 rounded-3xl border border-zinc-200 bg-white p-4 text-sm sm:grid-cols-3">
+        <p><strong>Fast quote flow</strong><br />Clear scope before work starts.</p>
+        <p><strong>Print + tech capable</strong><br />Creative and IT support in one place.</p>
+        <p><strong>Practical handover</strong><br />Files, setup notes, and next steps included.</p>
+      </div>
+    </section>
+
+    <footer class="mt-8 border-t border-zinc-200 bg-white">
+      <div class="section grid gap-8 py-10 lg:grid-cols-3">
         <div>
           <h2 class="text-base font-semibold text-zinc-900">{site.name}</h2>
-          <p class="mt-2 text-sm leading-6 text-zinc-600">{site.description}</p>
+          <p class="mt-2 text-sm leading-6 text-zinc-600">Creative and technical delivery in one practical service desk.</p>
         </div>
         <div>
-          <h2 class="text-base font-semibold text-zinc-900">Service Area</h2>
-          <p class="mt-2 text-sm text-zinc-600">{site.area}</p>
-          <p class="mt-1 text-sm text-zinc-600">{site.address}</p>
+          <h2 class="text-base font-semibold text-zinc-900">Service Hubs</h2>
+          <ul class="mt-2 space-y-1 text-sm text-zinc-600">
+            <li><span class="font-medium text-zinc-800">Creative Hub:</span> Printing, Graphic Design</li>
+            <li><span class="font-medium text-zinc-800">IT Services:</span> Support, Hardware, AI</li>
+          </ul>
         </div>
         <div>
           <h2 class="text-base font-semibold text-zinc-900">Contact</h2>

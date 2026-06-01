@@ -5,14 +5,14 @@ import { portfolioItems } from '../data/site';
 
 <Layout path="/portfolio" title="Portfolio | Pancatz">
   <section class="section py-14 sm:py-20">
-    <h1 class="page-title font-extrabold text-zinc-900">Portfolio & Gallery</h1>
-    <p class="lead mt-4 max-w-3xl text-zinc-600">A snapshot of the type of work we do for local brands, families, schools, and SMEs. Current visuals are representative samples while case-study assets are being expanded.</p>
+    <h1 class="page-title font-extrabold text-zinc-900">Portfolio & Work Samples</h1>
+    <p class="lead mt-4 max-w-3xl text-zinc-600">Representative samples for Pancatz's current focus: Creative Hub projects for design and print, plus IT Services projects for repair, maintenance, AI, and workflow setup.</p>
 
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {portfolioItems.map((item) => (
         <article class="studio-card interactive-lift overflow-hidden">
           <div class="overflow-hidden">
-            <img src={item.image} alt={item.title} class="h-56 w-full object-cover" loading="lazy" />
+            <img src={item.image} alt={item.title} width="1600" height="1000" class="h-56 w-full object-cover" loading="lazy" />
           </div>
           <div class="p-4">
             <div class="flex items-center justify-between gap-2">
