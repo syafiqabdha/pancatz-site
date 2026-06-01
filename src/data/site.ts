@@ -8,7 +8,7 @@ export const site = {
   whatsappMessage:
     'Hi Pancatz, saya berminat dengan servis anda. Boleh saya dapatkan sebut harga?',
   phoneDisplay: '+60 13-757 2507',
-  email: 'hello@pancatz.com',
+  email: 'pancatz.design@gmail.com',
   instagramUrl: 'https://www.instagram.com/pancatz.design',
   facebookUrl: 'https://www.facebook.com/pancatz',
   address: 'Online-first / appointment-based',
