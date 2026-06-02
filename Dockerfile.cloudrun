@@ -1,0 +1,25 @@
+# Stage 1: Build Astro site (same as main Dockerfile)
+FROM node:22-alpine AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Stage 2: Serve static files on Cloud Run
+FROM node:22-alpine
+WORKDIR /app
+COPY --from=builder /app/dist/ ./
+
+# Install lightweight static file server
+RUN npm install -g serve@14
+
+# Use the existing non-root 'node' user from the node:alpine base image
+USER node
+
+# Cloud Run injects PORT env var; default to 8080 if not set
+ENV PORT=8080
+EXPOSE 8080
+
+# Serve static files on all interfaces at the Cloud Run port
+CMD ["sh", "-c", "serve -s . -l tcp://0.0.0.0:${PORT}"]
