@@ -1,46 +1,92 @@
-# Astro Starter Kit: Basics
+# Pancatz 🐈‍⬛
 
-```sh
-npm create astro@latest -- --template basics
-```
+> **Creative Hub + IT Services for modern teams**
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Pancatz brings design, print, computer repair, and practical AI support into one clear service desk for people and small businesses that need useful work delivered fast.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## ✨ Features
+
+- **Creative Hub**: Design & Brand Assets, Print Production.
+- **IT Services**: Computer Repair & Maintenance, AI & Digital Workflow Support.
+- **Fast Quote Flow**: Clear scope via WhatsApp before work starts.
+- **Online-first Service**: Operating with appointment-based support.
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Astro](https://astro.build/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Deployment:** Docker, Nginx
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js `>=22.12.0`
+- npm (or your preferred package manager)
+
+### Installation & Local Development
+
+1. **Clone the repository** (if applicable):
+   ```bash
+   git clone <repository-url>
+   cd pancatz-site
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+   *The site will be available locally at `http://localhost:4321`.*
+
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
+   *The output will be generated in the `./dist` directory.*
+
+## 🐳 Deployment (Docker)
+
+This project includes configuration files for containerized deployment using Docker and Nginx.
+
+1. **Build and run using Docker Compose**:
+   ```bash
+   docker-compose up -d --build
+   ```
+
+2. **Coolify Support**:
+   The project also contains a `docker-compose.coolify.yml` optimized for easy deployment on [Coolify](https://coolify.io/).
+
+## 📁 Project Structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+pancatz-site/
+├── public/                 # Static assets (images, fonts, etc.)
+├── src/                    # Source code
+│   ├── assets/             # Internal assets
+│   ├── data/               # Site data, navigation, and service details (site.ts)
+│   ├── layouts/            # Astro layout components (Layout.astro)
+│   ├── pages/              # Astro pages (index, about, services, contact, 404)
+│   └── styles/             # Global CSS and Tailwind directives
+├── Dockerfile              # Docker configuration for serving static files
+├── docker-compose*.yml     # Docker Compose configurations
+├── nginx.conf              # Nginx server configuration
+├── astro.config.mjs        # Astro configuration
+└── package.json            # Dependencies and scripts
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📬 Contact & Socials
 
-## 🧞 Commands
+- **WhatsApp:** +60 13-757 2507
+- **Email:** pancatz.design@gmail.com
+- **Instagram:** [@pancatz.design](https://www.instagram.com/pancatz.design)
+- **Facebook:** [pancatz](https://www.facebook.com/pancatz)
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+*© Pancatz. All rights reserved.*
