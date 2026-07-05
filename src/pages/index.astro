@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, faqs, whatsappIntents } from '../data/site';
+import TestAstryx from '../components/TestAstryx';
 
 const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
 const serviceGroups = [
@@ -24,6 +25,7 @@ const serviceGroups = [
         <p class="kicker mb-3 inline-flex rounded-full border border-zinc-300 bg-white/80 px-3 py-1 text-zinc-700">CREATIVE HUB / IT SERVICES</p>
         <h1 class="hero-title font-extrabold text-zinc-900">Creative production and IT support, built for practical work.</h1>
         <p class="lead mt-5 max-w-2xl text-zinc-600">Design, print, hardware help, and AI workflow setup from one responsive team.</p>
+        <TestAstryx client:load />
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={waLink} class="btn-primary interactive-lift focus-ring" target="_blank" rel="noreferrer">Get Quote on WhatsApp</a>
           <a href="/services" class="btn-secondary interactive-lift focus-ring">Explore Services</a>
