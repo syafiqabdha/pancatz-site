@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, services, whatsappIntents } from '../data/site';
+import { Button, Card } from '@astryxdesign/core';
 
 const intentBySlug = {
   'creative-hub-design': whatsappIntents.creativeHub,
@@ -19,7 +20,7 @@ const intentBySlug = {
       {services.map((service) => {
         const serviceWaLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(intentBySlug[service.slug])}`;
         return (
-          <article id={service.slug} class="studio-card interactive-lift p-5">
+          <Card padding={5} variant="default" id={service.slug}>
             <p class="kicker text-zinc-500">{service.eyebrow}</p>
             <h2 class="mt-2 text-xl font-bold text-zinc-900">{service.title}</h2>
             <p class="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">{service.group}</p>
@@ -50,18 +51,18 @@ const intentBySlug = {
               ))}
             </ul>
 
-            <a href={serviceWaLink} class="btn-secondary interactive-lift focus-ring mt-5" target="_blank" rel="noreferrer">Ask about {service.group}</a>
-          </article>
+            <Button href={serviceWaLink} label={`Ask about ${service.group}`} variant="secondary" className="mt-5" target="_blank" rel="noreferrer" />
+          </Card>
         );
       })}
     </div>
   </section>
 
   <section class="section pb-16">
-    <div class="studio-card p-6 sm:p-8">
+    <Card padding={6} variant="default">
       <h2 class="text-2xl font-bold text-zinc-900">Request a custom package</h2>
       <p class="mt-2 text-zinc-600">Tell us your budget, target date, and goal. We can combine design, print, repair, and AI workflow support into one practical delivery plan.</p>
-      <a href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`} class="btn-primary interactive-lift focus-ring mt-6" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
-    </div>
+      <Button href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`} label="Chat on WhatsApp" variant="primary" className="mt-6" target="_blank" rel="noreferrer" />
+    </Card>
   </section>
 </Layout>

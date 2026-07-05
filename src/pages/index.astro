@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, faqs, whatsappIntents } from '../data/site';
-import TestAstryx from '../components/TestAstryx';
+import { Button, Card, Badge } from '@astryxdesign/core';
 
 const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
 const serviceGroups = [
@@ -25,13 +25,12 @@ const serviceGroups = [
         <p class="kicker mb-3 inline-flex rounded-full border border-zinc-300 bg-white/80 px-3 py-1 text-zinc-700">CREATIVE HUB / IT SERVICES</p>
         <h1 class="hero-title font-extrabold text-zinc-900">Creative production and IT support, built for practical work.</h1>
         <p class="lead mt-5 max-w-2xl text-zinc-600">Design, print, hardware help, and AI workflow setup from one responsive team.</p>
-        <TestAstryx client:load />
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href={waLink} class="btn-primary interactive-lift focus-ring" target="_blank" rel="noreferrer">Get Quote on WhatsApp</a>
-          <a href="/services" class="btn-secondary interactive-lift focus-ring">Explore Services</a>
+          <Button href={waLink} label="Get Quote on WhatsApp" variant="primary" target="_blank" rel="noreferrer" />
+          <Button href="/services" label="Explore Services" variant="secondary" />
         </div>
       </div>
-      <div class="studio-card p-6 text-zinc-800">
+      <Card padding={6} variant="default">
         <p class="kicker text-zinc-500">WORKFLOW / TRUST MODEL</p>
         <h2 class="mt-3 text-xl font-bold">How projects move with Pancatz</h2>
         <ol class="mt-4 space-y-3 text-sm text-zinc-700">
@@ -41,32 +40,32 @@ const serviceGroups = [
           <li><span class="font-semibold">04 Produce:</span> Design, print, repair, or workflow setup with clear updates.</li>
           <li><span class="font-semibold">05 Handover:</span> You receive final files, fixed devices, or practical next steps.</li>
         </ol>
-      </div>
+      </Card>
     </div>
   </section>
 
   <section class="section py-8 sm:py-12">
     <div class="flex items-end justify-between gap-4">
       <h2 class="page-title font-bold tracking-tight text-zinc-900">Service Hubs</h2>
-      <a href="/services" class="focus-ring rounded text-sm font-semibold text-[var(--link)] hover:underline">View all →</a>
+      <Button href="/services" label="View all →" variant="ghost" />
     </div>
     <div class="mt-6 grid gap-4 md:grid-cols-2">
       {serviceGroups.map((group) => (
-        <article class="card-emphasis interactive-lift p-6">
+        <Card padding={6} variant="muted">
           <p class="kicker text-zinc-500">{group.title}</p>
           <p class="mt-2 text-sm leading-6 text-zinc-700">{group.summary}</p>
           <ul class="mt-4 flex flex-wrap gap-2">
             {group.chips.map((chip) => (
-              <li class="card-quiet px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-700">{chip}</li>
+              <li><Badge label={chip} variant="neutral" /></li>
             ))}
           </ul>
-        </article>
+        </Card>
       ))}
     </div>
   </section>
 
   <section class="section py-10 sm:py-14">
-    <div class="studio-card p-6 sm:p-8">
+    <Card padding={6} variant="default">
       <h2 class="page-title font-bold tracking-tight text-zinc-900">Frequently Asked Questions</h2>
       <div class="mt-6 grid gap-4 md:grid-cols-3">
         {faqs.map((faq) => (
@@ -76,14 +75,14 @@ const serviceGroups = [
           </article>
         ))}
       </div>
-    </div>
+    </Card>
   </section>
 
   <section class="section pb-16">
     <div class="rounded-3xl bg-zinc-900 p-8 text-white">
       <h2 class="text-2xl font-bold">Need a quick quote today?</h2>
       <p class="mt-2 max-w-2xl text-zinc-200">Share your project details on WhatsApp and we will suggest the right Creative Hub or IT Services package with timeline and cost estimate.</p>
-      <a href={waLink} class="btn-primary interactive-lift focus-ring mt-6" target="_blank" rel="noreferrer">WhatsApp Pancatz</a>
+      <Button href={waLink} label="WhatsApp Pancatz" variant="primary" target="_blank" rel="noreferrer" className="mt-6" />
     </div>
   </section>
 </Layout>
