@@ -1,42 +1,52 @@
-# Pancatz 🐈‍⬛
+<div align="center">
+  <img src="public/pancatz-logo.webp" alt="Pancatz Logo" width="120" height="120" style="border-radius: 20%; margin-bottom: 1rem;" />
+  
+  <h1>Pancatz 🐈‍⬛</h1>
+  <p><strong>Creative Hub + IT Services for modern teams</strong></p>
+  
+  [![Deploy Status](https://img.shields.io/github/actions/workflow/status/syafiqabdha/pancatz-site/docker-publish.yml?label=Docker%20Build&style=flat-square)](https://github.com/syafiqabdha/pancatz-site/actions)
+  [![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&style=flat-square)](https://pancatz-site.vercel.app)
+  [![Astro](https://img.shields.io/badge/Astro-v6-ff5a03?logo=astro&style=flat-square)](https://astro.build/)
+  [![Astryx](https://img.shields.io/badge/Astryx-Design_System-0a7f5a?style=flat-square)](https://github.com/astryxdesign)
 
-> **Creative Hub + IT Services for modern teams**
+  <p>
+    <a href="https://pancatz-site.vercel.app"><b>View Live Site</b></a> •
+    <a href="#-getting-started"><b>Getting Started</b></a> •
+    <a href="CONTRIBUTING.md"><b>Contributing</b></a>
+  </p>
+</div>
+
+<br/>
 
 Pancatz brings design, print, computer repair, and practical AI support into one clear service desk for people and small businesses that need useful work delivered fast.
-
-🌍 **Live Site:** [pancatz-site.vercel.app](https://pancatz-site.vercel.app)
 
 ---
 
 ## ✨ Features
 
-- **Creative Hub**: Design & Brand Assets, Print Production.
-- **IT Services**: Computer Repair & Maintenance, AI & Digital Workflow Support.
-- **Fast Quote Flow**: Clear scope via WhatsApp before work starts.
-- **Online-first Service**: Operating with appointment-based support.
+- **🎨 Creative Hub**: Design & Brand Assets, Print Production.
+- **💻 IT Services**: Computer Repair & Maintenance, AI & Digital Workflow Support.
+- **⚡ Fast Quote Flow**: Clear scope via WhatsApp before work starts.
+- **🌐 Online-first Service**: Operating with appointment-based support.
 
 ## 🛠️ Tech Stack
 
-- **Framework:** [Astro](https://astro.build/)
+- **Framework:** [Astro](https://astro.build/) (Static Site Generation)
 - **UI & Components:** [Astryx Design System](https://github.com/astryxdesign) + React
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Deployment:** Vercel (Primary), Docker (GHCR), Nginx
-
-## 🤖 AI Agent & Developer Handover
-Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to extend the site using the Astryx component workflow. This outlines the commands necessary for component generation and design tokens.
+- **Deployment:** Vercel (Primary) / Docker + Nginx (Self-Hosted)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js `>=22.12.0`
+- [Node.js](https://nodejs.org/) `>=22.12.0`
 - npm (or your preferred package manager)
 
-### Installation & Local Development
+### Local Development
 
-1. **Clone the repository** (if applicable):
+1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/syafiqabdha/pancatz-site.git
    cd pancatz-site
    ```
 
@@ -61,20 +71,27 @@ Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to ex
 
 ### Vercel (Recommended)
 The site is automatically deployed to Vercel on every push to the `master` branch.
-**URL:** [https://pancatz-site.vercel.app](https://pancatz-site.vercel.app)
+**Live URL:** [https://pancatz-site.vercel.app](https://pancatz-site.vercel.app)
 
 ### Docker & Coolify (Self-Hosted)
 A Docker image is automatically built and pushed to the GitHub Container Registry via GitHub Actions.
-You can pull the latest production image on any server:
+
+Pull the latest production image on any server:
 ```bash
 docker pull ghcr.io/syafiqabdha/pancatz-site:master
 ```
 
-You can also build and run it locally using Docker Compose:
+Or build and run it locally using Docker Compose:
 ```bash
 docker-compose up -d --build
 ```
 *(A `docker-compose.coolify.yml` is included for easy deployment on [Coolify](https://coolify.io/).)*
+
+## 🤖 AI Agent & Developer Handover
+
+We strictly use the **Astryx Design System**. 
+
+Before contributing, please read [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to extend the site using the Astryx component workflow. This outlines the commands necessary for component generation, design tokens, and avoiding raw HTML/Tailwind practices.
 
 ## 📁 Project Structure
 
@@ -83,10 +100,11 @@ pancatz-site/
 ├── public/                 # Static assets (images, fonts, etc.)
 ├── src/                    # Source code
 │   ├── assets/             # Internal assets
+│   ├── components/         # Reusable React/Astro components
 │   ├── data/               # Site data, navigation, and service details (site.ts)
 │   ├── layouts/            # Astro layout components (Layout.astro)
 │   ├── pages/              # Astro pages (index, about, services, contact, 404)
-│   └── styles/             # Global CSS and Tailwind directives
+│   └── styles/             # Global CSS and Astryx Theme configurations
 ├── Dockerfile              # Docker configuration for serving static files
 ├── docker-compose*.yml     # Docker Compose configurations
 ├── nginx.conf              # Nginx server configuration
@@ -102,4 +120,6 @@ pancatz-site/
 - **Facebook:** [pancatz](https://www.facebook.com/pancatz)
 
 ---
-*© Pancatz. All rights reserved.*
+<div align="center">
+  <i>© Pancatz. All rights reserved.</i>
+</div>
