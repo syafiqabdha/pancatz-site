@@ -16,8 +16,12 @@ Pancatz brings design, print, computer repair, and practical AI support into one
 ## 🛠️ Tech Stack
 
 - **Framework:** [Astro](https://astro.build/)
+- **UI & Components:** [Astryx Design System](https://github.com/astryxdesign) + React
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Deployment:** Docker, Nginx
+
+## 🤖 AI Agent & Developer Handover
+Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to extend the site using the Astryx component workflow. This outlines the commands necessary for component generation and design tokens.
 
 ## 🚀 Getting Started
 
