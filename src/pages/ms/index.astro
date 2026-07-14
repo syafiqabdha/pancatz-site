@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site, whatsappIntents } from '../../data/site';
+import { Button, Card, Badge } from '@astryxdesign/core';
+
+const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
+const msDescription = 'Pancatz menyediakan perkhidmatan reka grafik, percetakan, baiki komputer, dan sokongan AI untuk perniagaan kecil di Johor Bahru, Malaysia.';
+---
+
+<Layout path="/ms" title={`Pancatz | Kreatif + IT | Johor Bahru, Malaysia`} description={msDescription}>
+  <section class="section raw-grid rounded-3xl py-14 sm:py-20">
+    <div class="grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="kicker mb-3 inline-flex rounded-full border border-zinc-300 bg-white/80 px-3 py-1 text-zinc-700">KREATIF / IT</p>
+        <h1 class="hero-title font-extrabold text-zinc-900">Reka grafik, percetakan, baiki komputer dan AI — satu pasukan yang responsif.</h1>
+        <p class="lead mt-5 max-w-2xl text-zinc-600">Kami bantu perniagaan kecil dan individu untuk tampil profesional, peranti berfungsi lancar, dan guna AI tanpa kerumitan.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href={waLink} label="WhatsApp Kami" variant="primary" target="_blank" rel="noreferrer" />
+          <Button href="/ms/services" label="Lihat Servis" variant="secondary" />
+        </div>
+      </div>
+      <Card padding={6} variant="default">
+        <p class="kicker text-zinc-500">CARTA ALIR</p>
+        <h2 class="mt-3 text-xl font-bold">Bagaimana kami bekerja</h2>
+        <ol class="mt-4 space-y-3 text-sm text-zinc-700">
+          <li><span class="font-semibold">01 Matlamat:</span> Anda kongsi keperluan, kekangan, dan tarikh akhir.</li>
+          <li><span class="font-semibold">02 Laluan:</span> Kami salurkan ke Kreatif, IT, atau pakej gabungan.</li>
+          <li><span class="font-semibold">03 Sebut Harga:</span> Masa, skop, dan bajet disahkan awal.</li>
+          <li><span class="font-semibold">04 Hasil:</span> Reka, cetak, baiki, atau siapkan workflow AI dengan kemas kini jelas.</li>
+          <li><span class="font-semibold">05 Serahan:</span> Anda terima fail akhir, peranti dibaiki, atau langkah seterusnya.</li>
+        </ol>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section py-8 sm:py-12">
+    <div class="flex items-end justify-between gap-4">
+      <h2 class="page-title font-bold tracking-tight text-zinc-900">Laluan Servis</h2>
+      <Button href="/ms/services" label="Lihat semua →" variant="ghost" />
+    </div>
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <Card padding={6} variant="muted">
+        <p class="kicker text-zinc-500">Creative Hub</p>
+        <p class="mt-2 text-sm leading-6 text-zinc-700">Reka grafik dan bahan cetak untuk kempen, kedai, pelancaran, dan keperluan harian perniagaan.</p>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          <li><Badge label="Reka Grafik" variant="neutral" /></li>
+          <li><Badge label="Percetakan" variant="neutral" /></li>
+        </ul>
+      </Card>
+      <Card padding={6} variant="muted">
+        <p class="kicker text-zinc-500">Perkhidmatan IT</p>
+        <p class="mt-2 text-sm leading-6 text-zinc-700">Sokongan perkakasan, penyelesaian masalah, persediaan, dan workflow AI untuk pasukan kecil.</p>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          <li><Badge label="Sokongan IT" variant="neutral" /></li>
+          <li><Badge label="Perkakasan" variant="neutral" /></li>
+          <li><Badge label="Persediaan AI" variant="neutral" /></li>
+        </ul>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section py-10 sm:py-14">
+    <h2 class="page-title mb-8 font-bold text-zinc-900">Apa Kata Pelanggan</h2>
+    <div
+      class="grid gap-4 md:grid-cols-2 lg:grid-cols-4"
+      style="background-image: url('/images/testimonials-strip.jpg'); background-size: cover; background-position: center; border-radius: 1rem; padding: 2rem;"
+    >
+      {[
+        { quote: 'Pancatz reka banner untuk kedai kami dalam sehari.', author: 'Aminah', org: 'Kedai Makan Asli, Kulai' },
+        { quote: 'Setup WiFi office kami jadi smooth.', author: 'Raj', org: 'Kulai Optics' },
+        { quote: 'Logo dan business card semua done di Pancatz. Professional.', author: 'Tan', org: 'JB Auto Parts' },
+        { quote: 'Saya ambil pelan bulanan IT. Response WhatsApp memang cepat.', author: 'Faiz', org: 'SG Creative Studio' },
+      ].map((t) => (
+        <Card padding={5} variant="default" className="flex flex-col bg-white/95 backdrop-blur-sm">
+          <p class="text-sm leading-6 text-zinc-700">&ldquo;{t.quote}&rdquo;</p>
+          <div class="mt-4 border-t border-zinc-200 pt-3">
+            <p class="text-sm font-semibold text-zinc-900">{t.author}</p>
+            <p class="text-xs text-zinc-500">{t.org}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section pb-16">
+    <div class="rounded-3xl bg-zinc-900 p-8 text-white">
+      <h2 class="text-2xl font-bold">Perlukan sebut harga segera?</h2>
+      <p class="mt-2 max-w-2xl text-zinc-200">Kongsikan butiran projek anda di WhatsApp dan kami akan cadangkan pakej Creative Hub atau IT yang sesuai dengan anggaran masa dan kos.</p>
+      <Button href={waLink} label="WhatsApp Pancatz" variant="primary" className="mt-6" target="_blank" rel="noreferrer" />
+    </div>
+  </section>
+</Layout>

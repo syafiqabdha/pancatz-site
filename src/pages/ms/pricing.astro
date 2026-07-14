@@ -1,0 +1,162 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site, whatsappIntents } from '../../data/site';
+import { Button, Card, Badge } from '@astryxdesign/core';
+
+const waLink = (msg: string) =>
+  `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+const waGeneral = waLink(whatsappIntents.general);
+
+const msTitle = 'Harga & Pakej | Pancatz | Johor Bahru, Malaysia';
+const msDesc = 'Harga telus untuk reka grafik, percetakan, perkhidmatan IT, dan pakej retainer di Johor Bahru, Malaysia.';
+---
+
+<Layout path="/ms/pricing" title={msTitle} description={msDesc}>
+  <section class="section py-14 sm:py-20">
+    <h1 class="page-title font-extrabold text-zinc-900">Harga & Pakej</h1>
+    <p class="lead mt-4 max-w-3xl text-zinc-600">Harga telus untuk reka grafik, percetakan, perkhidmatan IT, dan pakej retainer. Semua harga dalam RM.</p>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Creative Hub — Reka Grafik</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {[
+        { item: 'Reka Logo', price: 'RM150' },
+        { item: 'Kad Perniagaan', price: 'RM80' },
+        { item: 'Flyer', price: 'RM120' },
+        { item: 'Kit Media Sosial', price: 'RM200' },
+        { item: 'Menu', price: 'RM180' },
+        { item: 'Banner', price: 'RM150' },
+        { item: 'Pakej Jenama Penuh', price: 'RM800' },
+      ].map((p) => (
+        <Card padding={5} variant="default">
+          <h3 class="text-lg font-bold text-zinc-900">{p.item}</h3>
+          <p class="mt-1 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <Button href={waGeneral} label="Sebut Harga" variant="secondary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Creative Hub — Percetakan</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {[
+        { item: 'Kad Perniagaan', price: 'RM30/100pcs' },
+        { item: 'Flyer A5', price: 'RM35/100pcs' },
+        { item: 'Flyer A4', price: 'RM50/100pcs' },
+        { item: 'Banner', price: 'RM8/kaki persegi' },
+        { item: 'Stiker', price: 'RM25/100pcs' },
+        { item: 'Buku Kecil', price: 'RM2.50/pc' },
+        { item: 'Poster A2/A1', price: 'RM5–12/pc' },
+      ].map((p) => (
+        <Card padding={5} variant="default">
+          <h3 class="text-lg font-bold text-zinc-900">{p.item}</h3>
+          <p class="mt-1 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <Button href={waGeneral} label="Sebut Harga" variant="secondary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Perkhidmatan IT</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {[
+        { item: 'Diagnostik PC', price: 'RM30' },
+        { item: 'Pasang Semula Windows', price: 'RM80' },
+        { item: 'Buang Virus', price: 'RM60' },
+        { item: 'Naik Taraf Perkakasan', price: 'RM50 (upah)' },
+        { item: 'Pemulihan Data', price: 'RM100' },
+        { item: 'Persediaan Rangkaian', price: 'RM150' },
+        { item: 'Persediaan Pencetak', price: 'RM50' },
+      ].map((p) => (
+        <Card padding={5} variant="default">
+          <h3 class="text-lg font-bold text-zinc-900">{p.item}</h3>
+          <p class="mt-1 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <Button href={waGeneral} label="Tempah" variant="secondary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Pakej Retainer IT</h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      {[
+        { name: 'Starter', price: 'RM199/bln', devices: '3 peranti' },
+        { name: 'Business', price: 'RM499/bln', devices: '8 peranti' },
+        { name: 'Pro', price: 'RM899/bln', devices: '15 peranti' },
+      ].map((p) => (
+        <Card padding={5} variant="default" className="flex flex-col">
+          <Badge label={p.name} variant="neutral" />
+          <p class="mt-3 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <p class="text-sm text-zinc-500">Sehingga {p.devices}</p>
+          <Button href={waGeneral} label="Sebut Harga" variant="secondary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Pakej Retainer Kreatif</h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      {[
+        { name: 'Lite', price: 'RM299/bln', desc: 'Sehingga 5 rekaan sebulan' },
+        { name: 'Standard', price: 'RM599/bln', desc: 'Sehingga 12 rekaan sebulan' },
+        { name: 'Pro', price: 'RM1,200/bln', desc: 'Rekaan tanpa had' },
+      ].map((p) => (
+        <Card padding={5} variant="default" className="flex flex-col">
+          <Badge label={p.name} variant="neutral" />
+          <p class="mt-3 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <p class="mt-2 text-sm text-zinc-600">{p.desc}</p>
+          <Button href={waGeneral} label="Sebut Harga" variant="secondary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Pakej Retainer Gabungan</h2>
+    <div class="grid gap-4 md:grid-cols-2">
+      {[
+        { name: 'Perniagaan Kecil', price: 'RM799/bln', desc: 'Sokongan IT sehingga 5 peranti + 3 rekaan sebulan.' },
+        { name: 'Perniagaan Berkembang', price: 'RM1,500/bln', desc: 'Sokongan IT sehingga 12 peranti + 8 rekaan sebulan.' },
+      ].map((p) => (
+        <Card padding={6} variant="default" className="flex flex-col">
+          <Badge label={p.name} variant="primary" />
+          <p class="mt-3 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <p class="mt-2 text-sm text-zinc-600">{p.desc}</p>
+          <Button href={waGeneral} label="Sebut Harga" variant="primary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Perkhidmatan AI</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {[
+        { item: 'Konsultasi AI', price: 'RM150' },
+        { item: 'Persediaan Chatbot', price: 'RM300' },
+        { item: 'Workflow n8n', price: 'RM500' },
+        { item: 'Persediaan ComfyUI', price: 'RM300' },
+        { item: 'AI Tersuai', price: 'RM800+' },
+      ].map((p) => (
+        <Card padding={5} variant="default">
+          <h3 class="text-lg font-bold text-zinc-900">{p.item}</h3>
+          <p class="mt-1 text-2xl font-bold text-[var(--primary)]">{p.price}</p>
+          <Button href={waGeneral} label="Sebut Harga" variant="secondary" className="mt-4" target="_blank" rel="noreferrer" />
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section pb-16">
+    <Card padding={6} variant="default" className="text-center">
+      <h2 class="text-2xl font-bold text-zinc-900">Perlukan pakej tersuai?</h2>
+      <p class="mt-2 text-zinc-600">Beritahu kami keperluan anda dan kami akan sediakan sebut harga yang sesuai.</p>
+      <Button href={waGeneral} label="WhatsApp Kami" variant="primary" className="mt-6" target="_blank" rel="noreferrer" />
+    </Card>
+  </section>
+</Layout>

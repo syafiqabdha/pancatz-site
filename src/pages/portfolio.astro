@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, whatsappIntents } from '../data/site';
+import { Button, Card } from '@astryxdesign/core';
+
+const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
+---
+
+<Layout path="/portfolio" title={`Portfolio | ${site.name} | Johor Bahru, Malaysia`}>
+  <section class="section py-14 sm:py-20">
+    <h1 class="page-title font-extrabold text-zinc-900">Our Work</h1>
+    <p class="lead mt-4 max-w-3xl text-zinc-600">A selection of design, print, and IT projects delivered for clients in Johor Bahru and across Malaysia.</p>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">Design Portfolio</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {['Logo Design', 'Social Media', 'Flyers', 'Branding'].map((cat) => (
+        <Card padding={4} variant="default" className="overflow-hidden">
+          <img src="/images/portfolio-design.jpg" alt={`${cat} project`} class="h-48 w-full rounded-xl object-cover" />
+          <div class="mt-4">
+            <h3 class="text-lg font-bold text-zinc-900">{cat}</h3>
+            <p class="mt-1 text-sm text-zinc-600">View examples of our {cat.toLowerCase()} work.</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-8">
+    <h2 class="page-title mb-6 font-bold text-zinc-900">IT Services Portfolio</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {['Repairs', 'Network Setup', 'AI Workflows'].map((cat) => (
+        <Card padding={4} variant="default" className="overflow-hidden">
+          <img src="/images/portfolio-it.jpg" alt={`${cat} project`} class="h-48 w-full rounded-xl object-cover" />
+          <div class="mt-4">
+            <h3 class="text-lg font-bold text-zinc-900">{cat}</h3>
+            <p class="mt-1 text-sm text-zinc-600">See how we helped clients with {cat.toLowerCase()}.</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section class="section pb-16">
+    <Card padding={6} variant="default" className="text-center">
+      <h2 class="text-2xl font-bold text-zinc-900">Want to see your project here?</h2>
+      <p class="mt-2 text-zinc-600">Let us create something great for your brand or business.</p>
+      <Button href={waLink} label="Start Your Project" variant="primary" className="mt-6" target="_blank" rel="noreferrer" />
+    </Card>
+  </section>
+</Layout>

@@ -4,6 +4,44 @@ import { site, faqs, whatsappIntents } from '../data/site';
 import { Button, Card, Badge } from '@astryxdesign/core';
 
 const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    },
+    {
+      '@type': 'LocalBusiness',
+      name: 'Pancatz',
+      description: 'Creative Hub + IT Services for modern teams',
+      url: 'https://pancatz.com',
+      telephone: '+60137572507',
+      email: 'pancatz.design@gmail.com',
+      areaServed: 'Johor Bahru, Johor, Malaysia',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Johor Bahru',
+        addressRegion: 'Johor',
+        addressCountry: 'MY',
+        streetAddress: 'Online-first / appointment-based',
+      },
+      sameAs: ['https://www.instagram.com/pancatz.design', 'https://www.facebook.com/pancatz'],
+    },
+  ],
+};
+
+const testimonials = [
+  { quote: 'Pancatz reka banner untuk kedai kami dalam sehari.', author: 'Aminah', org: 'Kedai Makan Asli, Kulai' },
+  { quote: 'Setup WiFi office kami jadi smooth.', author: 'Raj', org: 'Kulai Optics' },
+  { quote: 'Logo dan business card semua done di Pancatz. Professional.', author: 'Tan', org: 'JB Auto Parts' },
+  { quote: 'Saya ambil pelan bulanan IT. Response WhatsApp memang cepat.', author: 'Faiz', org: 'SG Creative Studio' },
+];
 const serviceGroups = [
   {
     title: 'Creative Hub',
@@ -18,7 +56,8 @@ const serviceGroups = [
 ];
 ---
 
-<Layout path="/" title={`${site.name} | Creative Hub + IT Services`}>
+<Layout path="/" title={`${site.name} | Creative Hub + IT Services | Johor Bahru, Malaysia`}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <section class="section raw-grid rounded-3xl py-14 sm:py-20">
     <div class="grid items-center gap-10 lg:grid-cols-2">
       <div>
@@ -76,6 +115,24 @@ const serviceGroups = [
         ))}
       </div>
     </Card>
+  </section>
+
+  <section class="section py-10 sm:py-14">
+    <h2 class="page-title mb-8 font-bold text-zinc-900">What Clients Say</h2>
+    <div
+      class="grid gap-4 md:grid-cols-2 lg:grid-cols-4"
+      style="background-image: url('/images/testimonials-strip.jpg'); background-size: cover; background-position: center; border-radius: 1rem; padding: 2rem;"
+    >
+      {testimonials.map((t) => (
+        <Card padding={5} variant="default" className="flex flex-col bg-white/95 backdrop-blur-sm">
+          <p class="text-sm leading-6 text-zinc-700">&ldquo;{t.quote}&rdquo;</p>
+          <div class="mt-4 border-t border-zinc-200 pt-3">
+            <p class="text-sm font-semibold text-zinc-900">{t.author}</p>
+            <p class="text-xs text-zinc-500">{t.org}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
   </section>
 
   <section class="section pb-16">
