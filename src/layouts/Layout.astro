@@ -45,14 +45,14 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
     <meta name="twitter:image" content={socialImage} />
     <link rel="canonical" href={url} />
   </head>
-  <body class="bg-paper text-zinc-800 antialiased">
+  <body class="text-zinc-800 antialiased" style="background-color: var(--cream);">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="sticky top-0 z-40 border-b border-zinc-200 bg-paper/95 backdrop-blur-sm">
+    <header class="sticky top-0 z-40 border-b backdrop-blur-sm" style="border-color: var(--surface-border); background: rgb(253 248 243 / 0.92);">
       <div class="section relative flex min-h-16 items-center justify-between gap-3 py-4">
         <a href="/" class="focus-ring flex shrink-0 items-center gap-2 rounded-md">
           <img src="/pancatz-logo.webp" alt="Pancatz" width="36" height="36" class="h-9 w-9 rounded-xl object-cover" />
-          <span class="hidden text-lg font-bold tracking-tight text-zinc-900 sm:inline">{site.name}</span>
+          <span class="hidden text-lg font-bold tracking-tight sm:inline" style="color: var(--deep-charcoal);">{site.name}</span>
         </a>
 
         <nav aria-label="Main navigation" class="hidden md:block">
@@ -63,7 +63,14 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
                   href={item.href}
                   class:list={[
                     'focus-ring rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors',
-                    path === item.href ? 'bg-zinc-900 text-white' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900',
+                    path === item.href
+                      ? 'text-white'
+                      : 'hover:opacity-80',
+                  ]}
+                  style:list={[
+                    path === item.href
+                      ? 'background: var(--deep-charcoal);'
+                      : 'color: var(--deep-charcoal);',
                   ]}
                 >
                   {item.label}
@@ -76,7 +83,8 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
         <button
           id="mobile-menu-toggle"
           type="button"
-          class="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-800 transition-colors hover:bg-zinc-100 md:hidden"
+          class="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-lg border text-sm transition-colors md:hidden"
+          style="border-color: var(--surface-border); background: var(--soft-white); color: var(--deep-charcoal);"
           aria-label="Toggle navigation menu"
           aria-expanded="false"
           aria-controls="mobile-menu-drawer"
@@ -90,7 +98,8 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
 
         <div
           id="mobile-menu-drawer"
-          class="mobile-menu-drawer absolute left-0 right-0 top-full z-30 border-b border-zinc-200 bg-white/95 px-4 pb-4 pt-2 shadow-sm backdrop-blur-sm md:hidden"
+          class="mobile-menu-drawer absolute left-0 right-0 top-full z-30 border-b px-4 pb-4 pt-2 shadow-sm backdrop-blur-sm md:hidden"
+          style="border-color: var(--surface-border); background: rgb(254 252 249 / 0.95);"
           hidden
         >
           <nav aria-label="Mobile navigation">
@@ -101,7 +110,12 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
                     href={item.href}
                     class:list={[
                       'mobile-nav-link focus-ring block rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
-                      path === item.href ? 'bg-zinc-900 text-white' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900',
+                      path === item.href ? 'text-white' : '',
+                    ]}
+                    style:list={[
+                      path === item.href
+                        ? 'background: var(--deep-charcoal);'
+                        : 'color: var(--deep-charcoal);',
                     ]}
                   >
                     {item.label}
@@ -119,48 +133,48 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
     </main>
 
     <section class="section py-8">
-      <div class="grid gap-3 rounded-3xl border border-zinc-200 bg-white p-4 text-sm sm:grid-cols-3">
-        <p><strong>Fast quote flow</strong><br />Clear scope before work starts.</p>
-        <p><strong>Print + tech capable</strong><br />Creative and IT support in one place.</p>
-        <p><strong>Practical handover</strong><br />Files, setup notes, and next steps included.</p>
+      <div class="glass-card grid gap-4 p-5 text-sm sm:grid-cols-3" style="color: var(--deep-charcoal);">
+        <p><strong>Fast quote flow</strong><br /><span style="color: var(--warm-taupe);">Clear scope before work starts.</span></p>
+        <p><strong>Print + tech capable</strong><br /><span style="color: var(--warm-taupe);">Creative and IT support in one place.</span></p>
+        <p><strong>Practical handover</strong><br /><span style="color: var(--warm-taupe);">Files, setup notes, and next steps included.</span></p>
       </div>
     </section>
 
-    <footer class="mt-8 border-t border-zinc-200 bg-white">
+    <footer class="mt-8 border-t" style="border-color: var(--surface-border); background: var(--deep-charcoal);">
       <div class="section grid gap-8 py-10 md:grid-cols-3">
         <div>
-          <h2 class="text-base font-semibold text-zinc-900">{site.name}</h2>
-          <p class="mt-2 text-sm leading-6 text-zinc-600">Creative and technical delivery in one practical service desk.</p>
+          <h2 class="text-base font-semibold text-white">{site.name}</h2>
+          <p class="mt-2 text-sm leading-6 text-white/65">Creative and technical delivery in one practical service desk.</p>
         </div>
 
         <div>
-          <h2 class="text-base font-semibold text-zinc-900">Quick links</h2>
-          <ul class="mt-2 space-y-2 text-sm text-zinc-600">
+          <h2 class="text-base font-semibold text-white">Quick links</h2>
+          <ul class="mt-2 space-y-2 text-sm text-white/65">
             {navItems.map((item) => (
               <li>
-                <a class="focus-ring rounded text-zinc-700 hover:text-zinc-900" href={item.href}>{item.label}</a>
+                <a class="focus-ring rounded text-white/75 hover:text-white" href={item.href}>{item.label}</a>
               </li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h2 class="text-base font-semibold text-zinc-900">Social + contact</h2>
-          <ul class="mt-2 space-y-3 text-sm text-zinc-600">
+          <h2 class="text-base font-semibold text-white">Social + contact</h2>
+          <ul class="mt-2 space-y-3 text-sm text-white/65">
             <li>
-              <a class="focus-ring inline-flex items-center gap-2 rounded text-zinc-700 hover:text-zinc-900" href={`mailto:${site.email}`}>
+              <a class="focus-ring inline-flex items-center gap-2 rounded text-white/75 hover:text-white" href={`mailto:${site.email}`}>
                 <span>Email</span>
                 <span>{site.email}</span>
               </a>
             </li>
             <li>
-              <a class="focus-ring inline-flex items-center gap-2 rounded text-zinc-700 hover:text-zinc-900" href={waLink} target="_blank" rel="noreferrer">
+              <a class="focus-ring inline-flex items-center gap-2 rounded text-white/75 hover:text-white" href={waLink} target="_blank" rel="noreferrer">
                 <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M20.5 3.5A11.5 11.5 0 0 0 2.3 17.2L1 23l5.9-1.3A11.5 11.5 0 1 0 20.5 3.5Zm-8.9 17a9.4 9.4 0 0 1-4.8-1.3l-.3-.2-3.5.8.8-3.4-.2-.3a9.4 9.4 0 1 1 8 4.4Zm5.2-7.1c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.8.2-.2.3-.9 1-1 1.1-.2.2-.4.2-.7 0a7.7 7.7 0 0 1-2.3-1.4 8.8 8.8 0 0 1-1.6-2c-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.3 3.6c.2.2 2.3 3.5 5.5 4.8.8.3 1.4.5 1.9.7.8.3 1.6.3 2.2.2.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg>
                 <span>WhatsApp</span>
               </a>
             </li>
             <li>
-              <a class="social-link focus-ring inline-flex items-center gap-2 rounded text-zinc-700 hover:text-zinc-900" href={site.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">
+              <a class="social-link focus-ring inline-flex items-center gap-2 rounded text-white/75 hover:text-white" href={site.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">
                 <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8">
                   <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
                   <circle cx="12" cy="12" r="4" />
@@ -170,7 +184,7 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
               </a>
             </li>
             <li>
-              <a class="social-link focus-ring inline-flex items-center gap-2 rounded text-zinc-700 hover:text-zinc-900" href={site.facebookUrl} target="_blank" rel="noreferrer" aria-label="Facebook">
+              <a class="social-link focus-ring inline-flex items-center gap-2 rounded text-white/75 hover:text-white" href={site.facebookUrl} target="_blank" rel="noreferrer" aria-label="Facebook">
                 <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
                   <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.3-1.5 1.6-1.5h1.7V4.7c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.2H8v3.1h2.4v8h3.1Z" />
                 </svg>
@@ -180,7 +194,7 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
           </ul>
         </div>
       </div>
-      <div class="border-t border-zinc-200 py-4 text-center text-xs text-zinc-500">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+      <div class="border-t py-4 text-center text-xs" style="border-color: rgb(255 255 255 / 0.1); color: rgb(255 255 255 / 0.4);">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
     </footer>
 
     <a href={waLink} class="wa-fab interactive-lift focus-ring" target="_blank" rel="noreferrer" aria-label="Chat with Pancatz on WhatsApp">

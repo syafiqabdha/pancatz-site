@@ -42,104 +42,211 @@ const testimonials = [
   { quote: 'Logo dan business card semua done di Pancatz. Professional.', author: 'Tan', org: 'JB Auto Parts' },
   { quote: 'Saya ambil pelan bulanan IT. Response WhatsApp memang cepat.', author: 'Faiz', org: 'SG Creative Studio' },
 ];
-const serviceGroups = [
-  {
-    title: 'Creative Hub',
-    summary: 'Design and printed materials for campaigns, stores, launches, and everyday business needs.',
-    chips: ['Graphic Design', 'Printing'],
-  },
-  {
-    title: 'IT Services',
-    summary: 'Hardware support, troubleshooting, setup, and practical AI workflows for small teams.',
-    chips: ['IT Support', 'Hardware', 'AI Setup'],
-  },
+
+const conversationOptions = [
+  { label: 'Design something', emoji: '✏️', href: '/services#creative-hub-design' },
+  { label: 'Print materials', emoji: '🖨️', href: '/services#creative-hub-print' },
+  { label: 'Fix my computer', emoji: '🔧', href: '/services#it-services-repair' },
+  { label: 'Set up AI workflows', emoji: '🤖', href: '/services#it-services-ai' },
+  { label: 'Monthly retainer', emoji: '📋', href: '/pricing' },
+];
+
+const retainerTiers = [
+  { name: 'Starter', price: 'RM199', period: '/mo', desc: '3 devices, basic support', highlight: false },
+  { name: 'Business', price: 'RM499', period: '/mo', desc: '8 devices, ongoing maintenance', highlight: true },
+  { name: 'Pro', price: 'RM899', period: '/mo', desc: '15 devices, priority response', highlight: false },
 ];
 ---
 
 <Layout path="/" title={`${site.name} | Creative Hub + IT Services | Johor Bahru, Malaysia`}>
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-  <section class="section raw-grid rounded-3xl py-14 sm:py-20">
-    <div class="grid items-center gap-10 lg:grid-cols-2">
-      <div>
-        <p class="kicker mb-3 inline-flex rounded-full border border-zinc-300 bg-white/80 px-3 py-1 text-zinc-700">CREATIVE HUB / IT SERVICES</p>
-        <h1 class="hero-title font-extrabold text-zinc-900">Creative production and IT support, built for practical work.</h1>
-        <p class="lead mt-5 max-w-2xl text-zinc-600">Design, print, hardware help, and AI workflow setup from one responsive team.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <Button href={waLink} label="Get Quote on WhatsApp" variant="primary" target="_blank" rel="noreferrer" />
-          <Button href="/services" label="Explore Services" variant="secondary" />
+
+  <section class="grain-overlay relative overflow-hidden rounded-3xl" style="background: linear-gradient(160deg, #FDF8F3 0%, #F0E8DD 50%, #E8DDD0 100%);">
+    <div class="section relative z-10 py-16 sm:py-24">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <p class="kicker mb-4 inline-flex rounded-full border px-3 py-1" style="border-color: var(--surface-border); background: rgb(254 252 249 / 0.7); color: var(--warm-taupe);">
+            CREATIVE HUB + IT SERVICES
+          </p>
+          <h1 class="hero-title font-extrabold" style="color: var(--deep-charcoal);">
+            Design, print, and tech support — done with care.
+          </h1>
+          <p class="lead mt-6 max-w-lg" style="color: var(--warm-taupe);">
+            One team for your branding and IT needs. Practical, clear, and built around your actual work.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href={waLink} target="_blank" rel="noreferrer" class="btn-primary interactive-lift">
+              Get a quote on WhatsApp
+            </a>
+            <a href="/services" class="btn-secondary interactive-lift">
+              Explore services
+            </a>
+          </div>
+        </div>
+
+        <div class="glass-card-strong p-6 sm:p-8">
+          <p class="kicker" style="color: var(--warm-taupe);">HOW IT WORKS</p>
+          <h2 class="mt-3 text-xl font-bold" style="color: var(--deep-charcoal);">Five clear steps</h2>
+          <ol class="mt-5 space-y-4 text-sm" style="color: var(--deep-charcoal);">
+            <li class="flex gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">1</span>
+              <div><span class="font-semibold">Share your goal</span> — what you need, when you need it.</div>
+            </li>
+            <li class="flex gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">2</span>
+              <div><span class="font-semibold">We pick the lane</span> — Creative, IT, or both.</div>
+            </li>
+            <li class="flex gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">3</span>
+              <div><span class="font-semibold">Clear quote</span> — scope, timeline, price upfront.</div>
+            </li>
+            <li class="flex gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">4</span>
+              <div><span class="font-semibold">We produce</span> — with updates along the way.</div>
+            </li>
+            <li class="flex gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">5</span>
+              <div><span class="font-semibold">Handover</span> — files, fixes, or next steps delivered.</div>
+            </li>
+          </ol>
         </div>
       </div>
-      <Card padding={6} variant="default">
-        <p class="kicker text-zinc-500">WORKFLOW / TRUST MODEL</p>
-        <h2 class="mt-3 text-xl font-bold">How projects move with Pancatz</h2>
-        <ol class="mt-4 space-y-3 text-sm text-zinc-700">
-          <li><span class="font-semibold">01 Goal:</span> You share the outcome, constraint, and deadline.</li>
-          <li><span class="font-semibold">02 Lane:</span> We route it into Creative Hub, IT Services, or a combined package.</li>
-          <li><span class="font-semibold">03 Quote:</span> Timeline, scope, and budget are confirmed upfront.</li>
-          <li><span class="font-semibold">04 Produce:</span> Design, print, repair, or workflow setup with clear updates.</li>
-          <li><span class="font-semibold">05 Handover:</span> You receive final files, fixed devices, or practical next steps.</li>
-        </ol>
-      </Card>
     </div>
   </section>
 
-  <section class="section py-8 sm:py-12">
-    <div class="flex items-end justify-between gap-4">
-      <h2 class="page-title font-bold tracking-tight text-zinc-900">Service Hubs</h2>
-      <Button href="/services" label="View all →" variant="ghost" />
+  <section class="section py-14 sm:py-20">
+    <div class="text-center">
+      <h2 class="page-title font-bold" style="color: var(--deep-charcoal);">What do you need?</h2>
+      <p class="lead mx-auto mt-3 max-w-xl" style="color: var(--warm-taupe);">Pick a starting point and we will guide you from there.</p>
     </div>
-    <div class="mt-6 grid gap-4 md:grid-cols-2">
-      {serviceGroups.map((group) => (
-        <Card padding={6} variant="muted">
-          <p class="kicker text-zinc-500">{group.title}</p>
-          <p class="mt-2 text-sm leading-6 text-zinc-700">{group.summary}</p>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {group.chips.map((chip) => (
-              <li><Badge label={chip} variant="neutral" /></li>
-            ))}
-          </ul>
-        </Card>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      {conversationOptions.map((opt) => (
+        <a href={opt.href} class="step-btn interactive-lift text-base">
+          <span class="mr-2 text-lg">{opt.emoji}</span>
+          {opt.label}
+        </a>
       ))}
     </div>
   </section>
 
   <section class="section py-10 sm:py-14">
-    <Card padding={6} variant="default">
-      <h2 class="page-title font-bold tracking-tight text-zinc-900">Frequently Asked Questions</h2>
-      <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <div class="flex items-end justify-between gap-4">
+      <h2 class="page-title font-bold" style="color: var(--deep-charcoal);">Service Hubs</h2>
+      <a href="/services" class="btn-secondary interactive-lift text-sm">View all →</a>
+    </div>
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      <div class="glass-card interactive-lift p-6 sm:p-8">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl text-lg" style="background: rgb(198 107 75 / 0.12); color: var(--terracotta);">✏️</span>
+          <p class="kicker" style="color: var(--warm-taupe);">CREATIVE HUB</p>
+        </div>
+        <h3 class="text-xl font-bold" style="color: var(--deep-charcoal);">Design & Print</h3>
+        <p class="mt-2 text-sm leading-7" style="color: var(--warm-taupe);">
+          Logos, flyers, social media kits, banners, business cards, and everything your brand needs to look sharp — online and in print.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <Badge label="Graphic Design" variant="neutral" />
+          <Badge label="Printing" variant="neutral" />
+          <Badge label="Branding" variant="neutral" />
+        </div>
+      </div>
+
+      <div class="glass-card interactive-lift p-6 sm:p-8">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl text-lg" style="background: rgb(198 107 75 / 0.12); color: var(--terracotta);">🔧</span>
+          <p class="kicker" style="color: var(--warm-taupe);">IT SERVICES</p>
+        </div>
+        <h3 class="text-xl font-bold" style="color: var(--deep-charcoal);">Repair & AI Setup</h3>
+        <p class="mt-2 text-sm leading-7" style="color: var(--warm-taupe);">
+          Computer repair, network setup, data recovery, and practical AI workflow automation for small teams that want to work smarter.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <Badge label="IT Support" variant="neutral" />
+          <Badge label="Hardware" variant="neutral" />
+          <Badge label="AI Setup" variant="neutral" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section py-10 sm:py-14">
+    <h2 class="page-title mb-10 font-bold" style="color: var(--deep-charcoal);">What clients say</h2>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      {testimonials.map((t) => (
+        <div class="glass-card flex flex-col p-5">
+          <span class="quote-mark select-none" aria-hidden="true">&ldquo;</span>
+          <p class="mt-1 text-sm leading-7" style="color: var(--deep-charcoal);">{t.quote}</p>
+          <div class="mt-auto pt-4" style="border-top: 1px solid var(--surface-border);">
+            <p class="text-sm font-semibold" style="color: var(--deep-charcoal);">{t.author}</p>
+            <p class="text-xs" style="color: var(--warm-taupe);">{t.org}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section py-10 sm:py-14">
+    <div class="text-center">
+      <p class="kicker" style="color: var(--terracotta);">MONTHLY RETAINERS</p>
+      <h2 class="page-title mt-3 font-bold" style="color: var(--deep-charcoal);">Ongoing support, predictable cost</h2>
+      <p class="lead mx-auto mt-3 max-w-xl" style="color: var(--warm-taupe);">Retainer packages for IT support. Creative and combined retainers also available.</p>
+    </div>
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {retainerTiers.map((tier) => (
+        <div class:list={[
+          'relative flex flex-col p-6 sm:p-8',
+          tier.highlight ? 'glass-card-strong ring-2' : 'glass-card',
+        ]} style={tier.highlight ? 'ring-color: var(--terracotta);' : ''}>
+          {tier.highlight && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-bold text-white" style="background: var(--terracotta);">
+              Most popular
+            </span>
+          )}
+          <Badge label={tier.name} variant="neutral" />
+          <p class="mt-4">
+            <span class="text-3xl font-bold" style="color: var(--deep-charcoal);">{tier.price}</span>
+            <span class="text-sm" style="color: var(--warm-taupe);">{tier.period}</span>
+          </p>
+          <p class="mt-2 text-sm" style="color: var(--warm-taupe);">{tier.desc}</p>
+          <a href={waLink} target="_blank" rel="noreferrer" class:list={[
+            'mt-6 inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold',
+            tier.highlight ? 'btn-primary' : 'btn-secondary',
+          ]}>
+            Enquire now
+          </a>
+        </div>
+      ))}
+    </div>
+    <p class="mt-6 text-center text-sm" style="color: var(--warm-taupe);">
+      <a href="/pricing" class="font-semibold underline" style="color: var(--terracotta);">See all pricing & packages →</a>
+    </p>
+  </section>
+
+  <section class="section py-10 sm:py-14">
+    <div class="glass-card p-6 sm:p-10">
+      <h2 class="page-title font-bold" style="color: var(--deep-charcoal);">Frequently asked</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
         {faqs.map((faq) => (
-          <article class="rounded-2xl border border-zinc-200 bg-white p-4">
-            <h3 class="font-semibold text-zinc-900">{faq.q}</h3>
-            <p class="mt-2 text-sm leading-6 text-zinc-600">{faq.a}</p>
+          <article class="rounded-2xl border p-5" style="border-color: var(--surface-border); background: var(--soft-white);">
+            <h3 class="font-semibold" style="color: var(--deep-charcoal);">{faq.q}</h3>
+            <p class="mt-3 text-sm leading-7" style="color: var(--warm-taupe);">{faq.a}</p>
           </article>
         ))}
       </div>
-    </Card>
-  </section>
-
-  <section class="section py-10 sm:py-14">
-    <h2 class="page-title mb-8 font-bold text-zinc-900">What Clients Say</h2>
-    <div
-      class="grid gap-4 md:grid-cols-2 lg:grid-cols-4"
-      style="background-image: url('/images/testimonials-strip.jpg'); background-size: cover; background-position: center; border-radius: 1rem; padding: 2rem;"
-    >
-      {testimonials.map((t) => (
-        <Card padding={5} variant="default" className="flex flex-col bg-white/95 backdrop-blur-sm">
-          <p class="text-sm leading-6 text-zinc-700">&ldquo;{t.quote}&rdquo;</p>
-          <div class="mt-4 border-t border-zinc-200 pt-3">
-            <p class="text-sm font-semibold text-zinc-900">{t.author}</p>
-            <p class="text-xs text-zinc-500">{t.org}</p>
-          </div>
-        </Card>
-      ))}
     </div>
   </section>
 
   <section class="section pb-16">
-    <div class="rounded-3xl bg-zinc-900 p-8 text-white">
-      <h2 class="text-2xl font-bold">Need a quick quote today?</h2>
-      <p class="mt-2 max-w-2xl text-zinc-200">Share your project details on WhatsApp and we will suggest the right Creative Hub or IT Services package with timeline and cost estimate.</p>
-      <Button href={waLink} label="WhatsApp Pancatz" variant="primary" target="_blank" rel="noreferrer" className="mt-6" />
+    <div class="clay-section grain-overlay relative overflow-hidden rounded-3xl p-8 sm:p-12">
+      <div class="relative z-10">
+        <h2 class="text-2xl font-bold text-white sm:text-3xl">Ready to start something?</h2>
+        <p class="mt-3 max-w-2xl text-white/85">
+          Share your project on WhatsApp and we will suggest the right package with timeline and cost — usually within a few hours.
+        </p>
+        <a href={waLink} target="_blank" rel="noreferrer" class="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold" style="color: var(--terracotta);">
+          WhatsApp Pancatz
+        </a>
+      </div>
     </div>
   </section>
 </Layout>
