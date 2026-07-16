@@ -1,193 +1,127 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, whatsappIntents } from '../data/site';
-import { Button, Card, Badge } from '@astryxdesign/core';
 
-const waLink = (msg: string) =>
-  `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(msg)}`;
-const waGeneral = waLink(whatsappIntents.general);
-const waCreative = waLink(whatsappIntents.creativeHub);
-const waPrint = waLink(whatsappIntents.printing);
-const waRepair = waLink(whatsappIntents.repair);
-const waItAi = waLink(whatsappIntents.itAi);
-
-const categories = [
-  { id: 'design', label: 'Design', emoji: '✏️', waLink: waCreative },
-  { id: 'print', label: 'Print', emoji: '🖨️', waLink: waPrint },
-  { id: 'repair', label: 'IT Repair', emoji: '🔧', waLink: waRepair },
-  { id: 'ai', label: 'AI Setup', emoji: '🤖', waLink: waItAi },
-  { id: 'retainer', label: 'Retainer', emoji: '📋', waLink: waGeneral },
-];
-
-const packages = {
-  design: [
-    { item: 'Logo Design', price: 'RM150', desc: 'Original logo with revisions and all file formats.' },
-    { item: 'Business Cards', price: 'RM80', desc: 'Design layout for double-sided cards.' },
-    { item: 'Flyers', price: 'RM120', desc: 'A5/A4 flyer design with your branding.' },
-    { item: 'Social Media Kit', price: 'RM200', desc: 'Set of 5 social media posts or stories.' },
-    { item: 'Menu', price: 'RM180', desc: 'Menu design ready for print or digital.' },
-    { item: 'Banner', price: 'RM150', desc: 'Banner design for web or print.' },
-    { item: 'Full Brand Package', price: 'RM800', desc: 'Logo, cards, flyer, social kit, and guidelines.' },
-  ],
-  print: [
-    { item: 'Business Cards', price: 'RM30/100pcs', desc: 'Premium card stock, double-sided.' },
-    { item: 'Flyers A5', price: 'RM35/100pcs', desc: 'Full colour, one-sided A5 flyers.' },
-    { item: 'Flyers A4', price: 'RM50/100pcs', desc: 'Full colour, one-sided A4 flyers.' },
-    { item: 'Banners', price: 'RM8/sqft', desc: 'Indoor/outdoor banner printing.' },
-    { item: 'Stickers', price: 'RM25/100pcs', desc: 'Custom cut sticker printing.' },
-    { item: 'Booklets', price: 'RM2.50/pc', desc: 'Saddle-stitched booklet printing.' },
-    { item: 'Posters A2/A1', price: 'RM5–12/pc', desc: 'Large format poster printing.' },
-  ],
-  repair: [
-    { item: 'PC Diagnosis', price: 'RM30', desc: 'Full diagnostic check on your device.' },
-    { item: 'Windows Reinstall', price: 'RM80', desc: 'Clean OS reinstall with driver setup.' },
-    { item: 'Virus Removal', price: 'RM60', desc: 'Malware cleanup and protection advice.' },
-    { item: 'Hardware Upgrade', price: 'RM50 labour', desc: 'Labour for RAM, SSD, or part upgrade.' },
-    { item: 'Data Recovery', price: 'RM100', desc: 'Attempt data retrieval from failed drives.' },
-    { item: 'Network Setup', price: 'RM150', desc: 'Router, WiFi, and LAN configuration.' },
-    { item: 'Printer Setup', price: 'RM50', desc: 'Driver install and network printer setup.' },
-  ],
-  ai: [
-    { item: 'AI Consultation', price: 'RM150', desc: 'One-hour consultation on AI opportunities for your business.' },
-    { item: 'Chatbot Setup', price: 'RM300', desc: 'Simple AI chatbot for your website or WhatsApp.' },
-    { item: 'n8n Workflow', price: 'RM500', desc: 'Custom automation workflow built in n8n.' },
-    { item: 'ComfyUI Setup', price: 'RM300', desc: 'Install and configure ComfyUI for image generation.' },
-    { item: 'Custom AI Solution', price: 'RM800+', desc: 'Tailored AI solution scoped to your needs.' },
-  ],
-  retainer: [
-    { item: 'IT Starter', price: 'RM199/mo', desc: 'Up to 3 devices. Basic support for home or small office.' },
-    { item: 'IT Business', price: 'RM499/mo', desc: 'Up to 8 devices. Ongoing IT maintenance for growing teams.' },
-    { item: 'IT Pro', price: 'RM899/mo', desc: 'Up to 15 devices. Full IT support with priority response.' },
-    { item: 'Creative Lite', price: 'RM299/mo', desc: 'Up to 5 design requests per month.' },
-    { item: 'Creative Standard', price: 'RM599/mo', desc: 'Up to 12 design requests per month.' },
-    { item: 'Creative Pro', price: 'RM1,200/mo', desc: 'Unlimited design requests with priority.' },
-    { item: 'Combined Small', price: 'RM799/mo', desc: 'IT (5 devices) + 3 design requests per month.' },
-    { item: 'Combined Growing', price: 'RM1,500/mo', desc: 'IT (12 devices) + 8 design requests per month.' },
-  ],
-};
+const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 ---
 
-<Layout path="/pricing" title={`Pricing & Packages | ${site.name} | Johor Bahru, Malaysia`}>
-
-  <section class="grain-overlay relative overflow-hidden rounded-3xl" style="background: linear-gradient(160deg, #FDF8F3 0%, #F0E8DD 50%, #E8DDD0 100%);">
-    <div class="section relative z-10 py-14 sm:py-20">
-      <p class="kicker mb-3 inline-flex rounded-full border px-3 py-1" style="border-color: var(--surface-border); background: rgb(254 252 249 / 0.7); color: var(--warm-taupe);">
-        PRICING & PACKAGES
-      </p>
-      <h1 class="hero-title font-extrabold" style="color: var(--deep-charcoal);">
-        Let's find the right package for you.
-      </h1>
-      <p class="lead mt-4 max-w-2xl" style="color: var(--warm-taupe);">
-        All prices in RM (Malaysian Ringgit). Pick what you need below — we will show you the options.
-      </p>
+<Layout>
+  <section class="section pt-12 pb-8">
+    <div class="max-w-2xl">
+      <div class="uppercase tracking-[2px] text-xs text-[var(--accent)] mb-2">PRICING</div>
+      <h1 class="display tracking-[-2px]">Transparent rates.<br />No surprises.</h1>
+      <p class="mt-4 text-lg text-[var(--text-muted)]">Pick a service, see the range. Message us for an exact quote within a day.</p>
     </div>
   </section>
 
-  <section class="section py-10 sm:py-14" id="pricing-flow">
-
-    <div class="text-center">
-      <p class="kicker mb-2" style="color: var(--terracotta);">STEP 1</p>
-      <h2 class="text-2xl font-bold sm:text-3xl" style="color: var(--deep-charcoal);">What do you need?</h2>
+  <!-- Conversational starter -->
+  <section class="section py-8 border-t border-[var(--border)]">
+    <div class="mb-6">
+      <div class="text-sm uppercase tracking-widest text-[var(--accent)]">STEP 1</div>
+      <h2 class="text-2xl font-semibold">What are you looking for?</h2>
     </div>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-3" id="category-buttons">
-      {categories.map((cat) => (
-        <button
-          type="button"
-          class="step-btn text-base"
-          data-category={cat.id}
-        >
-          <span class="mr-2 text-lg">{cat.emoji}</span>
-          {cat.label}
-        </button>
-      ))}
-    </div>
-
-    {categories.map((cat) => (
-      <div class="pricing-panel mt-10" data-panel={cat.id} hidden>
-        <div class="mb-6 flex items-center justify-between">
-          <div>
-            <p class="kicker mb-1" style="color: var(--terracotta);">STEP 2 — {cat.label.toUpperCase()}</p>
-            <h3 class="text-xl font-bold" style="color: var(--deep-charcoal);">Choose a package</h3>
-          </div>
-          <button type="button" class="step-btn text-sm back-btn">
-            ← Back
-          </button>
-        </div>
-
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {packages[cat.id].map((p) => (
-            <div class="glass-card interactive-lift flex flex-col p-5">
-              <h4 class="text-lg font-bold" style="color: var(--deep-charcoal);">{p.item}</h4>
-              <p class="mt-2 text-2xl font-bold" style="color: var(--terracotta);">{p.price}</p>
-              <p class="mt-2 text-sm leading-6" style="color: var(--warm-taupe);">{p.desc}</p>
-              <a
-                href={cat.waLink}
-                target="_blank"
-                rel="noreferrer"
-                class="btn-primary mt-5 text-center"
-              >
-                Get quote on WhatsApp
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    ))}
-
-  </section>
-
-  <section class="section pb-16">
-    <div class="warm-section grain-overlay relative overflow-hidden rounded-3xl p-8 sm:p-12">
-      <div class="relative z-10">
-        <h2 class="text-2xl font-bold text-white sm:text-3xl">Need something custom?</h2>
-        <p class="mt-3 max-w-2xl text-white/85">
-          Tell us your requirements and we will prepare a tailored quote. Most quotes are ready within a few hours.
-        </p>
-        <a href={waGeneral} target="_blank" rel="noreferrer" class="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold" style="color: var(--warm-taupe);">
-          Chat on WhatsApp
-        </a>
-      </div>
+    <div class="flex flex-wrap gap-3" id="pricing-steps">
+      <button data-step="creative" class="step-btn btn-secondary">Creative / Design</button>
+      <button data-step="print" class="step-btn btn-secondary">Printing</button>
+      <button data-step="it" class="step-btn btn-secondary">IT Services</button>
+      <button data-step="retainer" class="step-btn btn-secondary">Monthly Retainers</button>
+      <button data-step="ai" class="step-btn btn-secondary">AI & Automation</button>
     </div>
   </section>
 
+  <!-- Creative Hub -->
+  <div id="creative" class="pricing-step section py-6">
+    <h3 class="font-semibold text-xl mb-4">Graphic Design</h3>
+    <div class="grid gap-3 text-sm">
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Logo Design</span><span class="font-medium">From RM150</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Business Card Design</span><span class="font-medium">From RM80</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Flyer / Poster</span><span class="font-medium">From RM120</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Social Media Kit</span><span class="font-medium">From RM200</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Full Brand Package</span><span class="font-medium">From RM800</span></div>
+    </div>
+    <a href={wa(whatsappIntents.creativeHub)} class="btn-primary mt-6 inline-block">Get creative quote</a>
+  </div>
+
+  <!-- Printing -->
+  <div id="print" class="pricing-step section py-6">
+    <h3 class="font-semibold text-xl mb-4">Print Production</h3>
+    <div class="grid gap-3 text-sm">
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Business Cards (100pcs)</span><span class="font-medium">RM30+</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Flyers A5 (100pcs)</span><span class="font-medium">RM35+</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Banners</span><span class="font-medium">RM8/sq ft</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Stickers (100pcs)</span><span class="font-medium">RM25+</span></div>
+    </div>
+    <a href={wa("Hi Pancatz, I need a print quote.")} class="btn-primary mt-6 inline-block">Get print quote</a>
+  </div>
+
+  <!-- IT Services -->
+  <div id="it" class="pricing-step section py-6">
+    <h3 class="font-semibold text-xl mb-4">One-time IT</h3>
+    <div class="grid gap-3 text-sm mb-6">
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Diagnosis</span><span class="font-medium">RM30</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Windows Reinstall</span><span class="font-medium">RM80</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Virus Removal</span><span class="font-medium">RM60</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Network Setup</span><span class="font-medium">RM150</span></div>
+    </div>
+
+    <h3 class="font-semibold text-xl mb-4">Tech Care Retainers</h3>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="card p-5 text-sm"><div class="font-medium">Starter — RM199/mo</div><div class="text-[var(--text-muted)]">3 devices • remote • monthly check</div></div>
+      <div class="card p-5 text-sm"><div class="font-medium">Business — RM499/mo</div><div class="text-[var(--text-muted)]">8 devices • 1 onsite • same-day</div></div>
+      <div class="card p-5 text-sm"><div class="font-medium">Professional — RM899/mo</div><div class="text-[var(--text-muted)]">15 devices • 2 onsite • 2hr SLA</div></div>
+    </div>
+    <a href={wa(whatsappIntents.repair)} class="btn-primary mt-6 inline-block">Get IT support</a>
+  </div>
+
+  <!-- Retainers -->
+  <div id="retainer" class="pricing-step section py-6">
+    <h3 class="font-semibold text-xl mb-4">Creative Retainers (Always On Design)</h3>
+    <div class="grid md:grid-cols-3 gap-4 mb-8">
+      <div class="glass p-6 rounded-2xl"><div class="font-medium">Lite — RM299/mo</div><div class="text-sm text-[var(--text-muted)] mt-2">4 requests • 48hr • 2 revisions</div></div>
+      <div class="glass p-6 rounded-2xl border border-[var(--accent)]"><div class="font-medium">Standard — RM599/mo</div><div class="text-sm text-[var(--text-muted)] mt-2">10 requests • 24hr • unlimited revisions + RM100 print credit</div></div>
+      <div class="glass p-6 rounded-2xl"><div class="font-medium">Pro — RM1,200/mo</div><div class="text-sm text-[var(--text-muted)] mt-2">Unlimited • priority • RM200 print credit</div></div>
+    </div>
+
+    <h3 class="font-semibold text-xl mb-3">Combined (Creative + Tech)</h3>
+    <div class="text-sm">Small Business RM799/mo • Growing Business RM1,500/mo</div>
+    <a href={wa("Hi Pancatz, I'm interested in a retainer plan.")} class="btn-primary mt-6 inline-block">Talk about a retainer</a>
+  </div>
+
+  <!-- AI -->
+  <div id="ai" class="pricing-step section py-6">
+    <h3 class="font-semibold text-xl mb-4">AI & Workflow Setup</h3>
+    <div class="grid gap-3 text-sm">
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>AI Tool Consultation</span><span class="font-medium">RM150</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Chatbot / WhatsApp Form</span><span class="font-medium">RM300</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Workflow Automation (n8n)</span><span class="font-medium">RM500</span></div>
+      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Custom AI Workflow</span><span class="font-medium">From RM800</span></div>
+    </div>
+    <a href={wa(whatsappIntents.itAi)} class="btn-primary mt-6 inline-block">Start an AI project</a>
+  </div>
+
+  <div class="section py-12 text-xs text-[var(--text-muted)] border-t border-[var(--border)]">
+    Prices are starting ranges. Final quote depends on scope. 50% deposit on design/print projects. Bank transfer / DuitNow.
+  </div>
 </Layout>
 
 <script>
-  const buttons = document.querySelectorAll('#category-buttons .step-btn');
-  const panels = document.querySelectorAll('.pricing-panel');
-  const backButtons = document.querySelectorAll('.back-btn');
-
-  function showPanel(categoryId: string) {
-    buttons.forEach((btn) => {
-      const el = btn as HTMLElement;
-      el.classList.toggle('is-active', el.dataset.category === categoryId);
-    });
-    panels.forEach((panel) => {
-      const el = panel as HTMLElement;
-      if (el.dataset.panel === categoryId) {
-        el.hidden = false;
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        el.hidden = true;
-      }
-    });
-  }
-
-  function resetFlow() {
-    buttons.forEach((btn) => (btn as HTMLElement).classList.remove('is-active'));
-    panels.forEach((panel) => ((panel as HTMLElement).hidden = true));
-    document.getElementById('pricing-flow')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  buttons.forEach((btn) => {
+  // Simple conversational flow
+  document.querySelectorAll('.step-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const el = btn as HTMLElement;
-      if (el.dataset.category) showPanel(el.dataset.category);
+      document.querySelectorAll('.pricing-step').forEach(el => el.classList.remove('active'));
+      const step = btn.dataset.step;
+      const target = document.getElementById(step);
+      if (target) target.classList.add('active');
+      
+      document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('btn-primary'));
+      btn.classList.add('btn-primary');
     });
   });
-
-  backButtons.forEach((btn) => {
-    btn.addEventListener('click', resetFlow);
-  });
+  
+  // Show first by default
+  setTimeout(() => {
+    const first = document.getElementById('creative');
+    if (first) first.classList.add('active');
+  }, 100);
 </script>

@@ -1,252 +1,191 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, faqs, whatsappIntents } from '../data/site';
-import { Button, Card, Badge } from '@astryxdesign/core';
+import { site, whatsappIntents } from '../data/site';
 
-const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'FAQPage',
-      mainEntity: faqs.map((faq) => ({
-        '@type': 'Question',
-        name: faq.q,
-        acceptedAnswer: { '@type': 'Answer', text: faq.a },
-      })),
-    },
-    {
-      '@type': 'LocalBusiness',
-      name: 'Pancatz',
-      description: 'Creative Hub + IT Services for modern teams',
-      url: 'https://pancatz.com',
-      telephone: '+60137572507',
-      email: 'pancatz.design@gmail.com',
-      areaServed: 'Johor Bahru, Johor, Malaysia',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Johor Bahru',
-        addressRegion: 'Johor',
-        addressCountry: 'MY',
-        streetAddress: 'Online-first / appointment-based',
-      },
-      sameAs: ['https://www.instagram.com/pancatz.design', 'https://www.facebook.com/pancatz'],
-    },
-  ],
-};
-
-const testimonials = [
-  { quote: 'Pancatz reka banner untuk kedai kami dalam sehari.', author: 'Aminah', org: 'Kedai Makan Asli, Kulai' },
-  { quote: 'Setup WiFi office kami jadi smooth.', author: 'Raj', org: 'Kulai Optics' },
-  { quote: 'Logo dan business card semua done di Pancatz. Professional.', author: 'Tan', org: 'JB Auto Parts' },
-  { quote: 'Saya ambil pelan bulanan IT. Response WhatsApp memang cepat.', author: 'Faiz', org: 'SG Creative Studio' },
-];
-
-const conversationOptions = [
-  { label: 'Design something', emoji: '✏️', href: '/services#creative-hub-design' },
-  { label: 'Print materials', emoji: '🖨️', href: '/services#creative-hub-print' },
-  { label: 'Fix my computer', emoji: '🔧', href: '/services#it-services-repair' },
-  { label: 'Set up AI workflows', emoji: '🤖', href: '/services#it-services-ai' },
-  { label: 'Monthly retainer', emoji: '📋', href: '/pricing' },
-];
-
-const retainerTiers = [
-  { name: 'Starter', price: 'RM199', period: '/mo', desc: '3 devices, basic support', highlight: false },
-  { name: 'Business', price: 'RM499', period: '/mo', desc: '8 devices, ongoing maintenance', highlight: true },
-  { name: 'Pro', price: 'RM899', period: '/mo', desc: '15 devices, priority response', highlight: false },
-];
+const waGeneral = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
+const waCreative = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.creativeHub)}`;
+const waIT = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.repair)}`;
+const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.itAi)}`;
 ---
 
-<Layout path="/" title={`${site.name} | Creative Hub + IT Services | Johor Bahru, Malaysia`}>
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<Layout>
+  <!-- HERO: Warm + textured, calm craft -->
+  <section class="section pt-16 pb-20 relative overflow-hidden grain">
+    <div class="absolute inset-0 bg-[var(--bg)] opacity-95"></div>
+    
+    <div class="max-w-4xl relative z-10">
+      <div class="uppercase tracking-[3px] text-xs mb-4 text-[var(--accent)]">Johor Bahru</div>
+      
+      <h1 class="display leading-none">
+        Calm craft.<br />
+        Clear results.
+      </h1>
+      
+      <p class="mt-6 max-w-lg text-xl text-[var(--text-muted)]">
+        Design and systems that actually work for small businesses in Johor.
+      </p>
 
-  <section class="grain-overlay relative overflow-hidden rounded-3xl" style="background: linear-gradient(160deg, #FDF8F3 0%, #F0E8DD 50%, #E8DDD0 100%);">
-    <div class="section relative z-10 py-16 sm:py-24">
-      <div class="grid items-center gap-12 lg:grid-cols-2">
-        <div>
-          <p class="kicker mb-4 inline-flex rounded-full border px-3 py-1" style="border-color: var(--surface-border); background: rgb(254 252 249 / 0.7); color: var(--warm-taupe);">
-            CREATIVE HUB + IT SERVICES
-          </p>
-          <h1 class="hero-title font-extrabold" style="color: var(--deep-charcoal);">
-            Design, print, and tech support — done with care.
-          </h1>
-          <p class="lead mt-6 max-w-lg" style="color: var(--warm-taupe);">
-            One team for your branding and IT needs. Practical, clear, and built around your actual work.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href={waLink} target="_blank" rel="noreferrer" class="btn-primary interactive-lift">
-              Get a quote on WhatsApp
-            </a>
-            <a href="/services" class="btn-secondary interactive-lift">
-              Explore services
-            </a>
-          </div>
-        </div>
-
-        <div class="glass-card-strong p-6 sm:p-8">
-          <p class="kicker" style="color: var(--warm-taupe);">HOW IT WORKS</p>
-          <h2 class="mt-3 text-xl font-bold" style="color: var(--deep-charcoal);">Five clear steps</h2>
-          <ol class="mt-5 space-y-4 text-sm" style="color: var(--deep-charcoal);">
-            <li class="flex gap-3">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">1</span>
-              <div><span class="font-semibold">Share your goal</span> — what you need, when you need it.</div>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">2</span>
-              <div><span class="font-semibold">We pick the lane</span> — Creative, IT, or both.</div>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">3</span>
-              <div><span class="font-semibold">Clear quote</span> — scope, timeline, price upfront.</div>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">4</span>
-              <div><span class="font-semibold">We produce</span> — with updates along the way.</div>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: var(--terracotta);">5</span>
-              <div><span class="font-semibold">Handover</span> — files, fixes, or next steps delivered.</div>
-            </li>
-          </ol>
-        </div>
+      <div class="mt-10">
+        <a href="#what-you-need" class="btn-primary">What do you need?</a>
       </div>
     </div>
   </section>
 
-  <section class="section py-14 sm:py-20">
-    <div class="text-center">
-      <h2 class="page-title font-bold" style="color: var(--deep-charcoal);">What do you need?</h2>
-      <p class="lead mx-auto mt-3 max-w-xl" style="color: var(--warm-taupe);">Pick a starting point and we will guide you from there.</p>
+  <!-- CONVERSATIONAL STARTER -->
+  <section id="what-you-need" class="section pt-8 pb-16 border-t border-[var(--border)]">
+    <div class="mb-8">
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">START HERE</div>
+      <h2 class="text-4xl font-semibold tracking-tight">What do you need right now?</h2>
     </div>
-    <div class="mt-10 flex flex-wrap justify-center gap-3">
-      {conversationOptions.map((opt) => (
-        <a href={opt.href} class="step-btn interactive-lift text-base">
-          <span class="mr-2 text-lg">{opt.emoji}</span>
-          {opt.label}
-        </a>
-      ))}
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+      <a href={waCreative} class="card p-6 hover:border-[var(--accent)] transition flex flex-col">
+        <div class="text-[var(--accent)] text-sm mb-1">CREATIVE</div>
+        <div class="font-semibold text-lg">Design or Print</div>
+        <div class="text-sm text-[var(--text-muted)] mt-auto">Logo • Cards • Flyers • Brand</div>
+      </a>
+      <a href={waIT} class="card p-6 hover:border-[var(--accent)] transition flex flex-col">
+        <div class="text-[var(--accent)] text-sm mb-1">IT SUPPORT</div>
+        <div class="font-semibold text-lg">Fix or Maintain</div>
+        <div class="text-sm text-[var(--text-muted)] mt-auto">Repairs • Retainers • Setup</div>
+      </a>
+      <a href={waAI} class="card p-6 hover:border-[var(--accent)] transition flex flex-col">
+        <div class="text-[var(--accent)] text-sm mb-1">AUTOMATION</div>
+        <div class="font-semibold text-lg">AI & Workflows</div>
+        <div class="text-sm text-[var(--text-muted)] mt-auto">Chatbots • n8n • Image gen</div>
+      </a>
+      <a href="/pricing" class="card p-6 hover:border-[var(--accent)] transition flex flex-col md:col-span-2 lg:col-span-1">
+        <div class="text-[var(--accent)] text-sm mb-1">PLANS</div>
+        <div class="font-semibold text-lg">Monthly Retainers</div>
+        <div class="text-sm text-[var(--text-muted)] mt-auto">Predictable cost, always on</div>
+      </a>
+      <a href={waGeneral} class="card p-6 hover:border-[var(--accent)] transition flex flex-col lg:col-span-1">
+        <div class="text-[var(--accent)] text-sm mb-1">OTHER</div>
+        <div class="font-semibold text-lg">Just tell us</div>
+        <div class="text-sm text-[var(--text-muted)] mt-auto">We'll figure it out together</div>
+      </a>
     </div>
   </section>
 
-  <section class="section py-10 sm:py-14">
-    <div class="flex items-end justify-between gap-4">
-      <h2 class="page-title font-bold" style="color: var(--deep-charcoal);">Service Hubs</h2>
-      <a href="/services" class="btn-secondary interactive-lift text-sm">View all →</a>
+  <!-- SERVICES / HUBS -->
+  <section id="services" class="section border-t border-[var(--border)]">
+    <div class="mb-10">
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">WHAT WE DO</div>
+      <h2 class="massive">Two lanes.<br />One team.</h2>
     </div>
-    <div class="mt-8 grid gap-5 md:grid-cols-2">
-      <div class="glass-card interactive-lift p-6 sm:p-8">
-        <div class="mb-4 flex items-center gap-3">
-          <span class="flex h-10 w-10 items-center justify-center rounded-xl text-lg" style="background: rgb(198 107 75 / 0.12); color: var(--terracotta);">✏️</span>
-          <p class="kicker" style="color: var(--warm-taupe);">CREATIVE HUB</p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Creative Hub -->
+      <div class="card p-8">
+        <div class="uppercase text-xs tracking-widest text-[var(--accent)] mb-3">CREATIVE HUB</div>
+        <h3 class="text-3xl font-semibold tracking-tight mb-4">Design that prints. Brands that stick.</h3>
+        
+        <div class="text-[var(--text-muted)] space-y-1.5 mb-8 text-[15px]">
+          <div>• Logo & brand identity</div>
+          <div>• Business cards, flyers, posters</div>
+          <div>• Social media kits & menus</div>
+          <div>• Banners, roll-ups, stickers</div>
+          <div>• Full print production</div>
         </div>
-        <h3 class="text-xl font-bold" style="color: var(--deep-charcoal);">Design & Print</h3>
-        <p class="mt-2 text-sm leading-7" style="color: var(--warm-taupe);">
-          Logos, flyers, social media kits, banners, business cards, and everything your brand needs to look sharp — online and in print.
-        </p>
-        <div class="mt-5 flex flex-wrap gap-2">
-          <Badge label="Graphic Design" variant="neutral" />
-          <Badge label="Printing" variant="neutral" />
-          <Badge label="Branding" variant="neutral" />
-        </div>
+
+        <a href={waCreative} class="btn-secondary">Get a quote on WhatsApp</a>
       </div>
 
-      <div class="glass-card interactive-lift p-6 sm:p-8">
-        <div class="mb-4 flex items-center gap-3">
-          <span class="flex h-10 w-10 items-center justify-center rounded-xl text-lg" style="background: rgb(198 107 75 / 0.12); color: var(--terracotta);">🔧</span>
-          <p class="kicker" style="color: var(--warm-taupe);">IT SERVICES</p>
+      <!-- IT Services -->
+      <div class="card p-8">
+        <div class="uppercase text-xs tracking-widest text-[var(--accent)] mb-3">IT SERVICES</div>
+        <h3 class="text-3xl font-semibold tracking-tight mb-4">Systems that don't break. Support that actually shows up.</h3>
+        
+        <div class="text-[var(--text-muted)] space-y-1.5 mb-8 text-[15px]">
+          <div>• PC/laptop repair & upgrades</div>
+          <div>• Network & WiFi setup</div>
+          <div>• Monthly Tech Care retainers</div>
+          <div>• Virus removal & security</div>
+          <div>• AI workflow automation</div>
         </div>
-        <h3 class="text-xl font-bold" style="color: var(--deep-charcoal);">Repair & AI Setup</h3>
-        <p class="mt-2 text-sm leading-7" style="color: var(--warm-taupe);">
-          Computer repair, network setup, data recovery, and practical AI workflow automation for small teams that want to work smarter.
-        </p>
-        <div class="mt-5 flex flex-wrap gap-2">
-          <Badge label="IT Support" variant="neutral" />
-          <Badge label="Hardware" variant="neutral" />
-          <Badge label="AI Setup" variant="neutral" />
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section py-10 sm:py-14">
-    <h2 class="page-title mb-10 font-bold" style="color: var(--deep-charcoal);">What clients say</h2>
-    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-      {testimonials.map((t) => (
-        <div class="glass-card flex flex-col p-5">
-          <span class="quote-mark select-none" aria-hidden="true">&ldquo;</span>
-          <p class="mt-1 text-sm leading-7" style="color: var(--deep-charcoal);">{t.quote}</p>
-          <div class="mt-auto pt-4" style="border-top: 1px solid var(--surface-border);">
-            <p class="text-sm font-semibold" style="color: var(--deep-charcoal);">{t.author}</p>
-            <p class="text-xs" style="color: var(--warm-taupe);">{t.org}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="section py-10 sm:py-14">
-    <div class="text-center">
-      <p class="kicker" style="color: var(--terracotta);">MONTHLY RETAINERS</p>
-      <h2 class="page-title mt-3 font-bold" style="color: var(--deep-charcoal);">Ongoing support, predictable cost</h2>
-      <p class="lead mx-auto mt-3 max-w-xl" style="color: var(--warm-taupe);">Retainer packages for IT support. Creative and combined retainers also available.</p>
-    </div>
-    <div class="mt-10 grid gap-5 md:grid-cols-3">
-      {retainerTiers.map((tier) => (
-        <div class:list={[
-          'relative flex flex-col p-6 sm:p-8',
-          tier.highlight ? 'glass-card-strong ring-2' : 'glass-card',
-        ]} style={tier.highlight ? 'ring-color: var(--terracotta);' : ''}>
-          {tier.highlight && (
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-bold text-white" style="background: var(--terracotta);">
-              Most popular
-            </span>
-          )}
-          <Badge label={tier.name} variant="neutral" />
-          <p class="mt-4">
-            <span class="text-3xl font-bold" style="color: var(--deep-charcoal);">{tier.price}</span>
-            <span class="text-sm" style="color: var(--warm-taupe);">{tier.period}</span>
-          </p>
-          <p class="mt-2 text-sm" style="color: var(--warm-taupe);">{tier.desc}</p>
-          <a href={waLink} target="_blank" rel="noreferrer" class:list={[
-            'mt-6 inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold',
-            tier.highlight ? 'btn-primary' : 'btn-secondary',
-          ]}>
-            Enquire now
-          </a>
-        </div>
-      ))}
-    </div>
-    <p class="mt-6 text-center text-sm" style="color: var(--warm-taupe);">
-      <a href="/pricing" class="font-semibold underline" style="color: var(--terracotta);">See all pricing & packages →</a>
-    </p>
-  </section>
-
-  <section class="section py-10 sm:py-14">
-    <div class="glass-card p-6 sm:p-10">
-      <h2 class="page-title font-bold" style="color: var(--deep-charcoal);">Frequently asked</h2>
-      <div class="mt-8 grid gap-4 md:grid-cols-3">
-        {faqs.map((faq) => (
-          <article class="rounded-2xl border p-5" style="border-color: var(--surface-border); background: var(--soft-white);">
-            <h3 class="font-semibold" style="color: var(--deep-charcoal);">{faq.q}</h3>
-            <p class="mt-3 text-sm leading-7" style="color: var(--warm-taupe);">{faq.a}</p>
-          </article>
-        ))}
+        <a href={waIT} class="btn-secondary">Talk to us about IT</a>
       </div>
     </div>
   </section>
 
-  <section class="section pb-16">
-    <div class="clay-section grain-overlay relative overflow-hidden rounded-3xl p-8 sm:p-12">
-      <div class="relative z-10">
-        <h2 class="text-2xl font-bold text-white sm:text-3xl">Ready to start something?</h2>
-        <p class="mt-3 max-w-2xl text-white/85">
-          Share your project on WhatsApp and we will suggest the right package with timeline and cost — usually within a few hours.
-        </p>
-        <a href={waLink} target="_blank" rel="noreferrer" class="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold" style="color: var(--terracotta);">
-          WhatsApp Pancatz
-        </a>
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section border-t border-[var(--border)]">
+    <div class="mb-8">
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">REAL PEOPLE</div>
+      <h2 class="text-3xl font-semibold tracking-tight">What clients say</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="testimonial">
+        <div class="text-[15px] leading-snug">“Pancatz reka banner untuk kedai kami dalam sehari. Cepat dan murah.”</div>
+        <div class="mt-4 text-xs text-[var(--text-muted)]">— Aminah, Kedai Makan Asli, Kulai</div>
+      </div>
+      <div class="testimonial">
+        <div class="text-[15px] leading-snug">“Setup WiFi office kami jadi smooth. Tak ada lagi masalah connection.”</div>
+        <div class="mt-4 text-xs text-[var(--text-muted)]">— Raj, Kulai Optics</div>
+      </div>
+      <div class="testimonial">
+        <div class="text-[15px] leading-snug">“Logo dan business card semua done di Pancatz. Professional dan berpatutan.”</div>
+        <div class="mt-4 text-xs text-[var(--text-muted)]">— Tan, JB Auto Parts</div>
+      </div>
+      <div class="testimonial">
+        <div class="text-[15px] leading-snug">“Saya ambil pelan bulanan IT. Response WhatsApp memang cepat. Recommended.”</div>
+        <div class="mt-4 text-xs text-[var(--text-muted)]">— Faiz, SG Creative Studio</div>
       </div>
     </div>
+  </section>
+
+  <!-- PRICING PREVIEW (glass cards) -->
+  <section class="section border-t border-[var(--border)]">
+    <div class="mb-8 flex items-end justify-between">
+      <div>
+        <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">INVESTMENT</div>
+        <h2 class="text-3xl font-semibold tracking-tight">Simple plans. No surprises.</h2>
+      </div>
+      <a href="/pricing" class="text-sm text-[var(--accent)] hover:underline">See full pricing →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="glass p-7 rounded-2xl">
+        <div class="text-sm text-[var(--text-muted)]">STARTER</div>
+        <div class="mt-1 text-5xl font-semibold tracking-tighter">RM199</div>
+        <div class="text-xs text-[var(--text-muted)] mb-6">/month</div>
+        <ul class="text-sm space-y-1.5 text-[var(--text-muted)]">
+          <li>Up to 3 devices</li>
+          <li>Remote support</li>
+          <li>Monthly checkup</li>
+        </ul>
+      </div>
+      <div class="glass p-7 rounded-2xl border border-[var(--accent)]">
+        <div class="text-sm text-[var(--accent)]">BUSINESS</div>
+        <div class="mt-1 text-5xl font-semibold tracking-tighter">RM499</div>
+        <div class="text-xs text-[var(--text-muted)] mb-6">/month</div>
+        <ul class="text-sm space-y-1.5 text-[var(--text-muted)]">
+          <li>Up to 8 devices</li>
+          <li>Remote + 1 onsite/mo</li>
+          <li>Same-day response</li>
+          <li>Monthly report</li>
+        </ul>
+      </div>
+      <div class="glass p-7 rounded-2xl">
+        <div class="text-sm text-[var(--text-muted)]">PROFESSIONAL</div>
+        <div class="mt-1 text-5xl font-semibold tracking-tighter">RM899</div>
+        <div class="text-xs text-[var(--text-muted)] mb-6">/month</div>
+        <ul class="text-sm space-y-1.5 text-[var(--text-muted)]">
+          <li>Up to 15 devices</li>
+          <li>2 onsite visits/mo</li>
+          <li>2-hour SLA</li>
+          <li>Quarterly audit</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section border-t border-[var(--border)] text-center">
+    <h2 class="massive mb-3">Ready when you are.</h2>
+    <p class="text-[var(--text-muted)] mb-8">Tell us what you're trying to build or fix.</p>
+    <a href={waGeneral} class="btn-primary px-10">Message us on WhatsApp</a>
   </section>
 </Layout>

@@ -1,52 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, whatsappIntents } from '../data/site';
-import { Button, Card } from '@astryxdesign/core';
 
-const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
+const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.creativeHub)}`;
 ---
 
-<Layout path="/portfolio" title={`Portfolio | ${site.name} | Johor Bahru, Malaysia`}>
-  <section class="section py-14 sm:py-20">
-    <h1 class="page-title font-extrabold text-zinc-900">Our Work</h1>
-    <p class="lead mt-4 max-w-3xl text-zinc-600">A selection of design, print, and IT projects delivered for clients in Johor Bahru and across Malaysia.</p>
+<Layout>
+  <section class="section pt-12 pb-8">
+    <div class="uppercase tracking-[2px] text-xs text-[var(--accent)] mb-2">SELECTED WORK</div>
+    <h1 class="display tracking-tight">Work that gets used.</h1>
+    <p class="mt-3 max-w-md text-[var(--text-muted)]">Real projects for real Johor businesses.</p>
   </section>
 
-  <section class="section py-8">
-    <h2 class="page-title mb-6 font-bold text-zinc-900">Design Portfolio</h2>
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {['Logo Design', 'Social Media', 'Flyers', 'Branding'].map((cat) => (
-        <Card padding={4} variant="default" className="overflow-hidden">
-          <img src="/images/portfolio-design.jpg" alt={`${cat} project`} class="h-48 w-full rounded-xl object-cover" />
-          <div class="mt-4">
-            <h3 class="text-lg font-bold text-zinc-900">{cat}</h3>
-            <p class="mt-1 text-sm text-zinc-600">View examples of our {cat.toLowerCase()} work.</p>
-          </div>
-        </Card>
-      ))}
+  <section class="section border-t border-[var(--border)]">
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="card p-6">
+        <img src="/images/creative.jpg" alt="Creative work" class="rounded-xl mb-5" />
+        <div class="font-medium">Creative Direction &amp; Print</div>
+        <div class="text-sm text-[var(--text-muted)]">Banners, menus, and brand kits for local F&amp;B and retail.</div>
+      </div>
+      <div class="card p-6">
+        <img src="/images/workflow.jpg" alt="Workflow" class="rounded-xl mb-5" />
+        <div class="font-medium">AI Workflow Automation</div>
+        <div class="text-sm text-[var(--text-muted)]">WhatsApp lead capture, n8n automations, and custom image pipelines.</div>
+      </div>
+      <div class="card p-6">
+        <img src="/images/infrastructure.jpg" alt="Infrastructure" class="rounded-xl mb-5" />
+        <div class="font-medium">IT Retainers &amp; Setup</div>
+        <div class="text-sm text-[var(--text-muted)]">Network installs, device fleets, and ongoing Tech Care for small teams.</div>
+      </div>
+      <div class="card p-6">
+        <img src="/images/brand.jpg" alt="Brand" class="rounded-xl mb-5" />
+        <div class="font-medium">Brand Systems</div>
+        <div class="text-sm text-[var(--text-muted)]">Full identity packages with consistent print + digital application.</div>
+      </div>
     </div>
   </section>
 
-  <section class="section py-8">
-    <h2 class="page-title mb-6 font-bold text-zinc-900">IT Services Portfolio</h2>
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {['Repairs', 'Network Setup', 'AI Workflows'].map((cat) => (
-        <Card padding={4} variant="default" className="overflow-hidden">
-          <img src="/images/portfolio-it.jpg" alt={`${cat} project`} class="h-48 w-full rounded-xl object-cover" />
-          <div class="mt-4">
-            <h3 class="text-lg font-bold text-zinc-900">{cat}</h3>
-            <p class="mt-1 text-sm text-zinc-600">See how we helped clients with {cat.toLowerCase()}.</p>
-          </div>
-        </Card>
-      ))}
-    </div>
-  </section>
-
-  <section class="section pb-16">
-    <Card padding={6} variant="default" className="text-center">
-      <h2 class="text-2xl font-bold text-zinc-900">Want to see your project here?</h2>
-      <p class="mt-2 text-zinc-600">Let us create something great for your brand or business.</p>
-      <Button href={waLink} label="Start Your Project" variant="primary" className="mt-6" target="_blank" rel="noreferrer" />
-    </Card>
+  <section class="section border-t border-[var(--border)] text-center">
+    <p class="mb-6 text-[var(--text-muted)]">Want something like this for your business?</p>
+    <a href={wa} class="btn-primary">Start a project</a>
   </section>
 </Layout>
