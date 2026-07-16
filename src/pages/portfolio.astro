@@ -48,78 +48,87 @@ const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent("Hi P
 <script>
   import { animate, onScroll, stagger } from 'animejs';
 
-  // Canvas tactility
-  document.querySelectorAll('.portfolio-card canvas').forEach((canvas) => {
-    const ctx = canvas.getContext('2d');
-    const type = canvas.dataset.type;
-    const rect = canvas.getBoundingClientRect();
-    const w = canvas.width = rect.width * 2;
-    const h = canvas.height = rect.height * 2;
-    ctx.scale(2, 2);
+  // Canvas tactility (init after layout)
+  function initPortfolioCanvases() {
+    document.querySelectorAll('.portfolio-card canvas').forEach((canvas) => {
+      const ctx = canvas.getContext('2d');
+      const type = canvas.dataset.type;
+      const rect = canvas.getBoundingClientRect();
+      const cssW = rect.width;
+      const cssH = rect.height;
+      canvas.width = cssW * 2;
+      canvas.height = cssH * 2;
+      ctx.resetTransform();
+      ctx.scale(2, 2);
 
-    ctx.strokeStyle = 'rgba(163, 106, 82, 0.25)';
-    ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(163, 106, 82, 0.25)';
+      ctx.lineWidth = 1;
 
-    if (type === 'creative') {
-      for (let i = 0; i < 6; i++) {
-        ctx.beginPath();
-        ctx.moveTo(30 + i * 20, 50);
-        ctx.quadraticCurveTo(100 + i * 8, 110, 70 + i * 14, 180);
-        ctx.stroke();
-      }
-    } else {
-      for (let x = 30; x < w / 2; x += 24) {
-        for (let y = 30; y < h / 2; y += 24) {
+      if (type === 'creative') {
+        for (let i = 0; i < 6; i++) {
           ctx.beginPath();
-          ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+          ctx.moveTo(30 + i * 20, 50);
+          ctx.quadraticCurveTo(100 + i * 8, 110, 70 + i * 14, 180);
           ctx.stroke();
         }
+      } else {
+        for (let x = 30; x < cssW; x += 24) {
+          for (let y = 30; y < cssH; y += 24) {
+            ctx.beginPath();
+            ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
       }
-    }
-  });
-
-  // Scroll reveals
-  animate.set('.section-reveal', { opacity: 0, translateY: 24 });
-  document.querySelectorAll('.section-reveal').forEach(el => {
-    onScroll({
-      target: el,
-      enter: 'top 85%',
-      sync: false,
-    }).add({
-      targets: el,
-      opacity: [0, 1],
-      translateY: [24, 0],
-      duration: 800,
-      easing: 'easeOutExpo'
     });
-  });
+  }
 
-  // Cards stagger
-  document.querySelectorAll('.card-grid').forEach(grid => {
-    const cards = grid.querySelectorAll('.unified-card');
-    animate.set(cards, { opacity: 0, translateY: 30, scale: 0.98 });
-    onScroll({
-      target: grid,
-      enter: 'top 85%',
-      sync: false,
-    }).add({
-      targets: cards,
-      opacity: [0, 1],
-      translateY: [30, 0],
-      scale: [0.98, 1],
-      duration: 900,
-      easing: 'easeOutExpo',
-      delay: stagger(80)
-    });
-  });
+  document.addEventListener('DOMContentLoaded', () => {
+    initPortfolioCanvases();
 
-  // Hover
-  document.querySelectorAll('.unified-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      animate({ targets: card, translateY: -6, boxShadow: '8px 12px 0 rgba(15,14,12,0.12)', duration: 250, easing: 'easeOutCubic' });
+    // Scroll reveals
+    animate.set('.section-reveal', { opacity: 0, translateY: 24 });
+    document.querySelectorAll('.section-reveal').forEach(el => {
+      onScroll({
+        target: el,
+        enter: 'top 85%',
+        sync: false,
+      }).add({
+        targets: el,
+        opacity: [0, 1],
+        translateY: [24, 0],
+        duration: 800,
+        easing: 'easeOutExpo'
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      animate({ targets: card, translateY: 0, boxShadow: '0 0 0 rgba(15,14,12,0)', duration: 250, easing: 'easeOutCubic' });
+
+    // Cards stagger
+    document.querySelectorAll('.card-grid').forEach(grid => {
+      const cards = grid.querySelectorAll('.unified-card');
+      animate.set(cards, { opacity: 0, translateY: 30, scale: 0.98 });
+      onScroll({
+        target: grid,
+        enter: 'top 85%',
+        sync: false,
+      }).add({
+        targets: cards,
+        opacity: [0, 1],
+        translateY: [30, 0],
+        scale: [0.98, 1],
+        duration: 900,
+        easing: 'easeOutExpo',
+        delay: stagger(80)
+      });
+    });
+
+    // Hover
+    document.querySelectorAll('.unified-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        animate({ targets: card, translateY: -6, boxShadow: '8px 12px 0 rgba(15,14,12,0.12)', duration: 250, easing: 'easeOutCubic' });
+      });
+      card.addEventListener('mouseleave', () => {
+        animate({ targets: card, translateY: 0, boxShadow: '0 0 0 rgba(15,14,12,0)', duration: 250, easing: 'easeOutCubic' });
+      });
     });
   });
 </script>

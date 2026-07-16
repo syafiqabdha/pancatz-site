@@ -117,38 +117,40 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
 
   steps.forEach(btn => {
     btn.addEventListener('click', () => {
-      steps.forEach(b => b.classList.remove('active', 'border-[var(--ink)]', 'bg-[var(--surface-solid)]'));
-      btn.classList.add('active', 'border-[var(--ink)]', 'bg-[var(--surface-solid)]');
+      steps.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       render(btn.dataset.step);
     });
   });
 
-  steps[0].classList.add('active', 'border-[var(--ink)]', 'bg-[var(--surface-solid)]');
+  steps[0].classList.add('active');
   render('creative');
 
-  // Section reveal
-  animate.set('.section-reveal', { opacity: 0, translateY: 24 });
-  document.querySelectorAll('.section-reveal').forEach(el => {
-    onScroll({
-      target: el,
-      enter: 'top 85%',
-      sync: false,
-    }).add({
-      targets: el,
-      opacity: [0, 1],
-      translateY: [24, 0],
-      duration: 800,
-      easing: 'easeOutExpo'
+  document.addEventListener('DOMContentLoaded', () => {
+    // Section reveal
+    animate.set('.section-reveal', { opacity: 0, translateY: 24 });
+    document.querySelectorAll('.section-reveal').forEach(el => {
+      onScroll({
+        target: el,
+        enter: 'top 85%',
+        sync: false,
+      }).add({
+        targets: el,
+        opacity: [0, 1],
+        translateY: [24, 0],
+        duration: 800,
+        easing: 'easeOutExpo'
+      });
     });
-  });
 
-  // Unified card hover for buttons
-  document.querySelectorAll('.unified-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      animate({ targets: card, translateY: -4, duration: 200, easing: 'easeOutCubic' });
-    });
-    card.addEventListener('mouseleave', () => {
-      animate({ targets: card, translateY: 0, duration: 200, easing: 'easeOutCubic' });
+    // Unified card hover for buttons
+    document.querySelectorAll('.unified-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        animate({ targets: card, translateY: -4, duration: 200, easing: 'easeOutCubic' });
+      });
+      card.addEventListener('mouseleave', () => {
+        animate({ targets: card, translateY: 0, duration: 200, easing: 'easeOutCubic' });
+      });
     });
   });
 </script>

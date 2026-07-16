@@ -410,12 +410,15 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       const ctx = canvas.getContext('2d');
       const type = canvas.dataset.type;
       const rect = canvas.getBoundingClientRect();
-      const w = canvas.width = rect.width * 2;
-      const h = canvas.height = rect.height * 2;
+      const cssW = rect.width;
+      const cssH = rect.height;
+      canvas.width = cssW * 2;
+      canvas.height = cssH * 2;
+      ctx.resetTransform();
       ctx.scale(2, 2);
 
       function draw() {
-        ctx.clearRect(0, 0, w, h);
+        ctx.clearRect(0, 0, cssW, cssH);
         ctx.strokeStyle = 'rgba(163, 106, 82, 0.25)';
         ctx.lineWidth = 1;
 
@@ -427,8 +430,8 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
             ctx.stroke();
           }
         } else {
-          for (let x = 20; x < w / 2; x += 22) {
-            for (let y = 18; y < h / 2; y += 22) {
+          for (let x = 20; x < cssW; x += 22) {
+            for (let y = 18; y < cssH; y += 22) {
               ctx.beginPath();
               ctx.arc(x, y, 1.5, 0, Math.PI * 2);
               ctx.stroke();
