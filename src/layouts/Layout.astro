@@ -98,17 +98,14 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
       // Header show/hide on scroll direction
       let lastScrollY = window.scrollY;
       let ticking = false;
-      const showAt = 120;
 
       function updateHeader() {
         const currentY = window.scrollY;
-        if (currentY < showAt) {
-          header.classList.remove('visible');
-        } else if (currentY < lastScrollY) {
+        if (currentY < lastScrollY) {
           // scrolling/pinching upward
           header.classList.add('visible');
-        } else {
-          // scrolling down
+        } else if (currentY > lastScrollY && currentY > 40) {
+          // scrolling down, past hero top
           header.classList.remove('visible');
         }
         lastScrollY = currentY;
@@ -133,14 +130,17 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
         });
       });
 
+      // Header starts visible; animate in the inner bar
+      header.classList.add('visible');
+
       // Header entrance animation
       animate({
-        targets: '.header-logo',
+        targets: '.header-logo, header nav a, header .btn-primary',
         opacity: [0, 1],
-        translateY: [-8, 0],
-        duration: 600,
+        translateY: [-12, 0],
+        duration: 700,
         easing: 'easeOutExpo',
-        delay: 100
+        delay: stagger(40, { start: 100 })
       });
     </script>
   </body>

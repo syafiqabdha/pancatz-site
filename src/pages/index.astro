@@ -12,17 +12,17 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   <!-- Hero -->
   <section class="section raw-grid pt-28 pb-24 sm:pt-36 sm:pb-32 relative overflow-hidden">
     <div class="max-w-5xl relative z-10">
-      <h1 class="hero-title tracking-[-0.07em] max-w-[18ch] hero-reveal">
-        Calm craft.<br />Clear results.
+      <h1 class="hero-title tracking-[-0.07em] max-w-[18ch]" id="hero-headline">
+        Design that prints.<br />Systems that run.
       </h1>
 
       <p class="mt-7 max-w-md text-[1.05rem] text-[var(--muted-ink)] hero-reveal">
-        Premium design and intelligent systems for small businesses that want to look and run better.
+        One team for creative work and tech support. Premium design, print, and intelligent systems that keep your business moving.
       </p>
 
       <div class="mt-10 flex flex-wrap gap-4 hero-reveal">
-        <a href="#what-you-need" class="btn-primary">What do you need?</a>
-        <a href="/pricing" class="btn-secondary">See pricing</a>
+        <a href="#what-you-need" class="btn-primary btn-magnetic">What do you need?</a>
+        <a href="/pricing" class="btn-secondary btn-magnetic">See pricing</a>
       </div>
     </div>
 
@@ -146,14 +146,31 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   const ease = 'easeOutExpo';
   const baseDuration = 800;
 
-  // Hero reveal
+  // Split-text hero reveal
+  const headline = document.getElementById('hero-headline');
+  if (headline) {
+    const text = headline.innerHTML;
+    headline.innerHTML = text.replace(/([^\s<>]+)/g, '<span class="word"><span class="char-wrap">$1</span></span>');
+  }
+
+  // Hero reveal sequence
+  animate({
+    targets: '#hero-headline .char-wrap',
+    opacity: [0, 1],
+    translateY: [40, 0],
+    rotateX: [-45, 0],
+    duration: 900,
+    easing: ease,
+    delay: stagger(22, { start: 200 })
+  });
+
   animate({
     targets: '.hero-reveal',
     opacity: [0, 1],
     translateY: [24, 0],
     duration: baseDuration,
     easing: ease,
-    delay: stagger(120, { start: 200 })
+    delay: stagger(120, { start: 900 })
   });
 
   // Section reveals on scroll
@@ -194,8 +211,12 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     });
   });
 
-  // Unified card hover effect (lift + glow)
+  // Unified card hover effect (lift + spotlight)
   document.querySelectorAll('.unified-card').forEach(card => {
+    const spotlight = document.createElement('span');
+    spotlight.className = 'card-spotlight';
+    card.appendChild(spotlight);
+
     card.addEventListener('mouseenter', () => {
       animate({
         targets: card,
@@ -204,6 +225,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         duration: 250,
         easing: 'easeOutCubic'
       });
+      animate({ targets: spotlight, opacity: [0, 1], duration: 250, easing: 'easeOutCubic' });
     });
     card.addEventListener('mouseleave', () => {
       animate({
@@ -213,6 +235,26 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         duration: 250,
         easing: 'easeOutCubic'
       });
+      animate({ targets: spotlight, opacity: 0, duration: 250, easing: 'easeOutCubic' });
+    });
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      spotlight.style.background = `radial-gradient(circle 120px at ${x}px ${y}px, rgba(163,106,82,0.14), transparent)`;
+    });
+  });
+
+  // Magnetic buttons
+  document.querySelectorAll('.btn-magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      animate({ targets: btn, translateX: x * 0.25, translateY: y * 0.25, duration: 200, easing: 'easeOutCubic' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      animate({ targets: btn, translateX: 0, translateY: 0, duration: 300, easing: 'easeOutElastic(1, .6)' });
     });
   });
 
@@ -272,15 +314,29 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       ctx.restore();
     }
 
-    function updateFromScroll() {
-      const scrollProgress = Math.min(window.scrollY / (document.body.scrollHeight * 0.35), 1);
-      targetRotation = scrollProgress * 42;
-    }
+    // Magnetic orb (subtle cursor follow)
+    let mouseX = 0, mouseY = 0, orbX = 0, orbY = 0;
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      mouseX = (e.clientX - cx) * 0.08;
+      mouseY = (e.clientY - cy) * 0.08;
+    });
 
-    function animate() {
+    function render() {
+      orbX += (mouseX - orbX) * 0.08;
+      orbY += (mouseY - orbY) * 0.08;
+      canvas.style.marginLeft = `${orbX}px`;
+      canvas.style.marginTop = `${orbY}px`;
       rotation += (targetRotation - rotation) * 0.08;
       drawOrb(rotation);
-      requestAnimationFrame(animate);
+      requestAnimationFrame(render);
+    }
+
+    function updateFromScroll() {
+      const scrollProgress = Math.min(window.scrollY / (document.body.scrollHeight * 0.25), 1);
+      targetRotation = scrollProgress * 90;
     }
 
     window.addEventListener('scroll', () => updateFromScroll(), { passive: true });
@@ -314,7 +370,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     });
 
     updateFromScroll();
-    animate();
+    render();
   }
 
   // Portfolio canvas tactility

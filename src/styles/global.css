@@ -156,6 +156,33 @@ p {
   }
 }
 
+/* Hero split text */
+#hero-headline .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  margin-right: 0.18em;
+}
+#hero-headline .char-wrap {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+/* Card spotlight */
+.card-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* Magnetic button base */
+.btn-magnetic {
+  transition: transform 0.1s linear;
+}
+
 /* Hero orb */
 .hero-orb {
   position: absolute;
