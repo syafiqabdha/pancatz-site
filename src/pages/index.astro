@@ -10,9 +10,9 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 
 <Layout>
   <!-- Hero -->
-  <section class="section raw-grid pt-28 pb-24 sm:pt-36 sm:pb-32 relative overflow-hidden">
+  <section class="section raw-grid pt-28 sm:pt-36 pb-24 sm:pb-32 relative overflow-hidden">
     <div class="max-w-5xl relative z-10">
-      <h1 class="hero-title tracking-[-0.07em] max-w-[18ch]" id="hero-headline">
+      <h1 class="hero-title" id="hero-headline">
       </h1>
       <span id="hero-cursor" class="hero-cursor"></span>
 
@@ -20,9 +20,14 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         One team for creative work and tech support. Premium design, print, and intelligent systems that keep your business moving.
       </p>
 
-      <div class="mt-10 flex flex-wrap gap-4 hero-reveal">
+      <div class="mt-10 flex flex-col sm:flex-row flex-wrap gap-4 hero-reveal">
         <a href="#what-you-need" class="btn-primary btn-magnetic">What do you need?</a>
         <a href="/pricing" class="btn-secondary btn-magnetic">See pricing</a>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-2 text-xs text-[var(--muted-ink)] hero-reveal">
+        <span class="px-3 py-1 rounded-full border border-[var(--surface-border)] bg-[var(--surface-solid)]">Johor Bahru & Kulai</span>
+        <span class="px-3 py-1 rounded-full border border-[var(--surface-border)] bg-[var(--surface-solid)]">Remote Malaysia</span>
       </div>
     </div>
 
@@ -131,10 +136,10 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   </section>
 
   <!-- Closer -->
-  <section class="section py-16 border-t border-[var(--surface-border)] text-center section-reveal">
-    <div class="max-w-md mx-auto">
-      <p class="text-[var(--muted-ink)]">Ready when you are.</p>
-      <a href={waGeneral} class="btn-primary inline-block mt-4">Start a conversation</a>
+  <section class="section py-16 sm:py-24 border-t border-[var(--surface-border)] text-center section-reveal">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-[var(--muted-ink)] cta-text font-semibold tracking-tight">Ready when you are.</p>
+      <a href={waGeneral} class="btn-primary inline-block mt-6 sm:mt-8">Start a conversation</a>
     </div>
   </section>
 </Layout>
