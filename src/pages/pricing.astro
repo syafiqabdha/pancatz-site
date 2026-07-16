@@ -8,105 +8,113 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
 <Layout>
   <section class="section pt-12 pb-8">
     <div class="max-w-2xl">
-      <div class="uppercase tracking-[2px] text-xs text-[var(--accent)] mb-2">PRICING</div>
-      <h1 class="display tracking-[-2px]">Transparent rates.<br />No surprises.</h1>
-      <p class="mt-4 text-lg text-[var(--text-muted)]">Pick a service, see the range. Message us for an exact quote within a day.</p>
+      <div class="uppercase tracking-[2px] text-xs text-[var(--primary)] mb-2">PRICING</div>
+      <h1 class="hero-title tracking-tight">Transparent rates.<br />No surprises.</h1>
+      <p class="mt-4 text-lg text-[var(--muted-ink)]">Pick a service. See the range. Message us for an exact quote.</p>
     </div>
   </section>
 
-  <!-- Conversational starter -->
-  <section class="section py-8 border-t border-[var(--border)]">
-    <div class="mb-6">
-      <div class="text-sm uppercase tracking-widest text-[var(--accent)]">STEP 1</div>
-      <h2 class="text-2xl font-semibold">What are you looking for?</h2>
+  <!-- Conversational flow -->
+  <section class="section py-6 border-t border-[var(--surface-border)]">
+    <div class="mb-5">
+      <div class="text-sm uppercase tracking-widest text-[var(--primary)]">STEP 1</div>
+      <h2 class="page-title">What are you looking for?</h2>
     </div>
 
     <div class="flex flex-wrap gap-3" id="pricing-steps">
-      <button data-step="creative" class="step-btn btn-secondary">Creative / Design</button>
-      <button data-step="print" class="step-btn btn-secondary">Printing</button>
-      <button data-step="it" class="step-btn btn-secondary">IT Services</button>
-      <button data-step="retainer" class="step-btn btn-secondary">Monthly Retainers</button>
-      <button data-step="ai" class="step-btn btn-secondary">AI & Automation</button>
+      <button data-step="creative" class="step-btn interactive-lift">Creative / Design</button>
+      <button data-step="print" class="step-btn interactive-lift">Printing</button>
+      <button data-step="it" class="step-btn interactive-lift">IT Services</button>
+      <button data-step="retainer" class="step-btn interactive-lift">Monthly Retainers</button>
+      <button data-step="ai" class="step-btn interactive-lift">AI & Automation</button>
     </div>
   </section>
 
-  <!-- Creative Hub -->
+  <!-- Creative -->
   <div id="creative" class="pricing-step section py-6">
     <h3 class="font-semibold text-xl mb-4">Graphic Design</h3>
-    <div class="grid gap-3 text-sm">
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Logo Design</span><span class="font-medium">From RM150</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Business Card Design</span><span class="font-medium">From RM80</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Flyer / Poster</span><span class="font-medium">From RM120</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Social Media Kit</span><span class="font-medium">From RM200</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Full Brand Package</span><span class="font-medium">From RM800</span></div>
+    <div class="grid gap-px text-sm">
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Logo Design</span><span class="font-medium">From RM150</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Business Card Design</span><span class="font-medium">From RM80</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Flyer / Poster Design</span><span class="font-medium">From RM120</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Social Media Kit</span><span class="font-medium">From RM200</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Full Brand Package</span><span class="font-medium">From RM800</span></div>
     </div>
-    <a href={wa(whatsappIntents.creativeHub)} class="btn-primary mt-6 inline-block">Get creative quote</a>
+    <a href={wa(whatsappIntents.creativeHub)} class="btn-primary interactive-lift mt-6 inline-block">Get creative quote</a>
   </div>
 
-  <!-- Printing -->
+  <!-- Print -->
   <div id="print" class="pricing-step section py-6">
     <h3 class="font-semibold text-xl mb-4">Print Production</h3>
-    <div class="grid gap-3 text-sm">
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Business Cards (100pcs)</span><span class="font-medium">RM30+</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Flyers A5 (100pcs)</span><span class="font-medium">RM35+</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Banners</span><span class="font-medium">RM8/sq ft</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Stickers (100pcs)</span><span class="font-medium">RM25+</span></div>
+    <div class="grid gap-px text-sm">
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Business Cards (100pcs)</span><span class="font-medium">RM30+</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Flyers A5 (100pcs)</span><span class="font-medium">RM35+</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Banners</span><span class="font-medium">RM8 / sq ft</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Stickers (100pcs)</span><span class="font-medium">RM25+</span></div>
     </div>
-    <a href={wa("Hi Pancatz, I need a print quote.")} class="btn-primary mt-6 inline-block">Get print quote</a>
+    <a href={wa("Hi Pancatz, I need a print quote.")} class="btn-primary interactive-lift mt-6 inline-block">Get print quote</a>
   </div>
 
-  <!-- IT Services -->
+  <!-- IT -->
   <div id="it" class="pricing-step section py-6">
-    <h3 class="font-semibold text-xl mb-4">One-time IT</h3>
-    <div class="grid gap-3 text-sm mb-6">
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Diagnosis</span><span class="font-medium">RM30</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Windows Reinstall</span><span class="font-medium">RM80</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Virus Removal</span><span class="font-medium">RM60</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Network Setup</span><span class="font-medium">RM150</span></div>
+    <h3 class="font-semibold text-xl mb-4">One-time IT Services</h3>
+    <div class="grid gap-px text-sm mb-8">
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Diagnosis</span><span class="font-medium">RM30</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Windows Reinstall</span><span class="font-medium">RM80</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Virus / Malware Removal</span><span class="font-medium">RM60</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Network Setup</span><span class="font-medium">RM150</span></div>
     </div>
 
     <h3 class="font-semibold text-xl mb-4">Tech Care Retainers</h3>
     <div class="grid md:grid-cols-3 gap-4">
-      <div class="card p-5 text-sm"><div class="font-medium">Starter — RM199/mo</div><div class="text-[var(--text-muted)]">3 devices • remote • monthly check</div></div>
-      <div class="card p-5 text-sm"><div class="font-medium">Business — RM499/mo</div><div class="text-[var(--text-muted)]">8 devices • 1 onsite • same-day</div></div>
-      <div class="card p-5 text-sm"><div class="font-medium">Professional — RM899/mo</div><div class="text-[var(--text-muted)]">15 devices • 2 onsite • 2hr SLA</div></div>
+      <div class="pricing-card interactive-lift p-6 text-sm">
+        <div class="font-medium">Starter — RM199/mo</div>
+        <div class="text-[var(--muted-ink)] mt-2">3 devices • remote • monthly check</div>
+      </div>
+      <div class="pricing-card interactive-lift p-6 text-sm">
+        <div class="font-medium">Business — RM499/mo</div>
+        <div class="text-[var(--muted-ink)] mt-2">8 devices • 1 onsite • same-day</div>
+      </div>
+      <div class="pricing-card interactive-lift p-6 text-sm">
+        <div class="font-medium">Professional — RM899/mo</div>
+        <div class="text-[var(--muted-ink)] mt-2">15 devices • 2 onsite • 2hr SLA</div>
+      </div>
     </div>
-    <a href={wa(whatsappIntents.repair)} class="btn-primary mt-6 inline-block">Get IT support</a>
+    <a href={wa(whatsappIntents.repair)} class="btn-primary interactive-lift mt-6 inline-block">Get IT support</a>
   </div>
 
   <!-- Retainers -->
   <div id="retainer" class="pricing-step section py-6">
-    <h3 class="font-semibold text-xl mb-4">Creative Retainers (Always On Design)</h3>
+    <h3 class="font-semibold text-xl mb-4">Creative Retainers</h3>
     <div class="grid md:grid-cols-3 gap-4 mb-8">
-      <div class="glass p-6 rounded-2xl"><div class="font-medium">Lite — RM299/mo</div><div class="text-sm text-[var(--text-muted)] mt-2">4 requests • 48hr • 2 revisions</div></div>
-      <div class="glass p-6 rounded-2xl border border-[var(--accent)]"><div class="font-medium">Standard — RM599/mo</div><div class="text-sm text-[var(--text-muted)] mt-2">10 requests • 24hr • unlimited revisions + RM100 print credit</div></div>
-      <div class="glass p-6 rounded-2xl"><div class="font-medium">Pro — RM1,200/mo</div><div class="text-sm text-[var(--text-muted)] mt-2">Unlimited • priority • RM200 print credit</div></div>
+      <div class="pricing-card interactive-lift p-6"><div class="font-medium">Lite — RM299/mo</div><div class="text-sm text-[var(--muted-ink)] mt-2">4 requests • 48hr • 2 revisions</div></div>
+      <div class="pricing-card interactive-lift p-6 border border-[var(--primary)]"><div class="font-medium">Standard — RM599/mo</div><div class="text-sm text-[var(--muted-ink)] mt-2">10 requests • 24hr • unlimited + print credit</div></div>
+      <div class="pricing-card interactive-lift p-6"><div class="font-medium">Pro — RM1,200/mo</div><div class="text-sm text-[var(--muted-ink)] mt-2">Unlimited • priority • RM200 print credit</div></div>
     </div>
 
-    <h3 class="font-semibold text-xl mb-3">Combined (Creative + Tech)</h3>
-    <div class="text-sm">Small Business RM799/mo • Growing Business RM1,500/mo</div>
-    <a href={wa("Hi Pancatz, I'm interested in a retainer plan.")} class="btn-primary mt-6 inline-block">Talk about a retainer</a>
+    <h3 class="font-semibold text-xl mb-3">Combined Retainers</h3>
+    <div class="text-sm text-[var(--muted-ink)] mb-2">Small Business RM799/mo • Growing Business RM1,500/mo</div>
+    <a href={wa("Hi Pancatz, I'm interested in a retainer plan.")} class="btn-primary interactive-lift mt-6 inline-block">Talk about a retainer</a>
   </div>
 
   <!-- AI -->
   <div id="ai" class="pricing-step section py-6">
     <h3 class="font-semibold text-xl mb-4">AI & Workflow Setup</h3>
-    <div class="grid gap-3 text-sm">
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>AI Tool Consultation</span><span class="font-medium">RM150</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Chatbot / WhatsApp Form</span><span class="font-medium">RM300</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Workflow Automation (n8n)</span><span class="font-medium">RM500</span></div>
-      <div class="flex justify-between py-1 border-b border-[var(--border)]"><span>Custom AI Workflow</span><span class="font-medium">From RM800</span></div>
+    <div class="grid gap-px text-sm">
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>AI Tool Consultation</span><span class="font-medium">RM150</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Chatbot / WhatsApp Form</span><span class="font-medium">RM300</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Workflow Automation (n8n)</span><span class="font-medium">RM500</span></div>
+      <div class="flex justify-between py-3 border-b border-[var(--surface-border)]"><span>Custom AI Workflow</span><span class="font-medium">From RM800</span></div>
     </div>
-    <a href={wa(whatsappIntents.itAi)} class="btn-primary mt-6 inline-block">Start an AI project</a>
+    <a href={wa(whatsappIntents.itAi)} class="btn-primary interactive-lift mt-6 inline-block">Start an AI project</a>
   </div>
 
-  <div class="section py-12 text-xs text-[var(--text-muted)] border-t border-[var(--border)]">
-    Prices are starting ranges. Final quote depends on scope. 50% deposit on design/print projects. Bank transfer / DuitNow.
+  <div class="section py-10 text-xs text-[var(--muted-ink)] border-t border-[var(--surface-border)]">
+    Starting ranges. Final quote depends on scope. 50% deposit on design/print. Bank / DuitNow.
   </div>
 </Layout>
 
 <script>
-  // Simple conversational flow
   document.querySelectorAll('.step-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.pricing-step').forEach(el => el.classList.remove('active'));
@@ -114,14 +122,15 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
       const target = document.getElementById(step);
       if (target) target.classList.add('active');
       
-      document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('btn-primary'));
-      btn.classList.add('btn-primary');
+      document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     });
   });
   
-  // Show first by default
   setTimeout(() => {
     const first = document.getElementById('creative');
+    const firstBtn = document.querySelector('[data-step="creative"]');
     if (first) first.classList.add('active');
-  }, 100);
+    if (firstBtn) firstBtn.classList.add('active');
+  }, 80);
 </script>

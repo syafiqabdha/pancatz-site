@@ -9,183 +9,177 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 ---
 
 <Layout>
-  <!-- HERO: Warm + textured, calm craft -->
-  <section class="section pt-16 pb-20 relative overflow-hidden grain">
-    <div class="absolute inset-0 bg-[var(--bg)] opacity-95"></div>
-    
-    <div class="max-w-4xl relative z-10">
-      <div class="uppercase tracking-[3px] text-xs mb-4 text-[var(--accent)]">Johor Bahru</div>
+  <!-- Hero - raw grid, strong type -->
+  <section class="section raw-grid pt-14 pb-20 sm:pt-20 sm:pb-24">
+    <div class="max-w-4xl">
+      <div class="uppercase tracking-[3px] text-xs mb-4 text-[var(--primary)]">Johor Bahru</div>
       
-      <h1 class="display leading-none">
-        Calm craft.<br />
-        Clear results.
+      <h1 class="hero-title tracking-[-0.06em]">
+        Calm craft.<br />Clear results.
       </h1>
       
-      <p class="mt-6 max-w-lg text-xl text-[var(--text-muted)]">
-        Design and systems that actually work for small businesses in Johor.
+      <p class="mt-6 max-w-lg text-xl text-[var(--muted-ink)]">
+        Design and systems that actually work for small businesses.
       </p>
 
-      <div class="mt-10">
-        <a href="#what-you-need" class="btn-primary">What do you need?</a>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#what-you-need" class="btn-primary interactive-lift">What do you need?</a>
+        <a href="/pricing" class="btn-secondary interactive-lift">See pricing</a>
       </div>
     </div>
   </section>
 
-  <!-- CONVERSATIONAL STARTER -->
-  <section id="what-you-need" class="section pt-8 pb-16 border-t border-[var(--border)]">
-    <div class="mb-8">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">START HERE</div>
-      <h2 class="text-4xl font-semibold tracking-tight">What do you need right now?</h2>
+  <!-- Conversational starter -->
+  <section id="what-you-need" class="section py-8 border-t border-[var(--surface-border)]">
+    <div class="mb-6">
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">START HERE</div>
+      <h2 class="page-title">What do you need right now?</h2>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-      <a href={waCreative} class="card p-6 hover:border-[var(--accent)] transition flex flex-col">
-        <div class="text-[var(--accent)] text-sm mb-1">CREATIVE</div>
-        <div class="font-semibold text-lg">Design or Print</div>
-        <div class="text-sm text-[var(--text-muted)] mt-auto">Logo • Cards • Flyers • Brand</div>
+      <a href={waCreative} class="card interactive-lift p-6 flex flex-col">
+        <div class="text-[var(--primary)] text-sm mb-1">CREATIVE</div>
+        <div class="font-semibold text-xl">Design or Print</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-auto">Logo • Cards • Flyers • Brand</div>
       </a>
-      <a href={waIT} class="card p-6 hover:border-[var(--accent)] transition flex flex-col">
-        <div class="text-[var(--accent)] text-sm mb-1">IT SUPPORT</div>
-        <div class="font-semibold text-lg">Fix or Maintain</div>
-        <div class="text-sm text-[var(--text-muted)] mt-auto">Repairs • Retainers • Setup</div>
+      <a href={waIT} class="card interactive-lift p-6 flex flex-col">
+        <div class="text-[var(--primary)] text-sm mb-1">IT SUPPORT</div>
+        <div class="font-semibold text-xl">Fix or Maintain</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-auto">Repairs • Retainers • Setup</div>
       </a>
-      <a href={waAI} class="card p-6 hover:border-[var(--accent)] transition flex flex-col">
-        <div class="text-[var(--accent)] text-sm mb-1">AUTOMATION</div>
-        <div class="font-semibold text-lg">AI & Workflows</div>
-        <div class="text-sm text-[var(--text-muted)] mt-auto">Chatbots • n8n • Image gen</div>
+      <a href={waAI} class="card interactive-lift p-6 flex flex-col">
+        <div class="text-[var(--primary)] text-sm mb-1">AUTOMATION</div>
+        <div class="font-semibold text-xl">AI & Workflows</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-auto">Chatbots • n8n • Image gen</div>
       </a>
-      <a href="/pricing" class="card p-6 hover:border-[var(--accent)] transition flex flex-col md:col-span-2 lg:col-span-1">
-        <div class="text-[var(--accent)] text-sm mb-1">PLANS</div>
-        <div class="font-semibold text-lg">Monthly Retainers</div>
-        <div class="text-sm text-[var(--text-muted)] mt-auto">Predictable cost, always on</div>
+      <a href="/pricing" class="card interactive-lift p-6 flex flex-col md:col-span-2 lg:col-span-1">
+        <div class="text-[var(--primary)] text-sm mb-1">PLANS</div>
+        <div class="font-semibold text-xl">Monthly Retainers</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-auto">Predictable cost, always on</div>
       </a>
-      <a href={waGeneral} class="card p-6 hover:border-[var(--accent)] transition flex flex-col lg:col-span-1">
-        <div class="text-[var(--accent)] text-sm mb-1">OTHER</div>
-        <div class="font-semibold text-lg">Just tell us</div>
-        <div class="text-sm text-[var(--text-muted)] mt-auto">We'll figure it out together</div>
+      <a href={waGeneral} class="card interactive-lift p-6 flex flex-col lg:col-span-1">
+        <div class="text-[var(--primary)] text-sm mb-1">OTHER</div>
+        <div class="font-semibold text-xl">Just tell us</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-auto">We'll figure it out together</div>
       </a>
     </div>
   </section>
 
-  <!-- SERVICES / HUBS -->
-  <section id="services" class="section border-t border-[var(--border)]">
-    <div class="mb-10">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">WHAT WE DO</div>
-      <h2 class="massive">Two lanes.<br />One team.</h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6">
-      <!-- Creative Hub -->
-      <div class="card p-8">
-        <div class="uppercase text-xs tracking-widest text-[var(--accent)] mb-3">CREATIVE HUB</div>
-        <h3 class="text-3xl font-semibold tracking-tight mb-4">Design that prints. Brands that stick.</h3>
-        
-        <div class="text-[var(--text-muted)] space-y-1.5 mb-8 text-[15px]">
-          <div>• Logo & brand identity</div>
-          <div>• Business cards, flyers, posters</div>
-          <div>• Social media kits & menus</div>
-          <div>• Banners, roll-ups, stickers</div>
-          <div>• Full print production</div>
-        </div>
-
-        <a href={waCreative} class="btn-secondary">Get a quote on WhatsApp</a>
-      </div>
-
-      <!-- IT Services -->
-      <div class="card p-8">
-        <div class="uppercase text-xs tracking-widest text-[var(--accent)] mb-3">IT SERVICES</div>
-        <h3 class="text-3xl font-semibold tracking-tight mb-4">Systems that don't break. Support that actually shows up.</h3>
-        
-        <div class="text-[var(--text-muted)] space-y-1.5 mb-8 text-[15px]">
-          <div>• PC/laptop repair & upgrades</div>
-          <div>• Network & WiFi setup</div>
-          <div>• Monthly Tech Care retainers</div>
-          <div>• Virus removal & security</div>
-          <div>• AI workflow automation</div>
-        </div>
-
-        <a href={waIT} class="btn-secondary">Talk to us about IT</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="section border-t border-[var(--border)]">
+  <!-- Service Hubs -->
+  <section id="services" class="section border-t border-[var(--surface-border)] py-14">
     <div class="mb-8">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">REAL PEOPLE</div>
-      <h2 class="text-3xl font-semibold tracking-tight">What clients say</h2>
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">WHAT WE DO</div>
+      <h2 class="page-title">Two lanes. One team.</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-5">
-      <div class="testimonial">
-        <div class="text-[15px] leading-snug">“Pancatz reka banner untuk kedai kami dalam sehari. Cepat dan murah.”</div>
-        <div class="mt-4 text-xs text-[var(--text-muted)]">— Aminah, Kedai Makan Asli, Kulai</div>
+      <div class="card-emphasis interactive-lift p-8">
+        <div class="uppercase text-xs tracking-widest text-[var(--primary)] mb-3">CREATIVE HUB</div>
+        <h3 class="text-3xl font-semibold tracking-tight mb-4">Design that prints.<br />Brands that stick.</h3>
+        
+        <div class="text-[var(--muted-ink)] space-y-1.5 mb-8 text-[15px]">
+          <div>Logo & brand identity</div>
+          <div>Business cards, flyers, posters</div>
+          <div>Social media kits & menus</div>
+          <div>Banners, roll-ups, stickers</div>
+          <div>Full print production</div>
+        </div>
+
+        <a href={waCreative} class="btn-secondary interactive-lift">Get a quote on WhatsApp</a>
       </div>
-      <div class="testimonial">
-        <div class="text-[15px] leading-snug">“Setup WiFi office kami jadi smooth. Tak ada lagi masalah connection.”</div>
-        <div class="mt-4 text-xs text-[var(--text-muted)]">— Raj, Kulai Optics</div>
-      </div>
-      <div class="testimonial">
-        <div class="text-[15px] leading-snug">“Logo dan business card semua done di Pancatz. Professional dan berpatutan.”</div>
-        <div class="mt-4 text-xs text-[var(--text-muted)]">— Tan, JB Auto Parts</div>
-      </div>
-      <div class="testimonial">
-        <div class="text-[15px] leading-snug">“Saya ambil pelan bulanan IT. Response WhatsApp memang cepat. Recommended.”</div>
-        <div class="mt-4 text-xs text-[var(--text-muted)]">— Faiz, SG Creative Studio</div>
+
+      <div class="card-emphasis interactive-lift p-8">
+        <div class="uppercase text-xs tracking-widest text-[var(--primary)] mb-3">IT SERVICES</div>
+        <h3 class="text-3xl font-semibold tracking-tight mb-4">Systems that don't break.<br />Support that shows up.</h3>
+        
+        <div class="text-[var(--muted-ink)] space-y-1.5 mb-8 text-[15px]">
+          <div>PC/laptop repair & upgrades</div>
+          <div>Network & WiFi setup</div>
+          <div>Monthly Tech Care retainers</div>
+          <div>Virus removal & security</div>
+          <div>AI workflow automation</div>
+        </div>
+
+        <a href={waIT} class="btn-secondary interactive-lift">Talk to us about IT</a>
       </div>
     </div>
   </section>
 
-  <!-- PRICING PREVIEW (glass cards) -->
-  <section class="section border-t border-[var(--border)]">
+  <!-- Testimonials -->
+  <section id="testimonials" class="section border-t border-[var(--surface-border)]">
+    <div class="mb-8">
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">REAL PEOPLE</div>
+      <h2 class="page-title">What clients say</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="card p-6 interactive-lift">
+        <div class="text-[15px] leading-snug">"Pancatz reka banner untuk kedai kami dalam sehari. Cepat dan murah."</div>
+        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Aminah, Kedai Makan Asli, Kulai</div>
+      </div>
+      <div class="card p-6 interactive-lift">
+        <div class="text-[15px] leading-snug">"Setup WiFi office kami jadi smooth. Tak ada lagi masalah connection."</div>
+        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Raj, Kulai Optics</div>
+      </div>
+      <div class="card p-6 interactive-lift">
+        <div class="text-[15px] leading-snug">"Logo dan business card semua done di Pancatz. Professional."</div>
+        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Tan, JB Auto Parts</div>
+      </div>
+      <div class="card p-6 interactive-lift">
+        <div class="text-[15px] leading-snug">"Saya ambil pelan bulanan IT. Response WhatsApp memang cepat."</div>
+        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Faiz, SG Creative Studio</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing preview -->
+  <section class="section border-t border-[var(--surface-border)]">
     <div class="mb-8 flex items-end justify-between">
       <div>
-        <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--accent)]">INVESTMENT</div>
-        <h2 class="text-3xl font-semibold tracking-tight">Simple plans. No surprises.</h2>
+        <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">INVESTMENT</div>
+        <h2 class="page-title">Simple plans. No surprises.</h2>
       </div>
-      <a href="/pricing" class="text-sm text-[var(--accent)] hover:underline">See full pricing →</a>
+      <a href="/pricing" class="text-sm font-medium text-[var(--primary)] hover:underline">Full pricing →</a>
     </div>
 
     <div class="grid md:grid-cols-3 gap-4">
-      <div class="glass p-7 rounded-2xl">
-        <div class="text-sm text-[var(--text-muted)]">STARTER</div>
+      <div class="pricing-card interactive-lift p-7">
+        <div class="text-sm text-[var(--muted-ink)]">STARTER</div>
         <div class="mt-1 text-5xl font-semibold tracking-tighter">RM199</div>
-        <div class="text-xs text-[var(--text-muted)] mb-6">/month</div>
-        <ul class="text-sm space-y-1.5 text-[var(--text-muted)]">
+        <div class="text-xs text-[var(--muted-ink)] mb-6">/month</div>
+        <ul class="text-sm space-y-1.5 text-[var(--muted-ink)]">
           <li>Up to 3 devices</li>
           <li>Remote support</li>
           <li>Monthly checkup</li>
         </ul>
       </div>
-      <div class="glass p-7 rounded-2xl border border-[var(--accent)]">
-        <div class="text-sm text-[var(--accent)]">BUSINESS</div>
+      <div class="pricing-card interactive-lift p-7 border border-[var(--primary)]">
+        <div class="text-sm text-[var(--primary)]">BUSINESS</div>
         <div class="mt-1 text-5xl font-semibold tracking-tighter">RM499</div>
-        <div class="text-xs text-[var(--text-muted)] mb-6">/month</div>
-        <ul class="text-sm space-y-1.5 text-[var(--text-muted)]">
+        <div class="text-xs text-[var(--muted-ink)] mb-6">/month</div>
+        <ul class="text-sm space-y-1.5 text-[var(--muted-ink)]">
           <li>Up to 8 devices</li>
           <li>Remote + 1 onsite/mo</li>
           <li>Same-day response</li>
-          <li>Monthly report</li>
         </ul>
       </div>
-      <div class="glass p-7 rounded-2xl">
-        <div class="text-sm text-[var(--text-muted)]">PROFESSIONAL</div>
+      <div class="pricing-card interactive-lift p-7">
+        <div class="text-sm text-[var(--muted-ink)]">PROFESSIONAL</div>
         <div class="mt-1 text-5xl font-semibold tracking-tighter">RM899</div>
-        <div class="text-xs text-[var(--text-muted)] mb-6">/month</div>
-        <ul class="text-sm space-y-1.5 text-[var(--text-muted)]">
+        <div class="text-xs text-[var(--muted-ink)] mb-6">/month</div>
+        <ul class="text-sm space-y-1.5 text-[var(--muted-ink)]">
           <li>Up to 15 devices</li>
           <li>2 onsite visits/mo</li>
           <li>2-hour SLA</li>
-          <li>Quarterly audit</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="section border-t border-[var(--border)] text-center">
-    <h2 class="massive mb-3">Ready when you are.</h2>
-    <p class="text-[var(--text-muted)] mb-8">Tell us what you're trying to build or fix.</p>
-    <a href={waGeneral} class="btn-primary px-10">Message us on WhatsApp</a>
+  <!-- Final CTA -->
+  <section class="section border-t border-[var(--surface-border)] text-center">
+    <h2 class="page-title mb-3">Ready when you are.</h2>
+    <p class="text-[var(--muted-ink)] mb-8">Tell us what you're trying to build or fix.</p>
+    <a href={waGeneral} class="btn-primary interactive-lift px-10">Message us on WhatsApp</a>
   </section>
 </Layout>
