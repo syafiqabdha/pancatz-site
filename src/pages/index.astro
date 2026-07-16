@@ -152,8 +152,8 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   if (headline && cursor) {
     const sequences = [
       { text: 'Design and system', pause: 1000 },
-      { text: 'design', pause: 1000 },
-      { text: 'system that run', pause: 1000 }
+      { text: 'Design that print', pause: 1000 },
+      { text: 'System that run', pause: 1000 }
     ];
 
     function sleep(ms) {
@@ -182,9 +182,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         await deleteText();
         await sleep(300);
       }
-      // After one full loop, keep the last phrase visible
       await typeText(sequences[sequences.length - 1].text);
-      cursor.style.animation = 'blink 1s step-end infinite';
     }
 
     playSequence();

@@ -158,12 +158,27 @@ p {
 
 .hero-cursor {
   display: inline-block;
-  width: 3px;
-  height: 1em;
+  width: 4px;
+  height: 0.9em;
   background: var(--ink);
-  margin-left: 2px;
+  margin-left: 3px;
   vertical-align: baseline;
   animation: blink 1s step-end infinite;
+}
+
+.hero-title {
+  display: inline;
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
 }
 
 @keyframes blink {
