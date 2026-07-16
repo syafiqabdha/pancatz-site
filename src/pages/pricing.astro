@@ -24,7 +24,7 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
       </div>
     </div>
 
-    <div id="pricing-content" class="space-y-6 card-grid">
+    <div id="pricing-content" class="space-y-6 card-grid" data-wa="60137572507">
       <!-- injected -->
     </div>
 
@@ -88,6 +88,9 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
     }
   };
 
+  const waNum = content.dataset.wa;
+  const wa = (msg) => `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
+
   function render(step) {
     const data = pricingData[step];
     const card = document.createElement('div');
@@ -115,19 +118,20 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
     animate({ targets: card, opacity: [0, 1], translateY: [20, 0], duration: 500, easing: 'easeOutExpo' });
   }
 
-  steps.forEach(btn => {
-    btn.addEventListener('click', () => {
-      steps.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      render(btn.dataset.step);
+  if (content && steps.length) {
+    steps.forEach(btn => {
+      btn.addEventListener('click', () => {
+        steps.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        render(btn.dataset.step);
+      });
     });
-  });
 
-  steps[0].classList.add('active');
-  render('creative');
+    steps[0].classList.add('active');
+    render('creative');
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Section reveal
     animate.set('.section-reveal', { opacity: 0, translateY: 24 });
     document.querySelectorAll('.section-reveal').forEach(el => {
       onScroll({
@@ -143,7 +147,6 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
       });
     });
 
-    // Unified card hover for buttons
     document.querySelectorAll('.unified-card').forEach(card => {
       card.addEventListener('mouseenter', () => {
         animate({ targets: card, translateY: -4, duration: 200, easing: 'easeOutCubic' });
