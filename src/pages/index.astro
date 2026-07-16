@@ -161,6 +161,11 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       { text: 'System that run', pause: 1000 }
     ];
 
+    const typeSpeed = 80;
+    const deleteSpeed = 45;
+    const holdDuration = 1000;
+    const gapDuration = 300;
+
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -168,7 +173,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     async function typeText(text) {
       for (let i = 0; i <= text.length; i++) {
         headline.textContent = text.slice(0, i);
-        await sleep(80);
+        await sleep(typeSpeed);
       }
     }
 
@@ -176,16 +181,16 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       const text = headline.textContent;
       for (let i = text.length; i >= 0; i--) {
         headline.textContent = text.slice(0, i);
-        await sleep(50);
+        await sleep(deleteSpeed);
       }
     }
 
     async function playSequence() {
       for (const seq of sequences) {
         await typeText(seq.text);
-        await sleep(seq.pause);
+        await sleep(holdDuration);
         await deleteText();
-        await sleep(300);
+        await sleep(gapDuration);
       }
       await typeText(sequences[sequences.length - 1].text);
     }
