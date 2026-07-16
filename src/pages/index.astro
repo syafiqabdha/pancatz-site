@@ -9,58 +9,55 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 ---
 
 <Layout>
-  <!-- Hero - direct high-end emulation, massive type, Clay-style scroll-synced orb -->
-  <section class="section raw-grid pt-16 pb-24 sm:pt-24 sm:pb-32 relative overflow-hidden">
+  <!-- Hero -->
+  <section class="section raw-grid pt-28 pb-24 sm:pt-36 sm:pb-32 relative overflow-hidden">
     <div class="max-w-5xl relative z-10">
-      <div class="uppercase tracking-[4px] text-xs mb-5 text-[var(--primary)]">Johor Bahru</div>
-      
-      <h1 class="hero-title tracking-[-0.07em] max-w-[18ch]">
+      <h1 class="hero-title tracking-[-0.07em] max-w-[18ch] hero-reveal">
         Calm craft.<br />Clear results.
       </h1>
-      
-      <p class="mt-7 max-w-md text-[1.05rem] text-[var(--muted-ink)]">
+
+      <p class="mt-7 max-w-md text-[1.05rem] text-[var(--muted-ink)] hero-reveal">
         Premium design and intelligent systems for small businesses that want to look and run better.
       </p>
 
-      <div class="mt-10 flex flex-wrap gap-4">
-        <a href="#what-you-need" class="btn-primary interactive-lift">What do you need?</a>
-        <a href="/pricing" class="btn-secondary interactive-lift">See pricing</a>
+      <div class="mt-10 flex flex-wrap gap-4 hero-reveal">
+        <a href="#what-you-need" class="btn-primary">What do you need?</a>
+        <a href="/pricing" class="btn-secondary">See pricing</a>
       </div>
     </div>
 
-    <!-- Clay-style volumetric orb — scroll-synced pitch + interactive -->
     <canvas id="hero-orb" class="hero-orb" width="560" height="560"></canvas>
   </section>
 
-  <!-- Conversational starter (kept exact flow) -->
+  <!-- Conversational starter -->
   <section id="what-you-need" class="section py-10 border-t border-[var(--surface-border)]">
-    <div class="mb-6">
+    <div class="mb-6 section-reveal">
       <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">START HERE</div>
       <h2 class="page-title">What do you need right now?</h2>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-      <a href={waCreative} class="card interactive-lift p-6 flex flex-col">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 card-grid">
+      <a href={waCreative} class="card p-6 flex flex-col unified-card">
         <div class="text-[var(--primary)] text-sm mb-1">CREATIVE</div>
         <div class="font-semibold text-xl">Design or Print</div>
         <div class="text-sm text-[var(--muted-ink)] mt-auto">Logo • Cards • Flyers • Brand</div>
       </a>
-      <a href={waIT} class="card interactive-lift p-6 flex flex-col">
+      <a href={waIT} class="card p-6 flex flex-col unified-card">
         <div class="text-[var(--primary)] text-sm mb-1">IT SUPPORT</div>
         <div class="font-semibold text-xl">Fix or Maintain</div>
         <div class="text-sm text-[var(--muted-ink)] mt-auto">Repairs • Retainers • Setup</div>
       </a>
-      <a href={waAI} class="card interactive-lift p-6 flex flex-col">
+      <a href={waAI} class="card p-6 flex flex-col unified-card">
         <div class="text-[var(--primary)] text-sm mb-1">AUTOMATION</div>
         <div class="font-semibold text-xl">AI & Workflows</div>
         <div class="text-sm text-[var(--muted-ink)] mt-auto">Chatbots • n8n • Image gen</div>
       </a>
-      <a href="/pricing" class="card interactive-lift p-6 flex flex-col md:col-span-2 lg:col-span-1">
+      <a href="/pricing" class="card p-6 flex flex-col md:col-span-2 lg:col-span-1 unified-card">
         <div class="text-[var(--primary)] text-sm mb-1">PLANS</div>
         <div class="font-semibold text-xl">Monthly Retainers</div>
         <div class="text-sm text-[var(--muted-ink)] mt-auto">Predictable cost, always on</div>
       </a>
-      <a href={waGeneral} class="card interactive-lift p-6 flex flex-col lg:col-span-1">
+      <a href={waGeneral} class="card p-6 flex flex-col lg:col-span-1 unified-card">
         <div class="text-[var(--primary)] text-sm mb-1">OTHER</div>
         <div class="font-semibold text-xl">Just tell us</div>
         <div class="text-sm text-[var(--muted-ink)] mt-auto">We'll figure it out together</div>
@@ -68,18 +65,18 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     </div>
   </section>
 
-  <!-- Service Hubs - minimal Clay structure -->
+  <!-- Service Hubs -->
   <section id="services" class="section border-t border-[var(--surface-border)] py-16">
-    <div class="mb-8">
+    <div class="mb-8 section-reveal">
       <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">WHAT WE DO</div>
       <h2 class="page-title">Two lanes.<br />One team.</h2>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-5">
-      <div class="card-emphasis interactive-lift p-9">
+    <div class="grid md:grid-cols-2 gap-5 card-grid">
+      <div class="card p-9 unified-card">
         <div class="uppercase text-xs tracking-[2px] text-[var(--primary)] mb-4">CREATIVE HUB</div>
         <h3 class="text-3xl font-semibold tracking-[-0.03em] mb-5">Design that prints.<br />Brands that last.</h3>
-        
+
         <div class="text-[var(--muted-ink)] space-y-1.5 mb-10 text-[15px]">
           <div>Logo & brand systems</div>
           <div>Business cards, flyers, packaging</div>
@@ -87,13 +84,13 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
           <div>Banners, signage, print production</div>
         </div>
 
-        <a href={waCreative} class="btn-secondary interactive-lift">Talk on WhatsApp</a>
+        <a href={waCreative} class="btn-secondary">Talk on WhatsApp</a>
       </div>
 
-      <div class="card-emphasis interactive-lift p-9">
+      <div class="card p-9 unified-card">
         <div class="uppercase text-xs tracking-[2px] text-[var(--primary)] mb-4">IT SERVICES</div>
         <h3 class="text-3xl font-semibold tracking-[-0.03em] mb-5">Systems that work.<br />Support that shows up.</h3>
-        
+
         <div class="text-[var(--muted-ink)] space-y-1.5 mb-10 text-[15px]">
           <div>PC, laptop & hardware repair</div>
           <div>Network, WiFi & infrastructure</div>
@@ -101,40 +98,40 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
           <div>AI automation & workflows</div>
         </div>
 
-        <a href={waIT} class="btn-secondary interactive-lift">Talk on WhatsApp</a>
+        <a href={waIT} class="btn-secondary">Talk on WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio with subtle 3D canvas hovers -->
+  <!-- Portfolio -->
   <section class="section border-t border-[var(--surface-border)] py-16">
-    <div class="mb-8 flex items-end justify-between">
+    <div class="mb-8 flex items-end justify-between section-reveal">
       <div>
         <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">SELECT WORK</div>
         <h2 class="page-title">Work that holds up.</h2>
       </div>
-      <a href="/portfolio" class="btn-secondary interactive-lift hidden sm:inline-block">See all</a>
+      <a href="/portfolio" class="btn-secondary hidden sm:inline-block">See all</a>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-5">
-      <a href="/portfolio" class="portfolio-card card interactive-lift p-8 group">
-        <canvas class="canvas-overlay w-full h-48 mb-6 rounded-xl bg-[var(--paper)]" data-type="creative"></canvas>
+    <div class="grid md:grid-cols-2 gap-5 card-grid">
+      <a href="/portfolio" class="card p-8 unified-card portfolio-card group">
+        <canvas class="w-full h-48 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="creative"></canvas>
         <div class="font-semibold text-2xl tracking-[-0.02em]">Creative systems for local brands</div>
         <div class="text-sm text-[var(--muted-ink)] mt-1">Branding • Print • Packaging</div>
       </a>
 
-      <a href="/portfolio" class="portfolio-card card interactive-lift p-8 group">
-        <canvas class="canvas-overlay w-full h-48 mb-6 rounded-xl bg-[var(--paper)]" data-type="tech"></canvas>
+      <a href="/portfolio" class="card p-8 unified-card portfolio-card group">
+        <canvas class="w-full h-48 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="tech"></canvas>
         <div class="font-semibold text-2xl tracking-[-0.02em]">Reliable tech foundations</div>
         <div class="text-sm text-[var(--muted-ink)] mt-1">Infrastructure • Automation • Support</div>
       </a>
     </div>
 
-    <a href="/portfolio" class="btn-secondary interactive-lift mt-6 inline-block sm:hidden">See all work</a>
+    <a href="/portfolio" class="btn-secondary mt-6 inline-block sm:hidden">See all work</a>
   </section>
 
-  <!-- Minimal closer -->
-  <section class="section py-16 border-t border-[var(--surface-border)] text-center">
+  <!-- Closer -->
+  <section class="section py-16 border-t border-[var(--surface-border)] text-center section-reveal">
     <div class="max-w-md mx-auto">
       <p class="text-[var(--muted-ink)]">Ready when you are.</p>
       <a href={waGeneral} class="btn-primary inline-block mt-4">Start a conversation</a>
@@ -143,11 +140,87 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 </Layout>
 
 <script>
-  // Clay-style scroll-synced volumetric orb (lightweight canvas)
+  import { animate, onScroll, stagger } from 'animejs';
+
+  // Reusable motion tokens
+  const ease = 'easeOutExpo';
+  const baseDuration = 800;
+
+  // Hero reveal
+  animate({
+    targets: '.hero-reveal',
+    opacity: [0, 1],
+    translateY: [24, 0],
+    duration: baseDuration,
+    easing: ease,
+    delay: stagger(120, { start: 200 })
+  });
+
+  // Section reveals on scroll
+  animate.set('.section-reveal', { opacity: 0, translateY: 24 });
+  document.querySelectorAll('.section-reveal').forEach(el => {
+    onScroll({
+      target: el,
+      enter: 'top 85%',
+      leave: 'bottom 10%',
+      sync: false,
+      debug: false,
+    }).add({
+      targets: el,
+      opacity: [0, 1],
+      translateY: [24, 0],
+      duration: baseDuration,
+      easing: ease
+    });
+  });
+
+  // Card stagger reveals per section
+  document.querySelectorAll('.card-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.unified-card');
+    animate.set(cards, { opacity: 0, translateY: 30, scale: 0.98 });
+    onScroll({
+      target: grid,
+      enter: 'top 85%',
+      leave: 'bottom 10%',
+      sync: false,
+    }).add({
+      targets: cards,
+      opacity: [0, 1],
+      translateY: [30, 0],
+      scale: [0.98, 1],
+      duration: 900,
+      easing: ease,
+      delay: stagger(80)
+    });
+  });
+
+  // Unified card hover effect (lift + glow)
+  document.querySelectorAll('.unified-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      animate({
+        targets: card,
+        translateY: -6,
+        boxShadow: ['0 0 0 rgba(15,14,12,0)', '8px 12px 0 rgba(15,14,12,0.12)'],
+        duration: 250,
+        easing: 'easeOutCubic'
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      animate({
+        targets: card,
+        translateY: 0,
+        boxShadow: '0 0 0 rgba(15,14,12,0)',
+        duration: 250,
+        easing: 'easeOutCubic'
+      });
+    });
+  });
+
+  // Hero orb (scroll-synced pitch + hover glow)
   function initHeroOrb() {
     const canvas = document.getElementById('hero-orb');
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d', { alpha: true });
     let rotation = 0;
     let targetRotation = 0;
@@ -160,12 +233,10 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 
     function drawOrb(pitch) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
       const cx = canvas.width / 2;
       const cy = canvas.height / 2;
       const radius = Math.min(canvas.width, canvas.height) * 0.42;
-      
-      // Soft volumetric base (Clay-like curved paper/clay feel)
+
       const grad = ctx.createRadialGradient(
         cx - radius * 0.3, cy - radius * 0.35, radius * 0.15,
         cx + radius * 0.1, cy + radius * 0.2, radius * 1.1
@@ -176,15 +247,13 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 
       ctx.save();
       ctx.translate(cx, cy);
-      ctx.rotate((pitch * 0.6) * Math.PI / 180); // pitch from scroll + interaction
+      ctx.rotate((pitch * 0.6) * Math.PI / 180);
 
-      // Main sphere
       ctx.beginPath();
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Subtle clay texture lines (tactile, not heavy)
       ctx.strokeStyle = 'rgba(255,255,255,0.15)';
       ctx.lineWidth = 1.2;
       for (let i = -3; i <= 3; i++) {
@@ -194,7 +263,6 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         ctx.stroke();
       }
 
-      // Soft highlight rim
       ctx.beginPath();
       ctx.arc(-radius * 0.2, -radius * 0.25, radius * 0.65, 0, Math.PI * 2);
       ctx.strokeStyle = 'rgba(255,255,255,0.35)';
@@ -206,7 +274,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 
     function updateFromScroll() {
       const scrollProgress = Math.min(window.scrollY / (document.body.scrollHeight * 0.35), 1);
-      targetRotation = scrollProgress * 42; // pitch movement on scroll
+      targetRotation = scrollProgress * 42;
     }
 
     function animate() {
@@ -215,16 +283,9 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       requestAnimationFrame(animate);
     }
 
-    // Scroll sync
-    window.addEventListener('scroll', () => {
-      updateFromScroll();
-    }, { passive: true });
+    window.addEventListener('scroll', () => updateFromScroll(), { passive: true });
 
-    // Mouse interaction (extra pitch + glow feel)
-    canvas.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      lastY = e.clientY;
-    });
+    canvas.addEventListener('mousedown', (e) => { isDragging = true; lastY = e.clientY; });
     window.addEventListener('mouseup', () => isDragging = false);
     window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
@@ -233,11 +294,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       lastY = e.clientY;
     });
 
-    // Touch support
-    canvas.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      lastY = e.touches[0].clientY;
-    });
+    canvas.addEventListener('touchstart', (e) => { isDragging = true; lastY = e.touches[0].clientY; });
     window.addEventListener('touchend', () => isDragging = false);
     window.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
@@ -246,20 +303,29 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       lastY = e.touches[0].clientY;
     });
 
-    // Initial
+    // Reveal orb
+    animate({
+      targets: canvas,
+      opacity: [0, 0.9],
+      scale: [0.9, 1],
+      duration: 1200,
+      easing: ease,
+      delay: 400
+    });
+
     updateFromScroll();
     animate();
-    setTimeout(() => updateFromScroll(), 200);
   }
 
-  // Subtle canvas overlays on portfolio cards (3D tactility)
+  // Portfolio canvas tactility
   function initPortfolioCanvases() {
     const canvases = document.querySelectorAll('.portfolio-card canvas');
     canvases.forEach((canvas) => {
       const ctx = canvas.getContext('2d');
       const type = canvas.dataset.type;
-      const w = canvas.width = canvas.offsetWidth * 2;
-      const h = canvas.height = canvas.offsetHeight * 2;
+      const rect = canvas.getBoundingClientRect();
+      const w = canvas.width = rect.width * 2;
+      const h = canvas.height = rect.height * 2;
       ctx.scale(2, 2);
 
       function draw() {
@@ -268,7 +334,6 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         ctx.lineWidth = 1;
 
         if (type === 'creative') {
-          // Soft curved paper/clay lines
           for (let i = 0; i < 5; i++) {
             ctx.beginPath();
             ctx.moveTo(20 + i * 18, 30);
@@ -276,7 +341,6 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
             ctx.stroke();
           }
         } else {
-          // Tech nodes + subtle grid
           for (let x = 20; x < w / 2; x += 22) {
             for (let y = 18; y < h / 2; y += 22) {
               ctx.beginPath();
@@ -287,13 +351,6 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         }
       }
       draw();
-
-      // On hover the parent gets lift + we can boost opacity via CSS
-      const card = canvas.closest('.portfolio-card');
-      if (card) {
-        card.addEventListener('mouseenter', () => canvas.style.opacity = '0.45');
-        card.addEventListener('mouseleave', () => canvas.style.opacity = '0.15');
-      }
     });
   }
 

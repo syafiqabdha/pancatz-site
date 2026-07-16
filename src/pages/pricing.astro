@@ -6,36 +6,37 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
 ---
 
 <Layout title="Pricing — Pancatz">
-  <div class="section max-w-5xl mx-auto py-16">
-    <div class="mb-12">
+  <div class="section max-w-5xl mx-auto py-28">
+    <div class="mb-12 section-reveal">
       <div class="uppercase tracking-[3px] text-xs mb-3 text-[var(--primary)]">TRANSPARENT</div>
       <h1 class="page-title">Simple pricing.<br />Real results.</h1>
       <p class="mt-4 max-w-md text-[var(--muted-ink)]">Choose a starting point. We’ll adjust on WhatsApp.</p>
     </div>
 
-    <!-- Conversational stepper (kept exactly as user confirmed) -->
-    <div class="mb-10">
+    <div class="mb-10 section-reveal">
       <div class="uppercase tracking-[2px] text-xs mb-3 text-[var(--primary)]">START WITH ONE</div>
       <div class="flex flex-wrap gap-3" id="pricing-steps">
-        <button data-step="creative" class="step-btn interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium active">Creative</button>
-        <button data-step="print" class="step-btn interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Print</button>
-        <button data-step="it" class="step-btn interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">IT Support</button>
-        <button data-step="ai" class="step-btn interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">AI & Automation</button>
-        <button data-step="retainer" class="step-btn interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Retainers</button>
+        <button data-step="creative" class="step-btn unified-card interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium active">Creative</button>
+        <button data-step="print" class="step-btn unified-card interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Print</button>
+        <button data-step="it" class="step-btn unified-card interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">IT Support</button>
+        <button data-step="ai" class="step-btn unified-card interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">AI & Automation</button>
+        <button data-step="retainer" class="step-btn unified-card interactive-lift px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Retainers</button>
       </div>
     </div>
 
-    <div id="pricing-content" class="space-y-6">
-      <!-- Content injected by script below (conversational flow preserved) -->
+    <div id="pricing-content" class="space-y-6 card-grid">
+      <!-- injected -->
     </div>
 
-    <div class="mt-14 text-xs text-[var(--muted-ink)] max-w-md">
+    <div class="mt-14 text-xs text-[var(--muted-ink)] max-w-md section-reveal">
       All prices in MYR. Custom work quoted after a quick chat. Monthly retainers include priority support.
     </div>
   </div>
 </Layout>
 
 <script>
+  import { animate, onScroll, stagger } from 'animejs';
+
   const content = document.getElementById('pricing-content');
   const steps = document.querySelectorAll('.step-btn');
 
@@ -89,37 +90,65 @@ const wa = (msg) => `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
 
   function render(step) {
     const data = pricingData[step];
-    content.innerHTML = `
-      <div class="studio-card p-9">
-        <div class="flex items-baseline justify-between mb-6">
-          <h3 class="text-3xl font-semibold tracking-tight">${data.title}</h3>
-          <a href="${wa('Hi Pancatz, I\'m interested in ' + data.title)}" 
-             class="text-sm underline hover:no-underline">Chat on WhatsApp →</a>
-        </div>
-
-        <div class="space-y-4 mb-8">
-          ${data.items.map(i => `
-            <div class="flex justify-between items-center border-b border-[var(--surface-border)] pb-4">
-              <div>${i.name}</div>
-              <div class="font-mono text-sm text-[var(--primary)]">${i.price}</div>
-            </div>
-          `).join('')}
-        </div>
-
-        <p class="text-sm text-[var(--muted-ink)]">${data.note}</p>
+    const card = document.createElement('div');
+    card.className = 'card p-9 unified-card';
+    card.innerHTML = `
+      <div class="flex items-baseline justify-between mb-6">
+        <h3 class="text-3xl font-semibold tracking-tight">${data.title}</h3>
+        <a href="${wa('Hi Pancatz, I\'m interested in ' + data.title)}"
+           class="text-sm underline hover:no-underline">Chat on WhatsApp →</a>
       </div>
+      <div class="space-y-4 mb-8">
+        ${data.items.map(i => `
+          <div class="flex justify-between items-center border-b border-[var(--surface-border)] pb-4">
+            <div>${i.name}</div>
+            <div class="font-mono text-sm text-[var(--primary)]">${i.price}</div>
+          </div>
+        `).join('')}
+      </div>
+      <p class="text-sm text-[var(--muted-ink)]">${data.note}</p>
     `;
+    content.innerHTML = '';
+    content.appendChild(card);
+
+    animate.set(card, { opacity: 0, translateY: 20 });
+    animate({ targets: card, opacity: [0, 1], translateY: [20, 0], duration: 500, easing: 'easeOutExpo' });
   }
 
   steps.forEach(btn => {
     btn.addEventListener('click', () => {
-      steps.forEach(b => b.classList.remove('active', 'border-[var(--ink)]'));
-      btn.classList.add('active', 'border-[var(--ink)]');
+      steps.forEach(b => b.classList.remove('active', 'border-[var(--ink)]', 'bg-[var(--surface-solid)]'));
+      btn.classList.add('active', 'border-[var(--ink)]', 'bg-[var(--surface-solid)]');
       render(btn.dataset.step);
     });
   });
 
-  // initial
-  steps[0].classList.add('active', 'border-[var(--ink)]');
+  steps[0].classList.add('active', 'border-[var(--ink)]', 'bg-[var(--surface-solid)]');
   render('creative');
+
+  // Section reveal
+  animate.set('.section-reveal', { opacity: 0, translateY: 24 });
+  document.querySelectorAll('.section-reveal').forEach(el => {
+    onScroll({
+      target: el,
+      enter: 'top 85%',
+      sync: false,
+    }).add({
+      targets: el,
+      opacity: [0, 1],
+      translateY: [24, 0],
+      duration: 800,
+      easing: 'easeOutExpo'
+    });
+  });
+
+  // Unified card hover for buttons
+  document.querySelectorAll('.unified-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      animate({ targets: card, translateY: -4, duration: 200, easing: 'easeOutCubic' });
+    });
+    card.addEventListener('mouseleave', () => {
+      animate({ targets: card, translateY: 0, duration: 200, easing: 'easeOutCubic' });
+    });
+  });
 </script>

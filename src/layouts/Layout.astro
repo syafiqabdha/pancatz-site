@@ -13,26 +13,24 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{site.name} — Creative & IT Support | Johor Bahru</title>
     <meta name="description" content="Calm craft design, printing, IT retainers and AI workflows for Johor businesses. Transparent pricing, warm personal service." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   </head>
-  <body class="grain">
-    <header class="sticky top-0 z-50">
-      <div class="section flex items-center justify-between py-5 md:py-6">
-        <a href="/" class="flex items-center gap-3">
-          <span class="text-xl md:text-2xl font-semibold tracking-[-1.5px] text-[var(--text)]">{site.name}</span>
+  <body>
+    <header id="site-header" class="site-header">
+      <div class="section flex items-center justify-between py-4 md:py-5">
+        <a href="/" class="flex items-center gap-3 header-logo">
+          <span class="text-xl md:text-2xl font-semibold tracking-[-1.5px] text-[var(--ink)]">{site.name}</span>
         </a>
 
         <nav class="hidden md:flex items-center gap-6 text-sm">
           <a href="/pricing" class="nav-link">Pricing</a>
           <a href="/portfolio" class="nav-link">Work</a>
-          <a href="#services" class="nav-link">Services</a>
-          <a href="#testimonials" class="nav-link">Stories</a>
+          <a href="/#services" class="nav-link">Services</a>
+          <a href="/pricing" class="nav-link">Stories</a>
         </nav>
 
         <div class="flex items-center gap-2 md:gap-3">
           <a href={waLink} target="_blank" class="btn-primary text-[13px] px-5 py-2">Chat on WhatsApp</a>
-          <button id="mobile-menu" class="md:hidden p-2 text-2xl leading-none">☰</button>
+          <button id="mobile-menu" class="md:hidden p-2 text-2xl leading-none">&#9776;</button>
         </div>
       </div>
     </header>
@@ -41,56 +39,88 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
       <slot />
     </main>
 
-    <footer class="pt-16 pb-10 text-sm">
+    <footer class="pt-16 pb-10 text-sm border-t border-[var(--surface-border)]">
       <div class="section flex flex-col md:flex-row justify-between gap-10 text-xs tracking-[0.5px]">
         <div>
-          <div class="font-semibold text-[var(--text)] mb-1">{site.name}</div>
-          <div class="text-[var(--text-muted)]">Johor Bahru • Malaysia</div>
+          <div class="font-semibold text-[var(--ink)] mb-1">{site.name}</div>
+          <div class="text-[var(--muted-ink)]">Johor Bahru • Malaysia</div>
         </div>
-        <div class="flex flex-wrap gap-x-7 gap-y-2 text-[var(--text-muted)]">
-          <a href="/pricing" class="hover:text-[var(--text)]">Pricing</a>
-          <a href="/portfolio" class="hover:text-[var(--text)]">Work</a>
-          <a href="mailto:{site.email}" class="hover:text-[var(--text)]">Email</a>
-          <a href={site.instagramUrl} target="_blank" class="hover:text-[var(--text)]">Instagram</a>
+        <div class="flex flex-wrap gap-x-7 gap-y-2 text-[var(--muted-ink)]">
+          <a href="/pricing" class="hover:text-[var(--ink)]">Pricing</a>
+          <a href="/portfolio" class="hover:text-[var(--ink)]">Work</a>
+          <a href="mailto:{site.email}" class="hover:text-[var(--ink)]">Email</a>
+          <a href={site.instagramUrl} target="_blank" class="hover:text-[var(--ink)]">Instagram</a>
         </div>
-        <div class="text-[var(--text-muted)]">© {new Date().getFullYear()}</div>
+        <div class="text-[var(--muted-ink)]">© {new Date().getFullYear()}</div>
       </div>
     </footer>
 
     <!-- Mobile drawer -->
-    <div id="mobile-drawer" class="hidden md:hidden fixed inset-0 bg-[var(--bg)] z-[90] pt-20">
+    <div id="mobile-drawer" class="hidden md:hidden fixed inset-0 bg-[var(--paper)] z-[90] pt-20">
       <div class="section flex flex-col gap-1 text-lg">
-        <a href="/pricing" class="mobile-nav-link py-3 border-b border-[var(--border)]">Pricing</a>
-        <a href="/portfolio" class="mobile-nav-link py-3 border-b border-[var(--border)]">Work</a>
-        <a href="#services" class="mobile-nav-link py-3 border-b border-[var(--border)]">Services</a>
+        <a href="/pricing" class="mobile-nav-link py-3 border-b border-[var(--surface-border)]">Pricing</a>
+        <a href="/portfolio" class="mobile-nav-link py-3 border-b border-[var(--surface-border)]">Work</a>
+        <a href="/#services" class="mobile-nav-link py-3 border-b border-[var(--surface-border)]">Services</a>
         <a href={waLink} target="_blank" class="mt-8 btn-primary justify-center">Chat on WhatsApp</a>
       </div>
     </div>
 
     <script>
+      import { animate, onScroll, stagger } from 'animejs';
+
+      const header = document.getElementById('site-header');
       const mobileBtn = document.getElementById('mobile-menu');
       const drawer = document.getElementById('mobile-drawer');
+
+      // Mobile menu
       if (mobileBtn && drawer) {
         mobileBtn.addEventListener('click', () => {
           const isOpen = !drawer.classList.contains('hidden');
           if (isOpen) {
             drawer.classList.add('hidden');
-            mobileBtn.textContent = '☰';
+            mobileBtn.textContent = '\u2630';
             document.body.style.overflow = '';
           } else {
             drawer.classList.remove('hidden');
-            mobileBtn.textContent = '✕';
+            mobileBtn.textContent = '\u2715';
             document.body.style.overflow = 'hidden';
           }
         });
         drawer.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             drawer.classList.add('hidden');
-            mobileBtn.textContent = '☰';
+            mobileBtn.textContent = '\u2630';
             document.body.style.overflow = '';
           });
         });
       }
+
+      // Header show/hide on scroll direction
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      const showAt = 120;
+
+      function updateHeader() {
+        const currentY = window.scrollY;
+        if (currentY < showAt) {
+          header.classList.remove('visible');
+        } else if (currentY < lastScrollY) {
+          // scrolling/pinching upward
+          header.classList.add('visible');
+        } else {
+          // scrolling down
+          header.classList.remove('visible');
+        }
+        lastScrollY = currentY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }, { passive: true });
 
       // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -101,6 +131,16 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
+      });
+
+      // Header entrance animation
+      animate({
+        targets: '.header-logo',
+        opacity: [0, 1],
+        translateY: [-8, 0],
+        duration: 600,
+        easing: 'easeOutExpo',
+        delay: 100
       });
     </script>
   </body>

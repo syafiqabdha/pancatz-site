@@ -1,28 +1,125 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent("Hi Pancatz, I saw your work and want to discuss a project.")}`;
 ---
 
 <Layout title="Work — Pancatz">
-  <div class="section max-w-5xl mx-auto py-16">
-    <div class="mb-10">
-      <div class="uppercase tracking-[3px] text-xs mb-2 text-[var(--primary)]">SELECT WORK</div>
-      <h1 class="page-title">Work that holds up.</h1>
+  <div class="section max-w-5xl mx-auto py-28">
+    <div class="mb-12 section-reveal">
+      <div class="uppercase tracking-[3px] text-xs mb-3 text-[var(--primary)]">SELECT WORK</div>
+      <h1 class="page-title">Projects that<br />speak plainly.</h1>
+      <p class="mt-4 max-w-md text-[var(--muted-ink)]">
+        Brand systems, print work, and tech foundations for businesses in and around Johor Bahru.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="portfolio-card studio-card p-8">
-        <div class="h-56 mb-6 bg-[var(--paper)] rounded-2xl flex items-center justify-center text-[var(--muted-ink)] text-sm">Creative systems for local brands</div>
-        <div class="font-semibold tracking-tight text-2xl">Local restaurant rebrand + full signage</div>
-        <div class="mt-2 text-sm text-[var(--muted-ink)]">Creative • Print</div>
+    <div class="grid md:grid-cols-2 gap-5 card-grid">
+      <div class="card p-9 unified-card portfolio-card">
+        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="creative"></canvas>
+        <h3 class="text-2xl font-semibold tracking-tight">Brand refresh for a local café</h3>
+        <p class="text-sm text-[var(--muted-ink)] mt-2">Logo, menu, signage, and social templates.</p>
       </div>
-
-      <div class="portfolio-card studio-card p-8">
-        <div class="h-56 mb-6 bg-[var(--paper)] rounded-2xl flex items-center justify-center text-[var(--muted-ink)] text-sm">Reliable tech foundations</div>
-        <div class="font-semibold tracking-tight text-2xl">Clinic network + AI appointment bot</div>
-        <div class="mt-2 text-sm text-[var(--muted-ink)]">IT • Automation</div>
+      <div class="card p-9 unified-card portfolio-card">
+        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="tech"></canvas>
+        <h3 class="text-2xl font-semibold tracking-tight">IT setup for a retail chain</h3>
+        <p class="text-sm text-[var(--muted-ink)] mt-2">Network, POS terminals, and monthly support.</p>
+      </div>
+      <div class="card p-9 unified-card portfolio-card">
+        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="creative"></canvas>
+        <h3 class="text-2xl font-semibold tracking-tight">Print collateral for a clinic</h3>
+        <p class="text-sm text-[var(--muted-ink)] mt-2">Brochures, appointment cards, and wall displays.</p>
+      </div>
+      <div class="card p-9 unified-card portfolio-card">
+        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="tech"></canvas>
+        <h3 class="text-2xl font-semibold tracking-tight">AI workflow for a property team</h3>
+        <p class="text-sm text-[var(--muted-ink)] mt-2">Chatbot + image generation + lead routing.</p>
       </div>
     </div>
 
-    <p class="mt-10 text-sm text-[var(--muted-ink)] max-w-xs">More case studies available on request. We focus on work that actually improves how small businesses operate and look.</p>
+    <div class="mt-14 text-center section-reveal">
+      <p class="text-[var(--muted-ink)]">Have a project in mind?</p>
+      <a href={wa} class="btn-primary inline-block mt-4">Start a conversation</a>
+    </div>
   </div>
 </Layout>
+
+<script>
+  import { animate, onScroll, stagger } from 'animejs';
+
+  // Canvas tactility
+  document.querySelectorAll('.portfolio-card canvas').forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    const type = canvas.dataset.type;
+    const rect = canvas.getBoundingClientRect();
+    const w = canvas.width = rect.width * 2;
+    const h = canvas.height = rect.height * 2;
+    ctx.scale(2, 2);
+
+    ctx.strokeStyle = 'rgba(163, 106, 82, 0.25)';
+    ctx.lineWidth = 1;
+
+    if (type === 'creative') {
+      for (let i = 0; i < 6; i++) {
+        ctx.beginPath();
+        ctx.moveTo(30 + i * 20, 50);
+        ctx.quadraticCurveTo(100 + i * 8, 110, 70 + i * 14, 180);
+        ctx.stroke();
+      }
+    } else {
+      for (let x = 30; x < w / 2; x += 24) {
+        for (let y = 30; y < h / 2; y += 24) {
+          ctx.beginPath();
+          ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+    }
+  });
+
+  // Scroll reveals
+  animate.set('.section-reveal', { opacity: 0, translateY: 24 });
+  document.querySelectorAll('.section-reveal').forEach(el => {
+    onScroll({
+      target: el,
+      enter: 'top 85%',
+      sync: false,
+    }).add({
+      targets: el,
+      opacity: [0, 1],
+      translateY: [24, 0],
+      duration: 800,
+      easing: 'easeOutExpo'
+    });
+  });
+
+  // Cards stagger
+  document.querySelectorAll('.card-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.unified-card');
+    animate.set(cards, { opacity: 0, translateY: 30, scale: 0.98 });
+    onScroll({
+      target: grid,
+      enter: 'top 85%',
+      sync: false,
+    }).add({
+      targets: cards,
+      opacity: [0, 1],
+      translateY: [30, 0],
+      scale: [0.98, 1],
+      duration: 900,
+      easing: 'easeOutExpo',
+      delay: stagger(80)
+    });
+  });
+
+  // Hover
+  document.querySelectorAll('.unified-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      animate({ targets: card, translateY: -6, boxShadow: '8px 12px 0 rgba(15,14,12,0.12)', duration: 250, easing: 'easeOutCubic' });
+    });
+    card.addEventListener('mouseleave', () => {
+      animate({ targets: card, translateY: 0, boxShadow: '0 0 0 rgba(15,14,12,0)', duration: 250, easing: 'easeOutCubic' });
+    });
+  });
+</script>
