@@ -157,6 +157,9 @@ p {
 }
 
 /* Hero split text */
+#hero-headline .line {
+  display: block;
+}
 #hero-headline .word {
   display: inline-block;
   overflow: hidden;
@@ -168,7 +171,20 @@ p {
   transform-origin: 50% 100%;
 }
 
-/* Card spotlight */
+/* Hero title size fix */
+.hero-title {
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+}
 .card-spotlight {
   position: absolute;
   inset: 0;

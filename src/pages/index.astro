@@ -146,11 +146,13 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   const ease = 'easeOutExpo';
   const baseDuration = 800;
 
-  // Split-text hero reveal
+  // Split-text hero reveal (preserve line breaks)
   const headline = document.getElementById('hero-headline');
   if (headline) {
-    const text = headline.innerHTML;
-    headline.innerHTML = text.replace(/([^\s<>]+)/g, '<span class="word"><span class="char-wrap">$1</span></span>');
+    const lines = headline.innerHTML.split('<br>').map(line => line.trim());
+    headline.innerHTML = lines.map(line =>
+      `<span class="line">${line.replace(/([^\s]+)/g, '<span class="word"><span class="char-wrap">$1</span></span>')}</span>`
+    ).join('<br>');
   }
 
   // Hero reveal sequence
