@@ -22,7 +22,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 
       <div class="mt-10 flex flex-col sm:flex-row flex-wrap gap-4 hero-reveal">
         <a href="#what-you-need" class="btn-primary btn-magnetic">What do you need?</a>
-        <a href="/pricing" class="btn-secondary btn-magnetic">See pricing</a>
+        <a href="/pricing" class="btn-secondary btn-magnetic bg-[var(--surface-solid)]">See pricing</a>
       </div>
 
       <div class="mt-6 flex flex-wrap gap-2 text-xs text-[var(--muted-ink)] hero-reveal">
@@ -192,7 +192,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
         await deleteText();
         await sleep(gapDuration);
       }
-      await typeText(sequences[sequences.length - 1].text);
+      await typeText("Let's transform today");
     }
 
     playSequence();
