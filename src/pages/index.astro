@@ -9,28 +9,31 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
 ---
 
 <Layout>
-  <!-- Hero - raw grid, strong type -->
-  <section class="section raw-grid pt-14 pb-20 sm:pt-20 sm:pb-24">
-    <div class="max-w-4xl">
-      <div class="uppercase tracking-[3px] text-xs mb-4 text-[var(--primary)]">Johor Bahru</div>
+  <!-- Hero - direct high-end emulation, massive type, Clay-style scroll-synced orb -->
+  <section class="section raw-grid pt-16 pb-24 sm:pt-24 sm:pb-32 relative overflow-hidden">
+    <div class="max-w-5xl relative z-10">
+      <div class="uppercase tracking-[4px] text-xs mb-5 text-[var(--primary)]">Johor Bahru</div>
       
-      <h1 class="hero-title tracking-[-0.06em]">
+      <h1 class="hero-title tracking-[-0.07em] max-w-[18ch]">
         Calm craft.<br />Clear results.
       </h1>
       
-      <p class="mt-6 max-w-lg text-xl text-[var(--muted-ink)]">
-        Design and systems that actually work for small businesses.
+      <p class="mt-7 max-w-md text-[1.05rem] text-[var(--muted-ink)]">
+        Premium design and intelligent systems for small businesses that want to look and run better.
       </p>
 
-      <div class="mt-9 flex flex-wrap gap-3">
+      <div class="mt-10 flex flex-wrap gap-4">
         <a href="#what-you-need" class="btn-primary interactive-lift">What do you need?</a>
         <a href="/pricing" class="btn-secondary interactive-lift">See pricing</a>
       </div>
     </div>
+
+    <!-- Clay-style volumetric orb — scroll-synced pitch + interactive -->
+    <canvas id="hero-orb" class="hero-orb" width="560" height="560"></canvas>
   </section>
 
-  <!-- Conversational starter -->
-  <section id="what-you-need" class="section py-8 border-t border-[var(--surface-border)]">
+  <!-- Conversational starter (kept exact flow) -->
+  <section id="what-you-need" class="section py-10 border-t border-[var(--surface-border)]">
     <div class="mb-6">
       <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">START HERE</div>
       <h2 class="page-title">What do you need right now?</h2>
@@ -65,121 +68,237 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     </div>
   </section>
 
-  <!-- Service Hubs -->
-  <section id="services" class="section border-t border-[var(--surface-border)] py-14">
+  <!-- Service Hubs - minimal Clay structure -->
+  <section id="services" class="section border-t border-[var(--surface-border)] py-16">
     <div class="mb-8">
       <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">WHAT WE DO</div>
-      <h2 class="page-title">Two lanes. One team.</h2>
+      <h2 class="page-title">Two lanes.<br />One team.</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-5">
-      <div class="card-emphasis interactive-lift p-8">
-        <div class="uppercase text-xs tracking-widest text-[var(--primary)] mb-3">CREATIVE HUB</div>
-        <h3 class="text-3xl font-semibold tracking-tight mb-4">Design that prints.<br />Brands that stick.</h3>
+      <div class="card-emphasis interactive-lift p-9">
+        <div class="uppercase text-xs tracking-[2px] text-[var(--primary)] mb-4">CREATIVE HUB</div>
+        <h3 class="text-3xl font-semibold tracking-[-0.03em] mb-5">Design that prints.<br />Brands that last.</h3>
         
-        <div class="text-[var(--muted-ink)] space-y-1.5 mb-8 text-[15px]">
-          <div>Logo & brand identity</div>
-          <div>Business cards, flyers, posters</div>
-          <div>Social media kits & menus</div>
-          <div>Banners, roll-ups, stickers</div>
-          <div>Full print production</div>
+        <div class="text-[var(--muted-ink)] space-y-1.5 mb-10 text-[15px]">
+          <div>Logo & brand systems</div>
+          <div>Business cards, flyers, packaging</div>
+          <div>Social kits & menus</div>
+          <div>Banners, signage, print production</div>
         </div>
 
-        <a href={waCreative} class="btn-secondary interactive-lift">Get a quote on WhatsApp</a>
+        <a href={waCreative} class="btn-secondary interactive-lift">Talk on WhatsApp</a>
       </div>
 
-      <div class="card-emphasis interactive-lift p-8">
-        <div class="uppercase text-xs tracking-widest text-[var(--primary)] mb-3">IT SERVICES</div>
-        <h3 class="text-3xl font-semibold tracking-tight mb-4">Systems that don't break.<br />Support that shows up.</h3>
+      <div class="card-emphasis interactive-lift p-9">
+        <div class="uppercase text-xs tracking-[2px] text-[var(--primary)] mb-4">IT SERVICES</div>
+        <h3 class="text-3xl font-semibold tracking-[-0.03em] mb-5">Systems that work.<br />Support that shows up.</h3>
         
-        <div class="text-[var(--muted-ink)] space-y-1.5 mb-8 text-[15px]">
-          <div>PC/laptop repair & upgrades</div>
-          <div>Network & WiFi setup</div>
+        <div class="text-[var(--muted-ink)] space-y-1.5 mb-10 text-[15px]">
+          <div>PC, laptop & hardware repair</div>
+          <div>Network, WiFi & infrastructure</div>
           <div>Monthly Tech Care retainers</div>
-          <div>Virus removal & security</div>
-          <div>AI workflow automation</div>
+          <div>AI automation & workflows</div>
         </div>
 
-        <a href={waIT} class="btn-secondary interactive-lift">Talk to us about IT</a>
+        <a href={waIT} class="btn-secondary interactive-lift">Talk on WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="section border-t border-[var(--surface-border)]">
-    <div class="mb-8">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">REAL PEOPLE</div>
-      <h2 class="page-title">What clients say</h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-5">
-      <div class="card p-6 interactive-lift">
-        <div class="text-[15px] leading-snug">"Pancatz reka banner untuk kedai kami dalam sehari. Cepat dan murah."</div>
-        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Aminah, Kedai Makan Asli, Kulai</div>
-      </div>
-      <div class="card p-6 interactive-lift">
-        <div class="text-[15px] leading-snug">"Setup WiFi office kami jadi smooth. Tak ada lagi masalah connection."</div>
-        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Raj, Kulai Optics</div>
-      </div>
-      <div class="card p-6 interactive-lift">
-        <div class="text-[15px] leading-snug">"Logo dan business card semua done di Pancatz. Professional."</div>
-        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Tan, JB Auto Parts</div>
-      </div>
-      <div class="card p-6 interactive-lift">
-        <div class="text-[15px] leading-snug">"Saya ambil pelan bulanan IT. Response WhatsApp memang cepat."</div>
-        <div class="mt-4 text-xs text-[var(--muted-ink)]">— Faiz, SG Creative Studio</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing preview -->
-  <section class="section border-t border-[var(--surface-border)]">
+  <!-- Portfolio with subtle 3D canvas hovers -->
+  <section class="section border-t border-[var(--surface-border)] py-16">
     <div class="mb-8 flex items-end justify-between">
       <div>
-        <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">INVESTMENT</div>
-        <h2 class="page-title">Simple plans. No surprises.</h2>
+        <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">SELECT WORK</div>
+        <h2 class="page-title">Work that holds up.</h2>
       </div>
-      <a href="/pricing" class="text-sm font-medium text-[var(--primary)] hover:underline">Full pricing →</a>
+      <a href="/portfolio" class="btn-secondary interactive-lift hidden sm:inline-block">See all</a>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="pricing-card interactive-lift p-7">
-        <div class="text-sm text-[var(--muted-ink)]">STARTER</div>
-        <div class="mt-1 text-5xl font-semibold tracking-tighter">RM199</div>
-        <div class="text-xs text-[var(--muted-ink)] mb-6">/month</div>
-        <ul class="text-sm space-y-1.5 text-[var(--muted-ink)]">
-          <li>Up to 3 devices</li>
-          <li>Remote support</li>
-          <li>Monthly checkup</li>
-        </ul>
-      </div>
-      <div class="pricing-card interactive-lift p-7 border border-[var(--primary)]">
-        <div class="text-sm text-[var(--primary)]">BUSINESS</div>
-        <div class="mt-1 text-5xl font-semibold tracking-tighter">RM499</div>
-        <div class="text-xs text-[var(--muted-ink)] mb-6">/month</div>
-        <ul class="text-sm space-y-1.5 text-[var(--muted-ink)]">
-          <li>Up to 8 devices</li>
-          <li>Remote + 1 onsite/mo</li>
-          <li>Same-day response</li>
-        </ul>
-      </div>
-      <div class="pricing-card interactive-lift p-7">
-        <div class="text-sm text-[var(--muted-ink)]">PROFESSIONAL</div>
-        <div class="mt-1 text-5xl font-semibold tracking-tighter">RM899</div>
-        <div class="text-xs text-[var(--muted-ink)] mb-6">/month</div>
-        <ul class="text-sm space-y-1.5 text-[var(--muted-ink)]">
-          <li>Up to 15 devices</li>
-          <li>2 onsite visits/mo</li>
-          <li>2-hour SLA</li>
-        </ul>
-      </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <a href="/portfolio" class="portfolio-card card interactive-lift p-8 group">
+        <canvas class="canvas-overlay w-full h-48 mb-6 rounded-xl bg-[var(--paper)]" data-type="creative"></canvas>
+        <div class="font-semibold text-2xl tracking-[-0.02em]">Creative systems for local brands</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-1">Branding • Print • Packaging</div>
+      </a>
+
+      <a href="/portfolio" class="portfolio-card card interactive-lift p-8 group">
+        <canvas class="canvas-overlay w-full h-48 mb-6 rounded-xl bg-[var(--paper)]" data-type="tech"></canvas>
+        <div class="font-semibold text-2xl tracking-[-0.02em]">Reliable tech foundations</div>
+        <div class="text-sm text-[var(--muted-ink)] mt-1">Infrastructure • Automation • Support</div>
+      </a>
     </div>
+
+    <a href="/portfolio" class="btn-secondary interactive-lift mt-6 inline-block sm:hidden">See all work</a>
   </section>
 
-  <!-- Final CTA -->
-  <section class="section border-t border-[var(--surface-border)] text-center">
-    <h2 class="page-title mb-3">Ready when you are.</h2>
-    <p class="text-[var(--muted-ink)] mb-8">Tell us what you're trying to build or fix.</p>
-    <a href={waGeneral} class="btn-primary interactive-lift px-10">Message us on WhatsApp</a>
+  <!-- Minimal closer -->
+  <section class="section py-16 border-t border-[var(--surface-border)] text-center">
+    <div class="max-w-md mx-auto">
+      <p class="text-[var(--muted-ink)]">Ready when you are.</p>
+      <a href={waGeneral} class="btn-primary inline-block mt-4">Start a conversation</a>
+    </div>
   </section>
 </Layout>
+
+<script>
+  // Clay-style scroll-synced volumetric orb (lightweight canvas)
+  function initHeroOrb() {
+    const canvas = document.getElementById('hero-orb');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let rotation = 0;
+    let targetRotation = 0;
+    let isDragging = false;
+    let lastY = 0;
+
+    const clayColor = '#a36a52';
+    const highlight = '#d4b39c';
+    const shadow = '#6b4a3a';
+
+    function drawOrb(pitch) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const radius = Math.min(canvas.width, canvas.height) * 0.42;
+      
+      // Soft volumetric base (Clay-like curved paper/clay feel)
+      const grad = ctx.createRadialGradient(
+        cx - radius * 0.3, cy - radius * 0.35, radius * 0.15,
+        cx + radius * 0.1, cy + radius * 0.2, radius * 1.1
+      );
+      grad.addColorStop(0, highlight);
+      grad.addColorStop(0.35, clayColor);
+      grad.addColorStop(1, shadow);
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate((pitch * 0.6) * Math.PI / 180); // pitch from scroll + interaction
+
+      // Main sphere
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Subtle clay texture lines (tactile, not heavy)
+      ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+      ctx.lineWidth = 1.2;
+      for (let i = -3; i <= 3; i++) {
+        const y = (i * radius * 0.28);
+        ctx.beginPath();
+        ctx.ellipse(0, y, radius * 0.95, radius * 0.22, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Soft highlight rim
+      ctx.beginPath();
+      ctx.arc(-radius * 0.2, -radius * 0.25, radius * 0.65, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+      ctx.lineWidth = 18;
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    function updateFromScroll() {
+      const scrollProgress = Math.min(window.scrollY / (document.body.scrollHeight * 0.35), 1);
+      targetRotation = scrollProgress * 42; // pitch movement on scroll
+    }
+
+    function animate() {
+      rotation += (targetRotation - rotation) * 0.08;
+      drawOrb(rotation);
+      requestAnimationFrame(animate);
+    }
+
+    // Scroll sync
+    window.addEventListener('scroll', () => {
+      updateFromScroll();
+    }, { passive: true });
+
+    // Mouse interaction (extra pitch + glow feel)
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      lastY = e.clientY;
+    });
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const delta = (e.clientY - lastY) * 0.8;
+      targetRotation += delta;
+      lastY = e.clientY;
+    });
+
+    // Touch support
+    canvas.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      lastY = e.touches[0].clientY;
+    });
+    window.addEventListener('touchend', () => isDragging = false);
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const delta = (e.touches[0].clientY - lastY) * 0.8;
+      targetRotation += delta;
+      lastY = e.touches[0].clientY;
+    });
+
+    // Initial
+    updateFromScroll();
+    animate();
+    setTimeout(() => updateFromScroll(), 200);
+  }
+
+  // Subtle canvas overlays on portfolio cards (3D tactility)
+  function initPortfolioCanvases() {
+    const canvases = document.querySelectorAll('.portfolio-card canvas');
+    canvases.forEach((canvas) => {
+      const ctx = canvas.getContext('2d');
+      const type = canvas.dataset.type;
+      const w = canvas.width = canvas.offsetWidth * 2;
+      const h = canvas.height = canvas.offsetHeight * 2;
+      ctx.scale(2, 2);
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = 'rgba(163, 106, 82, 0.25)';
+        ctx.lineWidth = 1;
+
+        if (type === 'creative') {
+          // Soft curved paper/clay lines
+          for (let i = 0; i < 5; i++) {
+            ctx.beginPath();
+            ctx.moveTo(20 + i * 18, 30);
+            ctx.quadraticCurveTo(80 + i * 6, 90, 60 + i * 12, 140);
+            ctx.stroke();
+          }
+        } else {
+          // Tech nodes + subtle grid
+          for (let x = 20; x < w / 2; x += 22) {
+            for (let y = 18; y < h / 2; y += 22) {
+              ctx.beginPath();
+              ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      draw();
+
+      // On hover the parent gets lift + we can boost opacity via CSS
+      const card = canvas.closest('.portfolio-card');
+      if (card) {
+        card.addEventListener('mouseenter', () => canvas.style.opacity = '0.45');
+        card.addEventListener('mouseleave', () => canvas.style.opacity = '0.15');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initHeroOrb();
+    initPortfolioCanvases();
+  });
+</script>

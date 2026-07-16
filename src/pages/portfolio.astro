@@ -1,44 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, whatsappIntents } from '../data/site';
-
-const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.creativeHub)}`;
 ---
 
-<Layout>
-  <section class="section pt-12 pb-8">
-    <div class="uppercase tracking-[2px] text-xs text-[var(--accent)] mb-2">SELECTED WORK</div>
-    <h1 class="display tracking-tight">Work that gets used.</h1>
-    <p class="mt-3 max-w-md text-[var(--text-muted)]">Real projects for real Johor businesses.</p>
-  </section>
+<Layout title="Work — Pancatz">
+  <div class="section max-w-5xl mx-auto py-16">
+    <div class="mb-10">
+      <div class="uppercase tracking-[3px] text-xs mb-2 text-[var(--primary)]">SELECT WORK</div>
+      <h1 class="page-title">Work that holds up.</h1>
+    </div>
 
-  <section class="section border-t border-[var(--border)]">
-    <div class="grid md:grid-cols-2 gap-5">
-      <div class="card p-6">
-        <img src="/images/creative.jpg" alt="Creative work" class="rounded-xl mb-5" />
-        <div class="font-medium">Creative Direction &amp; Print</div>
-        <div class="text-sm text-[var(--text-muted)]">Banners, menus, and brand kits for local F&amp;B and retail.</div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="portfolio-card studio-card p-8">
+        <div class="h-56 mb-6 bg-[var(--paper)] rounded-2xl flex items-center justify-center text-[var(--muted-ink)] text-sm">Creative systems for local brands</div>
+        <div class="font-semibold tracking-tight text-2xl">Local restaurant rebrand + full signage</div>
+        <div class="mt-2 text-sm text-[var(--muted-ink)]">Creative • Print</div>
       </div>
-      <div class="card p-6">
-        <img src="/images/workflow.jpg" alt="Workflow" class="rounded-xl mb-5" />
-        <div class="font-medium">AI Workflow Automation</div>
-        <div class="text-sm text-[var(--text-muted)]">WhatsApp lead capture, n8n automations, and custom image pipelines.</div>
-      </div>
-      <div class="card p-6">
-        <img src="/images/infrastructure.jpg" alt="Infrastructure" class="rounded-xl mb-5" />
-        <div class="font-medium">IT Retainers &amp; Setup</div>
-        <div class="text-sm text-[var(--text-muted)]">Network installs, device fleets, and ongoing Tech Care for small teams.</div>
-      </div>
-      <div class="card p-6">
-        <img src="/images/brand.jpg" alt="Brand" class="rounded-xl mb-5" />
-        <div class="font-medium">Brand Systems</div>
-        <div class="text-sm text-[var(--text-muted)]">Full identity packages with consistent print + digital application.</div>
+
+      <div class="portfolio-card studio-card p-8">
+        <div class="h-56 mb-6 bg-[var(--paper)] rounded-2xl flex items-center justify-center text-[var(--muted-ink)] text-sm">Reliable tech foundations</div>
+        <div class="font-semibold tracking-tight text-2xl">Clinic network + AI appointment bot</div>
+        <div class="mt-2 text-sm text-[var(--muted-ink)]">IT • Automation</div>
       </div>
     </div>
-  </section>
 
-  <section class="section border-t border-[var(--border)] text-center">
-    <p class="mb-6 text-[var(--text-muted)]">Want something like this for your business?</p>
-    <a href={wa} class="btn-primary">Start a project</a>
-  </section>
+    <p class="mt-10 text-sm text-[var(--muted-ink)] max-w-xs">More case studies available on request. We focus on work that actually improves how small businesses operate and look.</p>
+  </div>
 </Layout>
