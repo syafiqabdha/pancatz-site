@@ -13,8 +13,8 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   <section class="section raw-grid pt-28 pb-24 sm:pt-36 sm:pb-32 relative overflow-hidden">
     <div class="max-w-5xl relative z-10">
       <h1 class="hero-title tracking-[-0.07em] max-w-[18ch]" id="hero-headline">
-        Design that prints.<br />Systems that run.
       </h1>
+      <span id="hero-cursor" class="hero-cursor"></span>
 
       <p class="mt-7 max-w-md text-[1.05rem] text-[var(--muted-ink)] hero-reveal">
         One team for creative work and tech support. Premium design, print, and intelligent systems that keep your business moving.
@@ -146,33 +146,58 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   const ease = 'easeOutExpo';
   const baseDuration = 800;
 
-  // Split-text hero reveal (preserve line breaks)
+  // Typing effect on hero headline
   const headline = document.getElementById('hero-headline');
-  if (headline) {
-    const lines = headline.innerHTML.split('<br>').map(line => line.trim());
-    headline.innerHTML = lines.map(line =>
-      `<span class="line">${line.replace(/([^\s]+)/g, '<span class="word"><span class="char-wrap">$1</span></span>')}</span>`
-    ).join('<br>');
+  const cursor = document.getElementById('hero-cursor');
+  if (headline && cursor) {
+    const sequences = [
+      { text: 'Design and system', pause: 1000 },
+      { text: 'design', pause: 1000 },
+      { text: 'system that run', pause: 1000 }
+    ];
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function typeText(text) {
+      for (let i = 0; i <= text.length; i++) {
+        headline.textContent = text.slice(0, i);
+        await sleep(80);
+      }
+    }
+
+    async function deleteText() {
+      const text = headline.textContent;
+      for (let i = text.length; i >= 0; i--) {
+        headline.textContent = text.slice(0, i);
+        await sleep(50);
+      }
+    }
+
+    async function playSequence() {
+      for (const seq of sequences) {
+        await typeText(seq.text);
+        await sleep(seq.pause);
+        await deleteText();
+        await sleep(300);
+      }
+      // After one full loop, keep the last phrase visible
+      await typeText(sequences[sequences.length - 1].text);
+      cursor.style.animation = 'blink 1s step-end infinite';
+    }
+
+    playSequence();
   }
 
-  // Hero reveal sequence
-  animate({
-    targets: '#hero-headline .char-wrap',
-    opacity: [0, 1],
-    translateY: [40, 0],
-    rotateX: [-45, 0],
-    duration: 900,
-    easing: ease,
-    delay: stagger(22, { start: 200 })
-  });
-
+  // Hero reveal sequence for sub + buttons
   animate({
     targets: '.hero-reveal',
     opacity: [0, 1],
     translateY: [24, 0],
     duration: baseDuration,
     easing: ease,
-    delay: stagger(120, { start: 900 })
+    delay: stagger(120, { start: 200 })
   });
 
   // Section reveals on scroll
