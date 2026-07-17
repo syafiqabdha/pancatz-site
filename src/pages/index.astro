@@ -26,23 +26,11 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       </div>
     </div>
 
-    <!-- Parallax Depth Layers -->
-    <div class="absolute right-[5%] top-[15%] w-[320px] h-[320px] pointer-events-none parallax-container hidden lg:block opacity-0">
-      <!-- Back Layer (Slowest) -->
-      <div class="absolute w-[280px] h-[280px] bg-[#d4b39c] rounded-full right-[-10%] top-[5%] parallax-layer blur-3xl opacity-40 mix-blend-multiply" data-speed="0.1"></div>
-      <div class="absolute w-[220px] h-[220px] bg-[var(--surface-border)] opacity-80 rounded-full right-[10%] top-[10%] parallax-layer blur-md" data-speed="0.2"></div>
-      
-      <!-- Middle Layer (Medium) -->
-      <div class="absolute w-[200px] h-[140px] bg-[var(--muted-ink)] rounded-2xl right-[35%] top-[30%] parallax-layer shadow-2xl flex items-center justify-center border border-white/10" data-speed="0.45">
-         <div class="w-[180px] h-[100px] bg-[var(--ink)] rounded-lg"></div>
-      </div>
-      
-      <!-- Front Layer (Fastest) -->
-      <div class="absolute w-[140px] h-[180px] bg-[var(--primary)] rounded-[24px] right-[5%] top-[45%] parallax-layer shadow-xl p-5 flex flex-col gap-2 border border-white/20" data-speed="0.8">
-         <div class="w-full h-[80px] bg-[var(--surface-solid)] rounded-xl mb-auto"></div>
-         <div class="w-full h-[6px] bg-[var(--surface-solid)] rounded-full opacity-60"></div>
-         <div class="w-2/3 h-[6px] bg-[var(--surface-solid)] rounded-full opacity-60"></div>
-      </div>
+    <!-- Living Clay Mesh Gradient Background -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-60">
+      <div class="mesh-blob absolute w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d4b39c] rounded-full left-[-15%] top-[-20%] mix-blend-multiply filter blur-[90px] opacity-70"></div>
+      <div class="mesh-blob absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[var(--primary)] rounded-full right-[-10%] top-[10%] mix-blend-multiply filter blur-[100px] opacity-60"></div>
+      <div class="mesh-blob absolute w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] bg-[#e5e0d6] rounded-full left-[20%] bottom-[-30%] mix-blend-multiply filter blur-[80px] opacity-80"></div>
     </div>
   </section>
 
@@ -222,42 +210,28 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
       easing: ease,
       delay: stagger(120, { start: 200 })
     });
-    
-    animate({
-      targets: '.parallax-container',
-      opacity: [0, 1],
-      translateY: [40, 0],
-      duration: 1200,
-      easing: ease,
-      delay: 400
-    });
   }
 
-  // Parallax Scroll Effect
-  function initParallax() {
-    const layers = document.querySelectorAll('.parallax-layer');
-    if (!layers.length) return;
-    
-    // Slight mouse float
-    let mouseX = 0, mouseY = 0;
-    window.addEventListener('mousemove', (e) => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      mouseX = (e.clientX - cx) * 0.05;
-      mouseY = (e.clientY - cy) * 0.05;
-    });
+  // Mesh Gradient Animation
+  function initMeshGradient() {
+    const blobs = document.querySelectorAll('.mesh-blob');
+    if (!blobs.length) return;
 
-    function render() {
-      const scrollY = window.scrollY;
-      layers.forEach(layer => {
-        const speed = parseFloat(layer.getAttribute('data-speed'));
-        const yOffset = scrollY * speed;
-        // Combine mouse float with scroll offset
-        layer.style.transform = `translate3d(${mouseX * speed}px, ${yOffset + (mouseY * speed)}px, 0)`;
+    blobs.forEach((blob, i) => {
+      const xMove = i % 2 === 0 ? ['0%', '15%', '-5%', '0%'] : ['0%', '-10%', '10%', '0%'];
+      const yMove = i % 3 === 0 ? ['0%', '10%', '-15%', '0%'] : ['0%', '-15%', '5%', '0%'];
+      const scaleMove = i === 1 ? [1, 1.1, 0.95, 1] : [1, 0.95, 1.05, 1];
+
+      animate({
+        targets: blob,
+        translateX: xMove,
+        translateY: yMove,
+        scale: scaleMove,
+        duration: 12000 + (i * 2000), // Slow, fluid
+        easing: 'easeInOutSine',
+        loop: true
       });
-      requestAnimationFrame(render);
-    }
-    render();
+    });
   }
 
   // Section reveals on scroll
@@ -392,7 +366,7 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   document.addEventListener('DOMContentLoaded', () => {
     initTypingEffect();
     initHeroReveal();
-    initParallax();
+    initMeshGradient();
     initScrollReveals();
     initCards();
     initPortfolioCanvases();
