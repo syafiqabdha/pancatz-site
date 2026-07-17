@@ -131,33 +131,73 @@ const startHereItems = [
   </section>
 
   <!-- Portfolio -->
-  <section class="section border-t border-[var(--surface-border)] py-16">
+  <section id="portfolio" class="section border-t border-[var(--surface-border)] py-16">
     <div class="mb-8 flex items-end justify-between section-reveal">
       <div>
         <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">SELECT WORK</div>
         <h2 class="page-title">Work that holds up.</h2>
       </div>
-      <a href="/portfolio" class="btn-secondary hidden sm:inline-block">See all</a>
     </div>
 
     <div class="grid md:grid-cols-2 gap-5 card-grid">
-      <a href="/portfolio" class="card p-8 unified-card portfolio-card group">
-        <img src="/images/portfolio-cafe.png" alt="" class="w-full h-48 mb-6 rounded-xl object-cover bg-[var(--surface-solid)]" />
-        <div class="font-semibold text-2xl tracking-[-0.02em]">Creative systems for local brands</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-1">Branding • Print • Packaging</div>
-      </a>
-
-      <a href="/portfolio" class="card p-8 unified-card portfolio-card group">
-        <img src="/images/portfolio-retail.png" alt="" class="w-full h-48 mb-6 rounded-xl object-cover bg-[var(--surface-solid)]" />
-        <div class="font-semibold text-2xl tracking-[-0.02em]">Reliable tech foundations</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-1">Infrastructure • Automation • Support</div>
-      </a>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-cafe.png" alt="Café brand" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">Brand refresh for a local café</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Logo, menu, signage, and social templates.</p>
+        </div>
+      </div>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-retail.png" alt="Retail IT setup" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">IT setup for a retail chain</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Network, POS terminals, and monthly support.</p>
+        </div>
+      </div>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-clinic.png" alt="Clinic print" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">Print collateral for a clinic</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Brochures, appointment cards, and wall displays.</p>
+        </div>
+      </div>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-property.png" alt="Property AI workflow" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">AI workflow for a property team</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Chatbot + image generation + lead routing.</p>
+        </div>
+      </div>
     </div>
-
-    <a href="/portfolio" class="btn-secondary mt-6 inline-block sm:hidden">See all work</a>
   </section>
 
-    <!-- Closer -->
+  <!-- Pricing -->
+  <section id="pricing" class="section border-t border-[var(--surface-border)] py-16">
+    <div class="mb-8 section-reveal">
+      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">TRANSPARENT</div>
+      <h2 class="page-title">Simple pricing.<br />Real results.</h2>
+    </div>
+
+    <div class="mb-10 section-reveal">
+      <div class="flex flex-wrap gap-3" id="pricing-steps">
+        <button data-step="creative" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Creative</button>
+        <button data-step="print" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Print</button>
+        <button data-step="it" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">IT Support</button>
+        <button data-step="ai" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">AI & Automation</button>
+        <button data-step="retainer" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Retainers</button>
+      </div>
+    </div>
+
+    <div id="pricing-content" class="space-y-6 card-grid" data-wa="60137572507">
+      <!-- injected -->
+    </div>
+
+    <div class="mt-10 text-xs text-[var(--muted-ink)] max-w-md section-reveal">
+      All prices in MYR. Custom work quoted after a quick chat. Monthly retainers include priority support.
+    </div>
+  </section>
+
+  <!-- Closer -->
   <section class="section py-16 sm:py-24 border-t border-[var(--surface-border)] text-center section-reveal">
     <div class="max-w-4xl mx-auto">
       <p class="text-[var(--ink)] cta-text font-semibold tracking-tight">Ready when you are.</p>
@@ -167,7 +207,7 @@ const startHereItems = [
 </Layout>
 
 <script>
-  import { animate, onScroll, stagger } from 'animejs';
+  import { animate, onScroll, stagger, createTimeline } from 'animejs';
 
   // Reusable motion tokens
   const ease = 'easeOutExpo';
@@ -233,7 +273,6 @@ const startHereItems = [
       delay: stagger(120, { start: 200 })
     });
   }
-
 
   // Section reveals on scroll
   function initScrollReveals() {
@@ -324,6 +363,108 @@ const startHereItems = [
     });
   }
 
+  // Pricing Widget Logic
+  function initPricing() {
+    const content = document.getElementById('pricing-content');
+    const steps = document.querySelectorAll('.step-btn');
+    if (!content || !steps.length) return;
+
+    const pricingData = {
+      creative: {
+        title: "Creative",
+        items: [
+          { name: "Logo + basic brand", price: "RM 890" },
+          { name: "Full visual identity", price: "RM 1,890" },
+          { name: "Social + print pack", price: "from RM 1,450" }
+        ],
+        note: "Includes 2 rounds of revisions. Source files delivered."
+      },
+      print: {
+        title: "Print Production",
+        items: [
+          { name: "Business cards (500)", price: "RM 380" },
+          { name: "A3 posters (100)", price: "RM 620" },
+          { name: "Full signage set", price: "quoted" }
+        ],
+        note: "High-quality local printing. Fast turnaround."
+      },
+      it: {
+        title: "IT Support",
+        items: [
+          { name: "One-time repair", price: "RM 180–280" },
+          { name: "Monthly basic", price: "RM 380/mo" },
+          { name: "Monthly full", price: "RM 680/mo" }
+        ],
+        note: "On-site in JB area. Remote support included."
+      },
+      ai: {
+        title: "AI & Automation",
+        items: [
+          { name: "Simple chatbot", price: "RM 1,250" },
+          { name: "Workflow setup", price: "RM 980" },
+          { name: "Custom image gen flow", price: "from RM 1,650" }
+        ],
+        note: "Built with tools you already use."
+      },
+      retainer: {
+        title: "Monthly Retainers",
+        items: [
+          { name: "Starter (8h)", price: "RM 1,250/mo" },
+          { name: "Growth (20h)", price: "RM 2,650/mo" },
+          { name: "Full partnership", price: "RM 4,200/mo" }
+        ],
+        note: "Best value. Roll over unused hours. Priority response."
+      }
+    };
+
+    const waNum = content.dataset.wa;
+    const wa = (msg) => `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
+
+    function render(step) {
+      const data = pricingData[step];
+      const card = document.createElement('div');
+      card.className = 'card p-9 unified-card';
+      card.innerHTML = `
+        <div class="flex items-baseline justify-between mb-6">
+          <h3 class="text-3xl font-semibold tracking-tight">${data.title}</h3>
+          <a href="${wa('Hi Pancatz, I\'m interested in ' + data.title)}"
+             class="text-sm underline hover:no-underline">Chat on WhatsApp →</a>
+        </div>
+        <div class="space-y-4 mb-8">
+          ${data.items.map(i => `
+            <div class="flex justify-between items-center border-b border-[var(--surface-border)] pb-4">
+              <div>${i.name}</div>
+              <div class="font-mono text-sm text-[var(--primary)]">${i.price}</div>
+            </div>
+          `).join('')}
+        </div>
+        <p class="text-sm text-[var(--muted-ink)]">${data.note}</p>
+      `;
+      content.innerHTML = '';
+      content.appendChild(card);
+
+      animate.set(card, { opacity: 0, translateY: 20 });
+      animate({ targets: card, opacity: [0, 1], translateY: [20, 0], duration: 500, easing: 'easeOutExpo' });
+    }
+
+    steps.forEach(btn => {
+      btn.addEventListener('click', () => {
+        steps.forEach(b => {
+          b.classList.remove('bg-[var(--ink)]', 'text-[var(--paper)]');
+          b.classList.add('hover:bg-[var(--surface)]');
+        });
+        btn.classList.add('bg-[var(--ink)]', 'text-[var(--paper)]');
+        btn.classList.remove('hover:bg-[var(--surface)]');
+        render(btn.dataset.step);
+      });
+    });
+
+    // Initialize first step
+    steps[0].classList.add('bg-[var(--ink)]', 'text-[var(--paper)]');
+    steps[0].classList.remove('hover:bg-[var(--surface)]');
+    render('creative');
+  }
+
   // Portfolio canvas tactility
   function initPortfolioCanvases() {
     const canvases = document.querySelectorAll('.portfolio-card canvas');
@@ -369,6 +510,7 @@ const startHereItems = [
     initHeroReveal();
     initScrollReveals();
     initCards();
+    initPricing();
     initPortfolioCanvases();
   });
 </script>
