@@ -27,10 +27,10 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     </div>
 
     <!-- Living Clay Mesh Gradient Background -->
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-60">
-      <div class="mesh-blob absolute w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d4b39c] rounded-full left-[-15%] top-[-20%] mix-blend-multiply filter blur-[90px] opacity-70"></div>
-      <div class="mesh-blob absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[var(--primary)] rounded-full right-[-10%] top-[10%] mix-blend-multiply filter blur-[100px] opacity-60"></div>
-      <div class="mesh-blob absolute w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] bg-[#e5e0d6] rounded-full left-[20%] bottom-[-30%] mix-blend-multiply filter blur-[80px] opacity-80"></div>
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-30">
+      <div class="mesh-blob absolute w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d4b39c] rounded-full left-[-15%] top-[-20%] filter blur-[90px] opacity-60"></div>
+      <div class="mesh-blob absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[var(--primary)] rounded-full right-[-10%] top-[10%] filter blur-[100px] opacity-50"></div>
+      <div class="mesh-blob absolute w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] bg-[#e5e0d6] rounded-full left-[20%] bottom-[-30%] filter blur-[80px] opacity-70"></div>
     </div>
   </section>
 
@@ -212,27 +212,6 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
     });
   }
 
-  // Mesh Gradient Animation
-  function initMeshGradient() {
-    const blobs = document.querySelectorAll('.mesh-blob');
-    if (!blobs.length) return;
-
-    blobs.forEach((blob, i) => {
-      const xMove = i % 2 === 0 ? ['0%', '15%', '-5%', '0%'] : ['0%', '-10%', '10%', '0%'];
-      const yMove = i % 3 === 0 ? ['0%', '10%', '-15%', '0%'] : ['0%', '-15%', '5%', '0%'];
-      const scaleMove = i === 1 ? [1, 1.1, 0.95, 1] : [1, 0.95, 1.05, 1];
-
-      animate({
-        targets: blob,
-        translateX: xMove,
-        translateY: yMove,
-        scale: scaleMove,
-        duration: 12000 + (i * 2000), // Slow, fluid
-        easing: 'easeInOutSine',
-        loop: true
-      });
-    });
-  }
 
   // Section reveals on scroll
   function initScrollReveals() {
@@ -366,7 +345,6 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   document.addEventListener('DOMContentLoaded', () => {
     initTypingEffect();
     initHeroReveal();
-    initMeshGradient();
     initScrollReveals();
     initCards();
     initPortfolioCanvases();

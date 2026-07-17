@@ -41,8 +41,14 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
       <slot />
     </main>
 
-    <footer class="pt-16 pb-10 text-sm border-t border-[var(--surface-border)]">
-      <div class="section flex flex-col md:flex-row justify-between gap-10 text-xs tracking-[0.5px]">
+    <footer class="pt-16 pb-10 text-sm border-t border-[var(--surface-border)] relative overflow-hidden">
+      <!-- Living Clay Mesh Gradient Background -->
+      <div class="absolute inset-0 z-0 pointer-events-none opacity-30">
+        <div class="mesh-blob absolute w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d4b39c] rounded-full left-[-15%] top-[-20%] filter blur-[90px] opacity-60"></div>
+        <div class="mesh-blob absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[var(--primary)] rounded-full right-[-10%] top-[10%] filter blur-[100px] opacity-50"></div>
+        <div class="mesh-blob absolute w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] bg-[#e5e0d6] rounded-full left-[20%] bottom-[-30%] filter blur-[80px] opacity-70"></div>
+      </div>
+      <div class="section flex flex-col md:flex-row justify-between gap-10 text-xs tracking-[0.5px] relative z-10">
         <div>
           <div class="font-semibold text-[var(--ink)] mb-1">{site.name}</div>
           <div class="text-[var(--muted-ink)]">Johor Bahru • Malaysia</div>
@@ -144,6 +150,30 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
         easing: 'easeOutExpo',
         delay: stagger(40, { start: 100 })
       });
+
+      // Global Mesh Gradient Animation
+      function initMeshGradient() {
+        const blobs = document.querySelectorAll('.mesh-blob');
+        if (!blobs.length) return;
+
+        blobs.forEach((blob, i) => {
+          const xMove = i % 2 === 0 ? ['0%', '15%', '-5%', '0%'] : ['0%', '-10%', '10%', '0%'];
+          const yMove = i % 3 === 0 ? ['0%', '10%', '-15%', '0%'] : ['0%', '-15%', '5%', '0%'];
+          const scaleMove = i === 1 ? [1, 1.1, 0.95, 1] : [1, 0.95, 1.05, 1];
+
+          animate({
+            targets: blob,
+            translateX: xMove,
+            translateY: yMove,
+            scale: scaleMove,
+            duration: 12000 + (i * 2000), // Slow, fluid
+            easing: 'easeInOutSine',
+            loop: true
+          });
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', initMeshGradient);
     </script>
   </body>
 </html>
