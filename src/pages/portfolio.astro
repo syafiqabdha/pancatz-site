@@ -16,25 +16,33 @@ const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent("Hi P
     </div>
 
     <div class="grid md:grid-cols-2 gap-5 card-grid">
-      <div class="card p-9 unified-card portfolio-card">
-        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="creative"></canvas>
-        <h3 class="text-2xl font-semibold tracking-tight">Brand refresh for a local café</h3>
-        <p class="text-sm text-[var(--muted-ink)] mt-2">Logo, menu, signage, and social templates.</p>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-cafe.png" alt="Café brand" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">Brand refresh for a local café</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Logo, menu, signage, and social templates.</p>
+        </div>
       </div>
-      <div class="card p-9 unified-card portfolio-card">
-        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="tech"></canvas>
-        <h3 class="text-2xl font-semibold tracking-tight">IT setup for a retail chain</h3>
-        <p class="text-sm text-[var(--muted-ink)] mt-2">Network, POS terminals, and monthly support.</p>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-retail.png" alt="Retail IT setup" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">IT setup for a retail chain</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Network, POS terminals, and monthly support.</p>
+        </div>
       </div>
-      <div class="card p-9 unified-card portfolio-card">
-        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="creative"></canvas>
-        <h3 class="text-2xl font-semibold tracking-tight">Print collateral for a clinic</h3>
-        <p class="text-sm text-[var(--muted-ink)] mt-2">Brochures, appointment cards, and wall displays.</p>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-clinic.png" alt="Clinic print" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">Print collateral for a clinic</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Brochures, appointment cards, and wall displays.</p>
+        </div>
       </div>
-      <div class="card p-9 unified-card portfolio-card">
-        <canvas class="w-full h-56 mb-6 rounded-xl bg-[var(--surface-solid)]" data-type="tech"></canvas>
-        <h3 class="text-2xl font-semibold tracking-tight">AI workflow for a property team</h3>
-        <p class="text-sm text-[var(--muted-ink)] mt-2">Chatbot + image generation + lead routing.</p>
+      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
+        <img src="/images/portfolio-property.png" alt="Property AI workflow" class="w-full h-56 object-cover" />
+        <div class="p-9">
+          <h3 class="text-2xl font-semibold tracking-tight">AI workflow for a property team</h3>
+          <p class="text-sm text-[var(--muted-ink)] mt-2">Chatbot + image generation + lead routing.</p>
+        </div>
       </div>
     </div>
 
@@ -84,8 +92,6 @@ const wa = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent("Hi P
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    initPortfolioCanvases();
-
     // Scroll reveals
     animate.set('.section-reveal', { opacity: 0, translateY: 24 });
     document.querySelectorAll('.section-reveal').forEach(el => {
