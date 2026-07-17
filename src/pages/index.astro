@@ -6,6 +6,14 @@ const waGeneral = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponen
 const waCreative = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.creativeHub)}`;
 const waIT = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.repair)}`;
 const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.itAi)}`;
+
+const startHereItems = [
+  { tag: "CREATIVE", title: "Design or Print", desc: "Logo • Cards • Flyers • Brand", link: waCreative },
+  { tag: "IT SUPPORT", title: "Fix or Maintain", desc: "Repairs • Retainers • Setup", link: waIT },
+  { tag: "AUTOMATION", title: "AI & Workflows", desc: "Chatbots • n8n • Image gen", link: waAI },
+  { tag: "PLANS", title: "Monthly Retainers", desc: "Predictable cost, always on", link: "/pricing" },
+  { tag: "OTHER", title: "Just tell us", desc: "We'll figure it out together", link: waGeneral }
+];
 ---
 
 <Layout>
@@ -35,38 +43,53 @@ const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(wha
   </section>
 
   <!-- Conversational starter -->
-  <section id="what-you-need" class="section py-10 border-t border-[var(--surface-border)]">
+  <section id="what-you-need" class="section py-10 border-t border-[var(--surface-border)] overflow-hidden">
     <div class="mb-6 section-reveal">
       <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">START HERE</div>
       <h2 class="page-title">What do you need right now?</h2>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 card-grid">
-      <a href={waCreative} class="card p-6 flex flex-col unified-card">
-        <div class="text-[var(--primary)] text-sm mb-1">CREATIVE</div>
-        <div class="font-semibold text-xl">Design or Print</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-auto">Logo • Cards • Flyers • Brand</div>
-      </a>
-      <a href={waIT} class="card p-6 flex flex-col unified-card">
-        <div class="text-[var(--primary)] text-sm mb-1">IT SUPPORT</div>
-        <div class="font-semibold text-xl">Fix or Maintain</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-auto">Repairs • Retainers • Setup</div>
-      </a>
-      <a href={waAI} class="card p-6 flex flex-col unified-card">
-        <div class="text-[var(--primary)] text-sm mb-1">AUTOMATION</div>
-        <div class="font-semibold text-xl">AI & Workflows</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-auto">Chatbots • n8n • Image gen</div>
-      </a>
-      <a href="/pricing" class="card p-6 flex flex-col md:col-span-2 lg:col-span-1 unified-card">
-        <div class="text-[var(--primary)] text-sm mb-1">PLANS</div>
-        <div class="font-semibold text-xl">Monthly Retainers</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-auto">Predictable cost, always on</div>
-      </a>
-      <a href={waGeneral} class="card p-6 flex flex-col lg:col-span-1 unified-card">
-        <div class="text-[var(--primary)] text-sm mb-1">OTHER</div>
-        <div class="font-semibold text-xl">Just tell us</div>
-        <div class="text-sm text-[var(--muted-ink)] mt-auto">We'll figure it out together</div>
-      </a>
+    <div class="marquee-wrapper relative w-full overflow-hidden py-4 -mx-5 px-5 md:-mx-12 md:px-12 mt-4 section-reveal">
+      <!-- Gradient masks for smooth edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-[var(--paper)] to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-[var(--paper)] to-transparent z-10 pointer-events-none"></div>
+
+      <div class="flex gap-4 w-max hover-pause">
+        <div class="flex gap-4 w-max animate-marquee">
+          {startHereItems.map((item) => (
+            <div class="marquee-card group relative flex flex-col justify-between p-7 bg-[var(--surface-solid)] border border-[var(--surface-border)] rounded-2xl shrink-0 overflow-hidden cursor-pointer" style="width: 280px; height: 260px; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);">
+              <div class="relative z-10">
+                 <div class="text-[var(--primary)] text-xs font-semibold tracking-[2px] mb-3">{item.tag}</div>
+                 <h3 class="font-semibold text-2xl tracking-[-0.02em] text-[var(--ink)] whitespace-normal leading-tight">{item.title}</h3>
+              </div>
+              
+              <div class="mt-8 flex flex-col justify-end relative h-full">
+                 <p class="text-[15px] text-[var(--muted-ink)] whitespace-normal transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-2 absolute bottom-0 left-0 right-0">{item.desc}</p>
+                 <div class="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75 absolute bottom-0 left-0 right-0 z-20 pointer-events-none group-hover:pointer-events-auto">
+                   <a href={item.link} class="btn-primary w-full text-center py-3.5 text-[15px] inline-block shadow-lg">Start Project</a>
+                 </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="flex gap-4 w-max animate-marquee" aria-hidden="true">
+          {startHereItems.map((item) => (
+            <div class="marquee-card group relative flex flex-col justify-between p-7 bg-[var(--surface-solid)] border border-[var(--surface-border)] rounded-2xl shrink-0 overflow-hidden cursor-pointer" style="width: 280px; height: 260px; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);">
+              <div class="relative z-10">
+                 <div class="text-[var(--primary)] text-xs font-semibold tracking-[2px] mb-3">{item.tag}</div>
+                 <h3 class="font-semibold text-2xl tracking-[-0.02em] text-[var(--ink)] whitespace-normal leading-tight">{item.title}</h3>
+              </div>
+              
+              <div class="mt-8 flex flex-col justify-end relative h-full">
+                 <p class="text-[15px] text-[var(--muted-ink)] whitespace-normal transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-2 absolute bottom-0 left-0 right-0">{item.desc}</p>
+                 <div class="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75 absolute bottom-0 left-0 right-0 z-20 pointer-events-none group-hover:pointer-events-auto">
+                   <a href={item.link} class="btn-primary w-full text-center py-3.5 text-[15px] inline-block shadow-lg">Start Project</a>
+                 </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 

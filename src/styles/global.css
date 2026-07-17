@@ -289,3 +289,29 @@ p {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* Marquee / Horizontal Scroll */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% - 1rem)); }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.hover-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+.marquee-card:hover {
+  width: 360px !important;
+  background-color: var(--surface) !important;
+  border-color: var(--primary) !important;
+}
+
+@media (max-width: 768px) {
+  .marquee-card:hover {
+    width: 300px !important;
+  }
+}
