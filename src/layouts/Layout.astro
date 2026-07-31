@@ -1,8 +1,6 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
-
-const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
 ---
 
 <!doctype html>
@@ -11,27 +9,29 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
     <meta charset="UTF-8" />
     <link rel="icon" href="/pancatz-logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{site.name} — Creative & IT Support | Johor Bahru</title>
-    <meta name="description" content="Calm craft design, printing, IT retainers and AI workflows for Johor businesses. Transparent pricing, warm personal service." />
-    <meta property="og:image" content="/images/og-image.png" />
-    <meta name="twitter:image" content="/images/og-image.png" />
+    <title>{site.name} — Creative, IT & AI | Johor Bahru</title>
+    <meta name="description" content="One team for creative work, IT support, and AI automation. Design, print, and intelligent systems for Johor businesses." />
+    <meta property="og:image" content="/pancatz_og.png" />
+    <meta name="twitter:image" content="/pancatz_og.png" />
   </head>
   <body>
     <header id="site-header" class="site-header">
       <div class="section flex items-center justify-between py-4 md:py-5">
-        <a href="/" class="flex items-center gap-3 header-logo">
-          <img src="/pancatz-logo.jpg" alt="Pancatz" class="h-9 w-9 md:h-10 md:w-10 rounded-full object-cover" />
+        <a href="/" class="flex items-center gap-3 group" aria-label="Pancatz home">
+          <img src="/pancatz-logo.jpg" alt="" class="h-8 w-8 md:h-9 md:w-9 rounded-full object-cover ring-1 ring-[var(--surface-border)] group-hover:ring-[var(--primary)] transition-all" aria-hidden="true" />
+          <span class="wordmark hidden sm:inline">{site.name}</span>
         </a>
 
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="/#pricing" class="nav-link">Pricing</a>
-          <a href="/#portfolio" class="nav-link">Work</a>
-          <a href="/#services" class="nav-link">Services</a>
+        <nav class="hidden md:flex items-center gap-8 text-sm" aria-label="Primary">
+          <a href="#work" class="nav-link" data-nav="work">Work</a>
+          <a href="#services" class="nav-link" data-nav="services">Services</a>
+          <a href="#pricing" class="nav-link" data-nav="pricing">Pricing</a>
+          <a href="#start" class="nav-link" data-nav="start">Start</a>
         </nav>
 
-        <div class="flex items-center gap-2 md:gap-3">
-          <a href={waLink} target="_blank" class="btn-primary text-[13px] px-5 py-2">Chat on WhatsApp</a>
-          <button id="mobile-menu" class="md:hidden p-2 text-2xl leading-none">&#9776;</button>
+        <div class="flex items-center gap-3">
+          <a href="#start" class="btn-primary text-[13px] px-5 py-2.5">Start a project</a>
+          <button id="mobile-menu" class="md:hidden p-2 text-2xl leading-none text-[var(--ink)] min-h-[48px] min-w-[48px] flex items-center justify-center border border-[var(--surface-border)] rounded-[var(--radius-sm)]" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">&#9776;</button>
         </div>
       </div>
     </header>
@@ -40,79 +40,88 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
       <slot />
     </main>
 
-    <footer class="pt-16 pb-10 text-sm border-t border-[var(--surface-border)] relative overflow-hidden">
-      <!-- Living Clay Mesh Gradient Background -->
-      <div class="absolute inset-0 z-0 pointer-events-none opacity-30">
-        <div class="mesh-blob absolute w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d4b39c] rounded-full left-[-15%] top-[-20%] filter blur-[90px] opacity-60"></div>
-        <div class="mesh-blob absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[var(--primary)] rounded-full right-[-10%] top-[10%] filter blur-[100px] opacity-50"></div>
-        <div class="mesh-blob absolute w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] bg-[#e5e0d6] rounded-full left-[20%] bottom-[-30%] filter blur-[80px] opacity-70"></div>
-      </div>
-      <div class="section flex flex-col md:flex-row justify-between gap-10 text-xs tracking-[0.5px] relative z-10">
-        <div>
-          <div class="font-semibold text-[var(--ink)] mb-1">{site.name}</div>
-          <div class="text-[var(--muted-ink)]">Johor Bahru • Malaysia</div>
+    <footer class="pt-20 pb-10 text-sm border-t border-[var(--surface-border)]">
+      <div class="section">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-16">
+          <div class="md:col-span-5">
+            <div class="wordmark mb-3">{site.name}</div>
+            <p class="text-[var(--muted-ink)] text-sm max-w-xs leading-relaxed">
+              Creative, IT, and AI under one roof. Johor Bahru, Malaysia.
+            </p>
+          </div>
+          <div class="md:col-span-3">
+            <div class="section-label mb-4" style="color: var(--muted-ink);">Navigate</div>
+            <div class="flex flex-col gap-2.5 text-sm">
+              <a href="#work" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">Work</a>
+              <a href="#services" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">Services</a>
+              <a href="#pricing" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">Pricing</a>
+              <a href="#start" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">Start a project</a>
+            </div>
+          </div>
+          <div class="md:col-span-4">
+            <div class="section-label mb-4" style="color: var(--muted-ink);">Contact</div>
+            <div class="flex flex-col gap-2.5 text-sm">
+              <a href="mailto:{site.email}" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">{site.email}</a>
+              <a href={site.instagramUrl} target="_blank" rel="noopener" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">Instagram</a>
+              <a href={site.facebookUrl} target="_blank" rel="noopener" class="text-[var(--muted-ink)] hover:text-[var(--ink)] transition-colors">Facebook</a>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-wrap gap-x-7 gap-y-2 text-[var(--muted-ink)]">
-          <a href="/#pricing" class="hover:text-[var(--ink)]">Pricing</a>
-          <a href="/#portfolio" class="hover:text-[var(--ink)]">Work</a>
-          <a href="mailto:{site.email}" class="hover:text-[var(--ink)]">Email</a>
-          <a href={site.instagramUrl} target="_blank" class="hover:text-[var(--ink)]">Instagram</a>
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-8 border-t border-[var(--surface-border)] text-xs text-[var(--muted-ink)]">
+          <span>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+          <span class="font-mono tracking-wider">Johor Bahru, MY</span>
         </div>
-        <div class="text-[var(--muted-ink)]">© {new Date().getFullYear()} Pancatz</div>
       </div>
     </footer>
 
-    <!-- Mobile drawer -->
-    <div id="mobile-drawer" class="hidden md:hidden fixed inset-0 bg-[var(--paper)] z-[90] pt-20">
+    <div id="mobile-drawer" class="hidden md:hidden fixed inset-0 bg-[var(--canvas)] z-[90] pt-20" role="dialog" aria-modal="true" aria-label="Mobile navigation">
       <div class="section flex flex-col gap-1 text-lg">
-        <a href="/#pricing" class="mobile-nav-link py-3 border-b border-[var(--surface-border)]">Pricing</a>
-        <a href="/#portfolio" class="mobile-nav-link py-3 border-b border-[var(--surface-border)]">Work</a>
-        <a href="/#services" class="mobile-nav-link py-3 border-b border-[var(--surface-border)]">Services</a>
-        <a href={waLink} target="_blank" class="mt-8 btn-primary justify-center">Chat on WhatsApp</a>
+        <a href="#work" class="mobile-nav-link py-3.5 border-b border-[var(--surface-border)]">Work</a>
+        <a href="#services" class="mobile-nav-link py-3.5 border-b border-[var(--surface-border)]">Services</a>
+        <a href="#pricing" class="mobile-nav-link py-3.5 border-b border-[var(--surface-border)]">Pricing</a>
+        <a href="#start" class="mobile-nav-link py-3.5 border-b border-[var(--surface-border)]">Start a project</a>
+        <a href="#start" class="mt-8 btn-primary justify-center">Get in touch</a>
       </div>
     </div>
 
     <script>
-      import { animate, onScroll, stagger } from 'animejs';
-
       const header = document.getElementById('site-header');
       const mobileBtn = document.getElementById('mobile-menu');
       const drawer = document.getElementById('mobile-drawer');
 
-      // Mobile menu
       if (mobileBtn && drawer) {
         mobileBtn.addEventListener('click', () => {
           const isOpen = !drawer.classList.contains('hidden');
           if (isOpen) {
             drawer.classList.add('hidden');
-            mobileBtn.textContent = '\u2630';
+            mobileBtn.innerHTML = '&#9776;';
+            mobileBtn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
           } else {
             drawer.classList.remove('hidden');
-            mobileBtn.textContent = '\u2715';
+            mobileBtn.innerHTML = '&#10005;';
+            mobileBtn.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
           }
         });
         drawer.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             drawer.classList.add('hidden');
-            mobileBtn.textContent = '\u2630';
+            mobileBtn.innerHTML = '&#9776;';
+            mobileBtn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
           });
         });
       }
 
-      // Header show/hide on scroll direction
       let lastScrollY = window.scrollY;
       let ticking = false;
 
       function updateHeader() {
         const currentY = window.scrollY;
         if (currentY < lastScrollY) {
-          // scrolling/pinching upward
           header.classList.add('visible');
         } else if (currentY > lastScrollY && currentY > 40) {
-          // scrolling down, past hero top
           header.classList.remove('visible');
         }
         lastScrollY = currentY;
@@ -126,10 +135,26 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
         }
       }, { passive: true });
 
-      // Smooth scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link[data-nav]');
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.nav-link[data-nav="${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(s => navObserver.observe(s));
+
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-          const target = document.querySelector(this.getAttribute('href'));
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
           if (target) {
             e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -137,42 +162,7 @@ const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(s
         });
       });
 
-      // Header starts visible; animate in the inner bar
       header.classList.add('visible');
-
-      // Header entrance animation
-      animate({
-        targets: '.header-logo, header nav a, header .btn-primary',
-        opacity: [0, 1],
-        translateY: [-12, 0],
-        duration: 700,
-        easing: 'easeOutExpo',
-        delay: stagger(40, { start: 100 })
-      });
-
-      // Global Mesh Gradient Animation
-      function initMeshGradient() {
-        const blobs = document.querySelectorAll('.mesh-blob');
-        if (!blobs.length) return;
-
-        blobs.forEach((blob, i) => {
-          const xMove = i % 2 === 0 ? ['0%', '15%', '-5%', '0%'] : ['0%', '-10%', '10%', '0%'];
-          const yMove = i % 3 === 0 ? ['0%', '10%', '-15%', '0%'] : ['0%', '-15%', '5%', '0%'];
-          const scaleMove = i === 1 ? [1, 1.1, 0.95, 1] : [1, 0.95, 1.05, 1];
-
-          animate({
-            targets: blob,
-            translateX: xMove,
-            translateY: yMove,
-            scale: scaleMove,
-            duration: 12000 + (i * 2000), // Slow, fluid
-            easing: 'easeInOutSine',
-            loop: true
-          });
-        });
-      }
-
-      document.addEventListener('DOMContentLoaded', initMeshGradient);
     </script>
   </body>
 </html>

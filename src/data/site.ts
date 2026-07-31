@@ -3,18 +3,17 @@ export const site = {
   tagline: 'Premium creative & intelligent technology',
   description:
     'A modern studio delivering exceptional design, print, and AI-powered systems for ambitious teams.',
-  whatsappNumber: '60137572507',
-  whatsappMessage: 'Hi Pancatz, I\'d like to discuss a project.',
-  phoneDisplay: '+60 13-757 2507',
   email: 'pancatz.design@gmail.com',
   instagramUrl: 'https://www.instagram.com/pancatz.design',
   facebookUrl: 'https://www.facebook.com/pancatz',
+  // Contact form webhook — n8n receives and routes to Telegram
+  contactWebhook: 'https://n8n.pancatz.com/webhook/pancatz-contact',
 };
 
-export const whatsappIntents = {
-  general: 'Hi Pancatz, I would like to discuss a creative or technology project.',
-  creativeHub: 'Hi Pancatz, I need help with design or print work.',
-  printing: 'Hi Pancatz, I\'m looking for a print production quote.',
-  repair: 'Hi Pancatz, I need computer repair or IT support.',
-  itAi: 'Hi Pancatz, I want help with AI workflows or digital systems.',
+export const contactIntents = {
+  general: 'General enquiry',
+  creativeHub: 'Creative / Brand',
+  printing: 'Print production',
+  repair: 'IT / Repair',
+  itAi: 'AI / Automation',
 };

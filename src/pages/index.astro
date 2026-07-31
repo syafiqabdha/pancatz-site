@@ -1,369 +1,493 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, whatsappIntents } from '../data/site';
-
-const waGeneral = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.general)}`;
-const waCreative = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.creativeHub)}`;
-const waIT = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.repair)}`;
-const waAI = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(whatsappIntents.itAi)}`;
-
-const startHereItems = [
-  { tag: "CREATIVE", title: "Design or Print", desc: "Logo • Cards • Flyers • Brand", link: waCreative },
-  { tag: "IT SUPPORT", title: "Fix or Maintain", desc: "Repairs • Retainers • Setup", link: waIT },
-  { tag: "AUTOMATION", title: "AI & Workflows", desc: "Chatbots • n8n • Image gen", link: waAI },
-  { tag: "PLANS", title: "Monthly Retainers", desc: "Predictable cost, always on", link: "/pricing" }
-];
+import { site, contactIntents } from '../data/site';
 ---
 
 <Layout>
-  <!-- Hero -->
-  <section class="section raw-grid pt-28 sm:pt-36 pb-24 sm:pb-32 relative overflow-hidden">
-    <div class="max-w-5xl relative z-10">
-      <h1 class="hero-title" id="hero-headline">
-      </h1>
-      <span id="hero-cursor" class="hero-cursor"></span>
-
-      <p class="mt-7 max-w-md text-[1.05rem] text-[var(--muted-ink)] hero-reveal">
-        One team for creative work and tech support. Premium design, print, and intelligent systems that keep your business moving.
-      </p>
-
-      <div class="mt-10 flex flex-col sm:flex-row flex-wrap gap-4 hero-reveal">
-        <a href="#what-you-need" class="btn-primary btn-magnetic">What do you need?</a>
-        <a href="/pricing" class="btn-secondary btn-magnetic bg-[var(--surface-solid)]">See pricing</a>
-      </div>
+  <section class="section relative overflow-hidden" id="hero" style="padding-top: clamp(7rem, 14vh, 11rem); padding-bottom: var(--space-2xl);">
+    <!-- Multi-layer parallax background tracks -->
+    <div class="parallax-bg parallax-layer--deep" style="top: -10%; left: -5%; width: 45%; height: 70%;">
+      <div class="parallax-geo parallax-geo--circle" style="top: 20%; left: 15%; width: 280px; height: 280px;"></div>
+      <div class="parallax-geo parallax-geo--diamond" style="top: 55%; left: 40%; width: 160px; height: 160px;"></div>
     </div>
-
-    <!-- Living Clay Mesh Gradient Background -->
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-30">
-      <div class="mesh-blob absolute w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d4b39c] rounded-full left-[-15%] top-[-20%] filter blur-[90px] opacity-60"></div>
-      <div class="mesh-blob absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[var(--primary)] rounded-full right-[-10%] top-[10%] filter blur-[100px] opacity-50"></div>
-      <div class="mesh-blob absolute w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] bg-[#e5e0d6] rounded-full left-[20%] bottom-[-30%] filter blur-[80px] opacity-70"></div>
+    <div class="parallax-bg parallax-layer--mid" style="top: 5%; right: -8%; width: 50%; height: 80%;">
+      <div class="parallax-geo parallax-geo--hex" style="top: 10%; right: 20%; width: 220px; height: 220px;"></div>
+      <div class="parallax-geo parallax-geo--square" style="bottom: 15%; right: 35%; width: 140px; height: 140px;"></div>
     </div>
-  </section>
-
-  <!-- Conversational starter -->
-  <section id="what-you-need" class="section py-10 border-t border-[var(--surface-border)] overflow-hidden">
-    <div class="mb-6 section-reveal">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">START HERE</div>
-      <h2 class="page-title">What do you need right now?</h2>
+    <div class="parallax-bg parallax-layer--near" style="bottom: -5%; left: 10%; width: 40%; height: 50%;">
+      <div class="parallax-geo parallax-geo--triangle" style="bottom: 25%; left: 20%; width: 180px; height: 180px;"></div>
     </div>
+    <div class="parallax-bg hero-accent-line" style="top: 0; right: 28%; height: 50%;"></div>
+    <div class="parallax-bg hero-accent-line" style="bottom: 0; left: 15%; height: 35%;"></div>
 
-    <div class="marquee-wrapper relative w-full overflow-hidden py-4 -mx-5 px-5 md:-mx-12 md:px-12 mt-4 section-reveal">
-      <!-- Gradient masks for smooth edges -->
-      <div class="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-[var(--paper)] to-transparent z-10 pointer-events-none"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-[var(--paper)] to-transparent z-10 pointer-events-none"></div>
+    <div class="relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div class="lg:col-span-7">
+          <div class="flex items-center gap-3 mb-8 section-reveal">
+            <span class="editorial-rule"></span>
+            <span class="section-label">Creative &middot; IT &middot; AI</span>
+          </div>
 
-      <div class="flex gap-4 w-max hover-pause">
-        <div class="flex gap-4 w-max animate-marquee">
-          {startHereItems.map((item) => (
-            <div class="marquee-card group relative flex flex-col justify-between p-7 bg-[var(--surface-solid)] border border-[var(--surface-border)] rounded-2xl shrink-0 overflow-hidden cursor-pointer" style="width: 280px; height: 260px; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);">
-              <div class="relative z-10">
-                 <div class="text-[var(--primary)] text-xs font-semibold tracking-[2px] mb-3">{item.tag}</div>
-                 <h3 class="font-semibold text-2xl tracking-[-0.02em] text-[var(--ink)] whitespace-normal leading-tight">{item.title}</h3>
-              </div>
-              
-              <div class="mt-8 flex flex-col justify-end relative h-full">
-                 <p class="text-[15px] text-[var(--muted-ink)] whitespace-normal transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-2 absolute bottom-0 left-0 right-0">{item.desc}</p>
-                 <div class="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75 absolute bottom-0 left-0 right-0 z-20 pointer-events-none group-hover:pointer-events-auto">
-                   <a href={item.link} class="btn-primary w-full text-center py-3.5 text-[15px] inline-block shadow-lg">Start Project</a>
-                 </div>
-              </div>
+          <h1 class="hero-title section-reveal">
+            Businesses that<br />
+            <span class="text-[var(--primary)]">look sharper</span><br />
+            and <span class="text-[var(--accent)]">run smoother.</span>
+          </h1>
+
+          <div class="mt-10 section-reveal">
+            <p class="text-[var(--step-0)] text-[var(--muted-ink)] leading-relaxed max-w-md mb-8">
+              One partner for brand, infrastructure, and automation. We design what people see and fix what they don't.
+            </p>
+            <div class="flex flex-col sm:flex-row flex-wrap gap-4">
+              <a href="#start" class="btn-primary">Start a project</a>
+              <a href="#work" class="btn-secondary">See selected work</a>
             </div>
-          ))}
+          </div>
+
+          <div class="mt-12 proof-strip section-reveal">
+            <span>Johor Bahru based</span>
+            <span>Transparent MYR pricing</span>
+            <span>Creative + IT + AI under one roof</span>
+          </div>
         </div>
-        <div class="flex gap-4 w-max animate-marquee" aria-hidden="true">
-          {startHereItems.map((item) => (
-            <div class="marquee-card group relative flex flex-col justify-between p-7 bg-[var(--surface-solid)] border border-[var(--surface-border)] rounded-2xl shrink-0 overflow-hidden cursor-pointer" style="width: 280px; height: 260px; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);">
-              <div class="relative z-10">
-                 <div class="text-[var(--primary)] text-xs font-semibold tracking-[2px] mb-3">{item.tag}</div>
-                 <h3 class="font-semibold text-2xl tracking-[-0.02em] text-[var(--ink)] whitespace-normal leading-tight">{item.title}</h3>
-              </div>
-              
-              <div class="mt-8 flex flex-col justify-end relative h-full">
-                 <p class="text-[15px] text-[var(--muted-ink)] whitespace-normal transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-2 absolute bottom-0 left-0 right-0">{item.desc}</p>
-                 <div class="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75 absolute bottom-0 left-0 right-0 z-20 pointer-events-none group-hover:pointer-events-auto">
-                   <a href={item.link} class="btn-primary w-full text-center py-3.5 text-[15px] inline-block shadow-lg">Start Project</a>
-                 </div>
-              </div>
+
+        <div class="lg:col-span-5 section-reveal">
+          <div class="signal-board" aria-hidden="true">
+            <div class="signal-cell signal-cell--a"></div>
+            <div class="signal-cell signal-cell--b"></div>
+            <div class="signal-cell signal-cell--c"></div>
+            <div class="signal-cell signal-cell--d"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="capabilities" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-14 section-reveal">
+      <div class="md:col-span-4">
+        <div class="section-label mb-4">01 &mdash; CAPABILITIES</div>
+        <h2 class="page-title">Three disciplines.<br />One studio.</h2>
+      </div>
+      <div class="md:col-span-7 md:col-start-6 flex items-end">
+        <p class="text-[var(--muted-ink)] text-[var(--step-0)] leading-relaxed max-w-lg">
+          Most businesses hire three vendors for what one integrated team does better. Pancatz unifies brand, systems, and intelligence so nothing falls between the cracks.
+        </p>
+      </div>
+    </div>
+
+    <div class="bento-grid section-reveal">
+      <div class="bento-card bento-card--wide">
+        <div class="section-label mb-5" style="color: var(--primary);">CREATIVE</div>
+        <h3 class="text-[var(--step-2)] font-bold tracking-tight mb-4">Brand & Design</h3>
+        <p class="text-[var(--muted-ink)] text-sm leading-relaxed mb-6 max-w-md">
+          Logos, visual identities, social kits, menus, banners, signage, print collateral. Everything that makes your business look considered.
+        </p>
+        <div class="editorial-rule mb-4"></div>
+        <div class="editorial-meta">Logo &middot; Identity &middot; Print &middot; Signage</div>
+      </div>
+
+      <div class="bento-card bento-card--tall">
+        <div class="section-label mb-5" style="color: var(--primary);">IT SUPPORT</div>
+        <h3 class="text-[var(--step-2)] font-bold tracking-tight mb-4">Systems & Repair</h3>
+        <p class="text-[var(--muted-ink)] text-sm leading-relaxed mb-6">
+          PC and laptop repair, network setup, WiFi infrastructure, monthly retainers. Your technology, always operational.
+        </p>
+        <div class="editorial-rule mb-4"></div>
+        <div class="editorial-meta">Hardware &middot; Network &middot; Retainers</div>
+      </div>
+
+      <div class="bento-card bento-card--sq">
+        <div class="section-label mb-5" style="color: var(--accent);">AI & AUTOMATION</div>
+        <h3 class="text-[var(--step-2)] font-bold tracking-tight mb-4">Workflows & Bots</h3>
+        <p class="text-[var(--muted-ink)] text-sm leading-relaxed mb-6">
+          Chatbots, n8n workflows, AI image generation, lead routing. Automate the repetitive so you can focus on growth.
+        </p>
+        <div class="editorial-rule mb-4" style="background: var(--accent); opacity: 0.3;"></div>
+        <div class="editorial-meta">Chatbots &middot; n8n &middot; AI Pipelines</div>
+      </div>
+
+      <div class="bento-card bento-card--sm">
+        <div class="section-label mb-4" style="color: var(--muted-ink);">INTEGRATED</div>
+        <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-3">One partner,<br />not three.</h3>
+        <p class="text-[var(--muted-ink)] text-xs leading-relaxed">
+          Brand, infrastructure, and automation delivered by one team that understands how they connect.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-14 section-reveal">
+      <div class="md:col-span-5">
+        <div class="section-label mb-4">02 &mdash; SELECTED WORK</div>
+        <h2 class="page-title">Featured<br />projects.</h2>
+      </div>
+      <div class="md:col-span-6 md:col-start-7 flex items-end">
+        <p class="text-[var(--muted-ink)] text-[var(--step-0)] leading-relaxed">
+          Two editorial case studies from our practice. Visuals pending &mdash; real project material will replace the compositions below.
+        </p>
+      </div>
+    </div>
+
+    <article class="editorial-feature mb-8 section-reveal">
+      <div class="grid grid-cols-1 md:grid-cols-12">
+        <div class="md:col-span-8 relative overflow-hidden">
+          <div class="project-placeholder project-placeholder--01" data-hover-media>
+            <div class="project-placeholder-frame" aria-hidden="true"></div>
+            <div class="project-placeholder-label">
+              PROJECT 01 &mdash; REPLACEMENT VISUAL PENDING
             </div>
-          ))}
+          </div>
         </div>
+        <div class="md:col-span-4 p-6 md:p-8 lg:p-10 flex flex-col justify-between">
+          <div>
+            <div class="editorial-meta mb-4">Case Study 01</div>
+            <h3 class="text-[var(--step-2)] font-bold tracking-tight mb-4">Editorial feature placeholder</h3>
+            <p class="text-[var(--muted-ink)] text-sm leading-relaxed mb-6">
+              This frame is reserved for a real project case study. The final composition will include client context, deliverables, and visual evidence at 2400 &times; 1600 px (3:2) for desktop and 1440 &times; 1800 px (4:5) for mobile.
+            </p>
+          </div>
+          <div>
+            <div class="editorial-rule mb-4"></div>
+            <div class="editorial-meta">Deliverables &middot; Context &middot; Outcome</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="editorial-feature section-reveal">
+      <div class="grid grid-cols-1 md:grid-cols-12">
+        <div class="md:col-span-4 p-6 md:p-8 lg:p-10 flex flex-col justify-between order-2 md:order-1">
+          <div>
+            <div class="editorial-meta mb-4">Case Study 02</div>
+            <h3 class="text-[var(--step-2)] font-bold tracking-tight mb-4">Editorial feature placeholder</h3>
+            <p class="text-[var(--muted-ink)] text-sm leading-relaxed mb-6">
+              This frame is reserved for a real project case study. The final composition will include client context, deliverables, and visual evidence at 2400 &times; 1600 px (3:2) for desktop and 1440 &times; 1800 px (4:5) for mobile.
+            </p>
+          </div>
+          <div>
+            <div class="editorial-rule mb-4"></div>
+            <div class="editorial-meta">Deliverables &middot; Context &middot; Outcome</div>
+          </div>
+        </div>
+        <div class="md:col-span-8 relative overflow-hidden order-1 md:order-2">
+          <div class="project-placeholder project-placeholder--02" data-hover-media>
+            <div class="project-placeholder-frame" aria-hidden="true"></div>
+            <div class="project-placeholder-label">
+              PROJECT 02 &mdash; REPLACEMENT VISUAL PENDING
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="section" id="services" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-14 section-reveal">
+      <div class="md:col-span-4">
+        <div class="section-label mb-4">03 &mdash; SERVICES</div>
+        <h2 class="page-title">What we<br />deliver.</h2>
+      </div>
+      <div class="md:col-span-7 md:col-start-6 flex items-end">
+        <p class="text-[var(--muted-ink)] text-[var(--step-0)] leading-relaxed max-w-lg">
+          Each lane has its own craft and workflow. Choose where you need help, or combine them for a full partnership.
+        </p>
+      </div>
+    </div>
+
+    <div class="bento-grid section-reveal">
+      <div class="bento-card bento-card--wide">
+        <div class="flex items-start justify-between mb-6">
+          <div class="section-label" style="color: var(--primary);">CREATIVE HUB</div>
+          <div class="editorial-meta">Design + Print</div>
+        </div>
+        <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-6">Design that prints.<br />Brands that last.</h3>
+        <div class="text-[var(--muted-ink)] space-y-2.5 mb-8 text-sm leading-relaxed">
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Logo & brand identity systems
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Business cards, flyers, packaging
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Social kits, menus, digital assets
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Banners, signage, print production
+          </div>
+        </div>
+        <a href="#start" class="btn-secondary text-sm" data-intent="creativeHub">Discuss creative work</a>
+      </div>
+
+      <div class="bento-card bento-card--tall">
+        <div class="flex items-start justify-between mb-6">
+          <div class="section-label" style="color: var(--primary);">IT SERVICES</div>
+          <div class="editorial-meta">Systems + Support</div>
+        </div>
+        <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-6">Systems that work.<br />Support that shows up.</h3>
+        <div class="text-[var(--muted-ink)] space-y-2.5 mb-8 text-sm leading-relaxed">
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            PC, laptop & hardware repair
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Network, WiFi & infrastructure
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Monthly Tech Care retainers
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            On-site in JB, remote included
+          </div>
+        </div>
+        <a href="#start" class="btn-secondary text-sm" data-intent="repair">Discuss IT support</a>
+      </div>
+
+      <div class="bento-card bento-card--sq bento-card--featured">
+        <div class="flex items-start justify-between mb-6">
+          <div class="section-label" style="color: var(--accent);">AI & AUTO</div>
+          <div class="editorial-meta">Bots + Flows</div>
+        </div>
+        <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-6">Bots that work.<br />Flows that scale.</h3>
+        <div class="text-[var(--muted-ink)] space-y-2.5 mb-8 text-sm leading-relaxed">
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Telegram & web chatbots
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            n8n workflow automation
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            AI image gen pipelines
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-40 flex-shrink-0 mt-1.5"></span>
+            Lead routing & CRM
+          </div>
+        </div>
+        <a href="#start" class="btn-secondary text-sm" data-intent="itAi">Discuss AI work</a>
+      </div>
+
+      <div class="bento-card bento-card--sm">
+        <div class="section-label mb-4" style="color: var(--muted-ink);">COMBINED</div>
+        <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-3">Full partnership</h3>
+        <p class="text-[var(--muted-ink)] text-xs leading-relaxed mb-6">
+          Brand, systems, and automation delivered together. One point of contact, one standard.
+        </p>
+        <a href="#start" class="btn-secondary text-xs" data-intent="general">Discuss partnership</a>
       </div>
     </div>
   </section>
 
-  <!-- Service Hubs -->
-  <section id="services" class="section border-t border-[var(--surface-border)] py-16">
+  <section class="section" id="start" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 section-reveal">
+      <div class="md:col-span-5">
+        <div class="section-label mb-4">04 &mdash; START HERE</div>
+        <h2 class="page-title mb-6">What do you<br />need first?</h2>
+        <p class="text-[var(--muted-ink)] text-[var(--step-0)] leading-relaxed max-w-sm">
+          Tell us what you're looking for and we'll get back to you within a few hours. No forms that disappear into the void.
+        </p>
+      </div>
+      <div class="md:col-span-6 md:col-start-7">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="space-y-5">
+            <div>
+              <label for="contact-name" class="block text-sm font-medium mb-2 text-[var(--ink)]">Name</label>
+              <input type="text" id="contact-name" name="name" required
+                class="w-full px-4 py-3 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--surface-border)] text-[var(--ink)] text-sm focus:outline-none focus:border-[var(--primary)] transition-colors"
+                placeholder="Your name" />
+            </div>
+            <div>
+              <label for="contact-email" class="block text-sm font-medium mb-2 text-[var(--ink)]">Email or phone</label>
+              <input type="text" id="contact-email" name="contact" required
+                class="w-full px-4 py-3 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--surface-border)] text-[var(--ink)] text-sm focus:outline-none focus:border-[var(--primary)] transition-colors"
+                placeholder="you@email.com or phone number" />
+            </div>
+            <div>
+              <label for="contact-service" class="block text-sm font-medium mb-2 text-[var(--ink)]">I need help with</label>
+              <select id="contact-service" name="service"
+                class="w-full px-4 py-3 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--surface-border)] text-[var(--ink)] text-sm focus:outline-none focus:border-[var(--primary)] transition-colors appearance-none">
+                <option value="general">General enquiry</option>
+                <option value="creativeHub">Creative / Brand</option>
+                <option value="printing">Print production</option>
+                <option value="repair">IT / Repair</option>
+                <option value="itAi">AI / Automation</option>
+              </select>
+            </div>
+            <div>
+              <label for="contact-message" class="block text-sm font-medium mb-2 text-[var(--ink)]">Tell us about your project</label>
+              <textarea id="contact-message" name="message" rows="4"
+                class="w-full px-4 py-3 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--surface-border)] text-[var(--ink)] text-sm focus:outline-none focus:border-[var(--primary)] transition-colors resize-y"
+                placeholder="What do you need? Timeline, budget, any details that help..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full justify-center" id="contact-submit">
+              <span class="submit-label">Send message</span>
+              <span class="submit-spinner hidden">
+                <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div id="contact-success" class="hidden mt-4 p-4 rounded-[var(--radius-sm)] bg-[var(--primary)]/10 border border-[var(--primary)]/20 text-sm text-[var(--primary)]">
+            Message sent. We'll get back to you soon.
+          </div>
+          <div id="contact-error" class="hidden mt-4 p-4 rounded-[var(--radius-sm)] bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-sm text-[var(--accent)]">
+            Something went wrong. Please email us at {site.email} instead.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12 section-reveal">
+      <div class="md:col-span-4">
+        <div class="section-label mb-4">05 &mdash; PRICING</div>
+        <h2 class="page-title">Transparent<br />MYR pricing.</h2>
+      </div>
+      <div class="md:col-span-7 md:col-start-6 flex items-end">
+        <p class="text-[var(--muted-ink)] text-[var(--step-0)] leading-relaxed max-w-lg">
+          Indicative pricing for common scopes. Custom work is quoted after a quick conversation. All prices in Malaysian Ringgit.
+        </p>
+      </div>
+    </div>
+
     <div class="mb-8 section-reveal">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">WHAT WE DO</div>
-      <h2 class="page-title">Two lanes.<br />One team.</h2>
+      <div class="flex flex-wrap gap-2.5" id="pricing-steps" role="tablist" aria-label="Pricing categories">
+        <button data-step="creative" class="step-btn px-5 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium bg-[var(--primary)] text-[#0a0a0a] border-[var(--primary)]" role="tab" aria-selected="true">Creative</button>
+        <button data-step="print" class="step-btn px-5 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium text-[var(--muted-ink)] hover:text-[var(--ink)]" role="tab" aria-selected="false">Print</button>
+        <button data-step="it" class="step-btn px-5 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium text-[var(--muted-ink)] hover:text-[var(--ink)]" role="tab" aria-selected="false">IT Support</button>
+        <button data-step="ai" class="step-btn px-5 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium text-[var(--muted-ink)] hover:text-[var(--ink)]" role="tab" aria-selected="false">AI & Automation</button>
+        <button data-step="retainer" class="step-btn px-5 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium text-[var(--muted-ink)] hover:text-[var(--ink)]" role="tab" aria-selected="false">Retainers</button>
+      </div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-5 card-grid">
-      <div class="card p-9 unified-card">
-        <div class="uppercase text-xs tracking-[2px] text-[var(--primary)] mb-4">CREATIVE HUB</div>
-        <h3 class="text-3xl font-semibold tracking-[-0.03em] mb-5">Design that prints.<br />Brands that last.</h3>
+    <div id="pricing-content" class="space-y-6 section-reveal" role="tabpanel">
+    </div>
 
-        <div class="text-[var(--muted-ink)] space-y-1.5 mb-10 text-[15px]">
-          <div>Logo & brand systems</div>
-          <div>Business cards, flyers, packaging</div>
-          <div>Social kits & menus</div>
-          <div>Banners, signage, print production</div>
-        </div>
-
-        <a href={waCreative} class="btn-secondary">Talk on WhatsApp</a>
-      </div>
-
-      <div class="card p-9 unified-card">
-        <div class="uppercase text-xs tracking-[2px] text-[var(--primary)] mb-4">IT SERVICES</div>
-        <h3 class="text-3xl font-semibold tracking-[-0.03em] mb-5">Systems that work.<br />Support that shows up.</h3>
-
-        <div class="text-[var(--muted-ink)] space-y-1.5 mb-10 text-[15px]">
-          <div>PC, laptop & hardware repair</div>
-          <div>Network, WiFi & infrastructure</div>
-          <div>Monthly Tech Care retainers</div>
-          <div>AI automation & workflows</div>
-        </div>
-
-        <a href={waIT} class="btn-secondary">Talk on WhatsApp</a>
-      </div>
+    <div class="mt-8 text-xs text-[var(--muted-ink)] max-w-md section-reveal">
+      All prices in MYR. Custom work quoted after a quick chat. Monthly retainers include priority support and rollover hours.
     </div>
   </section>
 
-  <!-- Portfolio -->
-  <section id="portfolio" class="section border-t border-[var(--surface-border)] py-16">
-    <div class="mb-8 flex items-end justify-between section-reveal">
-      <div>
-        <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">SELECT WORK</div>
-        <h2 class="page-title">Work that holds up.</h2>
+  <section class="section" id="process" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-16 section-reveal">
+      <div class="md:col-span-4">
+        <div class="section-label mb-4">06 &mdash; PROCESS</div>
+        <h2 class="page-title">Three steps.<br />No fluff.</h2>
       </div>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-5 card-grid">
-      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
-        <img src="/images/portfolio-cafe.png" alt="Café brand" class="w-full h-56 object-cover" />
-        <div class="p-9">
-          <h3 class="text-2xl font-semibold tracking-tight">Brand refresh for a local café</h3>
-          <p class="text-sm text-[var(--muted-ink)] mt-2">Logo, menu, signage, and social templates.</p>
-        </div>
-      </div>
-      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
-        <img src="/images/portfolio-retail.png" alt="Retail IT setup" class="w-full h-56 object-cover" />
-        <div class="p-9">
-          <h3 class="text-2xl font-semibold tracking-tight">IT setup for a retail chain</h3>
-          <p class="text-sm text-[var(--muted-ink)] mt-2">Network, POS terminals, and monthly support.</p>
-        </div>
-      </div>
-      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
-        <img src="/images/portfolio-clinic.png" alt="Clinic print" class="w-full h-56 object-cover" />
-        <div class="p-9">
-          <h3 class="text-2xl font-semibold tracking-tight">Print collateral for a clinic</h3>
-          <p class="text-sm text-[var(--muted-ink)] mt-2">Brochures, appointment cards, and wall displays.</p>
-        </div>
-      </div>
-      <div class="card p-0 overflow-hidden unified-card portfolio-card group">
-        <img src="/images/portfolio-property.png" alt="Property AI workflow" class="w-full h-56 object-cover" />
-        <div class="p-9">
-          <h3 class="text-2xl font-semibold tracking-tight">AI workflow for a property team</h3>
-          <p class="text-sm text-[var(--muted-ink)] mt-2">Chatbot + image generation + lead routing.</p>
+      <div class="md:col-span-7 md:col-start-6">
+        <div class="space-y-10">
+          <div class="flex gap-6 items-start">
+            <div class="process-num">01</div>
+            <div>
+              <h3 class="text-lg font-bold mb-2">Reach out</h3>
+              <p class="text-sm text-[var(--muted-ink)] leading-relaxed">Fill in the form above. We respond fast and ask the right questions to understand scope.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="process-num">02</div>
+            <div>
+              <h3 class="text-lg font-bold mb-2">Build</h3>
+              <p class="text-sm text-[var(--muted-ink)] leading-relaxed">We design, develop, and iterate. You see progress, not promises. Revisions included.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="process-num">03</div>
+            <div>
+              <h3 class="text-lg font-bold mb-2">Launch</h3>
+              <p class="text-sm text-[var(--muted-ink)] leading-relaxed">Delivery, handover, and ongoing support. We stay until everything runs smooth.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="section border-t border-[var(--surface-border)] py-16">
-    <div class="mb-8 section-reveal">
-      <div class="uppercase tracking-[2px] text-xs mb-2 text-[var(--primary)]">TRANSPARENT</div>
-      <h2 class="page-title">Simple pricing.<br />Real results.</h2>
-    </div>
-
-    <div class="mb-10 section-reveal">
-      <div class="flex flex-wrap gap-3" id="pricing-steps">
-        <button data-step="creative" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Creative</button>
-        <button data-step="print" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Print</button>
-        <button data-step="it" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">IT Support</button>
-        <button data-step="ai" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">AI & Automation</button>
-        <button data-step="retainer" class="step-btn unified-card hover:bg-[var(--surface)] transition-colors px-6 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium">Retainers</button>
-      </div>
-    </div>
-
-    <div id="pricing-content" class="space-y-6 card-grid" data-wa="60137572507">
-      <!-- injected -->
-    </div>
-
-    <div class="mt-10 text-xs text-[var(--muted-ink)] max-w-md section-reveal">
-      All prices in MYR. Custom work quoted after a quick chat. Monthly retainers include priority support.
-    </div>
-  </section>
-
-  <!-- Closer -->
-  <section class="section py-16 sm:py-24 border-t border-[var(--surface-border)] text-center section-reveal">
-    <div class="max-w-4xl mx-auto">
-      <p class="text-[var(--ink)] cta-text font-semibold tracking-tight">Ready when you are.</p>
-      <a href={waGeneral} class="btn-primary inline-block mt-6 sm:mt-8">Start a conversation</a>
+    <div class="text-center section-reveal" style="padding-top: var(--space-lg); border-top: 1px solid var(--surface-border);">
+      <p class="cta-text font-bold mb-2">Ready when<br />you are.</p>
+      <p class="text-[var(--muted-ink)] text-sm mb-10 max-w-sm mx-auto">One conversation is all it takes. Fill in the form above or email us directly.</p>
+      <a href="#start" class="btn-primary">Start a conversation</a>
     </div>
   </section>
 </Layout>
 
 <script>
-  import { animate, onScroll, stagger, createTimeline } from 'animejs';
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  // Reusable motion tokens
-  const ease = 'easeOutExpo';
-  const baseDuration = 800;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Typing effect on hero headline
-  function initTypingEffect() {
-    const headline = document.getElementById('hero-headline');
-    const cursor = document.getElementById('hero-cursor');
-    if (headline && cursor) {
-      const sequences = [
-        { text: 'Design and system', pause: 1000 },
-        { text: 'Design that print', pause: 1000 },
-        { text: 'System that run', pause: 1000 }
-      ];
+  // --- Contact form ---
+  function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('contact-submit');
+    const label = submitBtn?.querySelector('.submit-label');
+    const spinner = submitBtn?.querySelector('.submit-spinner');
+    const success = document.getElementById('contact-success');
+    const error = document.getElementById('contact-error');
+    if (!form) return;
 
-      const typeSpeed = 80;
-      const deleteSpeed = 45;
-      const holdDuration = 1000;
-      const gapDuration = 300;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submitBtn) submitBtn.disabled = true;
+      if (label) label.classList.add('hidden');
+      if (spinner) spinner.classList.remove('hidden');
+      if (success) success.classList.add('hidden');
+      if (error) error.classList.add('hidden');
 
-      function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
+      const data = {
+        name: form.querySelector('[name="name"]')?.value || '',
+        contact: form.querySelector('[name="contact"]')?.value || '',
+        service: form.querySelector('[name="service"]')?.value || 'general',
+        message: form.querySelector('[name="message"]')?.value || '',
+      };
 
-      async function typeText(text) {
-        for (let i = 0; i <= text.length; i++) {
-          headline.textContent = text.slice(0, i);
-          await sleep(typeSpeed);
-        }
-      }
-
-      async function deleteText() {
-        const text = headline.textContent;
-        for (let i = text.length; i >= 0; i--) {
-          headline.textContent = text.slice(0, i);
-          await sleep(deleteSpeed);
-        }
-      }
-
-      async function playSequence() {
-        for (const seq of sequences) {
-          await typeText(seq.text);
-          await sleep(holdDuration);
-          await deleteText();
-          await sleep(gapDuration);
-        }
-        await typeText("Let's transform today");
-      }
-
-      playSequence();
-    }
-  }
-
-  // Hero reveal sequence for sub + buttons
-  function initHeroReveal() {
-    animate({
-      targets: '.hero-reveal',
-      opacity: [0, 1],
-      translateY: [24, 0],
-      duration: baseDuration,
-      easing: ease,
-      delay: stagger(120, { start: 200 })
-    });
-  }
-
-  // Section reveals on scroll
-  function initScrollReveals() {
-    animate.set('.section-reveal', { opacity: 0, translateY: 24 });
-    document.querySelectorAll('.section-reveal').forEach(el => {
-      onScroll({
-        target: el,
-        enter: 'top 85%',
-        leave: 'bottom 10%',
-        sync: false,
-        debug: false,
-      }).add({
-        targets: el,
-        opacity: [0, 1],
-        translateY: [24, 0],
-        duration: baseDuration,
-        easing: ease
-      });
-    });
-
-    // Card stagger reveals per section
-    document.querySelectorAll('.card-grid').forEach(grid => {
-      const cards = grid.querySelectorAll('.unified-card');
-      animate.set(cards, { opacity: 0, translateY: 30, scale: 0.98 });
-      onScroll({
-        target: grid,
-        enter: 'top 85%',
-        leave: 'bottom 10%',
-        sync: false,
-      }).add({
-        targets: cards,
-        opacity: [0, 1],
-        translateY: [30, 0],
-        scale: [0.98, 1],
-        duration: 900,
-        easing: ease,
-        delay: stagger(80)
-      });
-    });
-  }
-
-  // Unified card hover effect (lift + spotlight)
-  function initCards() {
-    document.querySelectorAll('.unified-card').forEach(card => {
-      const spotlight = document.createElement('span');
-      spotlight.className = 'card-spotlight';
-      card.appendChild(spotlight);
-
-      card.addEventListener('mouseenter', () => {
-        animate({
-          targets: card,
-          translateY: -6,
-          boxShadow: ['0 0 0 rgba(15,14,12,0)', '8px 12px 0 rgba(15,14,12,0.12)'],
-          duration: 250,
-          easing: 'easeOutCubic'
+      try {
+        const res = await fetch('https://n8n.pancatz.com/webhook/pancatz-contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
         });
-        animate({ targets: spotlight, opacity: [0, 1], duration: 250, easing: 'easeOutCubic' });
-      });
-      card.addEventListener('mouseleave', () => {
-        animate({
-          targets: card,
-          translateY: 0,
-          boxShadow: '0 0 0 rgba(15,14,12,0)',
-          duration: 250,
-          easing: 'easeOutCubic'
-        });
-        animate({ targets: spotlight, opacity: 0, duration: 250, easing: 'easeOutCubic' });
-      });
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        spotlight.style.background = `radial-gradient(circle 120px at ${x}px ${y}px, rgba(163,106,82,0.14), transparent)`;
-      });
+        if (res.ok) {
+          if (success) success.classList.remove('hidden');
+          form.reset();
+        } else {
+          throw new Error('Server responded ' + res.status);
+        }
+      } catch (err) {
+        if (error) error.classList.remove('hidden');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (label) label.classList.remove('hidden');
+        if (spinner) spinner.classList.add('hidden');
+      }
     });
 
-    // Magnetic buttons
-    document.querySelectorAll('.btn-magnetic').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        animate({ targets: btn, translateX: x * 0.25, translateY: y * 0.25, duration: 200, easing: 'easeOutCubic' });
-      });
-      btn.addEventListener('mouseleave', () => {
-        animate({ targets: btn, translateX: 0, translateY: 0, duration: 300, easing: 'easeOutElastic(1, .6)' });
+    // Pre-fill service from data-intent links
+    document.querySelectorAll('[data-intent]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const intent = link.dataset.intent;
+        const select = document.getElementById('contact-service');
+        if (select && intent) {
+          select.value = intent;
+          document.getElementById('start')?.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
   }
 
-  // Pricing Widget Logic
   function initPricing() {
     const content = document.getElementById('pricing-content');
     const steps = document.querySelectorAll('.step-btn');
@@ -386,12 +510,12 @@ const startHereItems = [
           { name: "A3 posters (100)", price: "RM 620" },
           { name: "Full signage set", price: "quoted" }
         ],
-        note: "High-quality local printing. Fast turnaround."
+        note: "High-quality local printing."
       },
       it: {
         title: "IT Support",
         items: [
-          { name: "One-time repair", price: "RM 180–280" },
+          { name: "One-time repair", price: "RM 180\u2013280" },
           { name: "Monthly basic", price: "RM 380/mo" },
           { name: "Monthly full", price: "RM 680/mo" }
         ],
@@ -417,100 +541,140 @@ const startHereItems = [
       }
     };
 
-    const waNum = content.dataset.wa;
-    const wa = (msg) => `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
-
     function render(step) {
       const data = pricingData[step];
       const card = document.createElement('div');
-      card.className = 'card p-9 unified-card';
+      card.className = 'bento-card';
       card.innerHTML = `
-        <div class="flex items-baseline justify-between mb-6">
-          <h3 class="text-3xl font-semibold tracking-tight">${data.title}</h3>
-          <a href="${wa('Hi Pancatz, I\'m interested in ' + data.title)}"
-             class="text-sm underline hover:no-underline">Chat on WhatsApp →</a>
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-6 gap-3">
+          <h3 class="text-[var(--step-2)] font-bold tracking-tight">${data.title}</h3>
+          <a href="#start" class="text-sm text-[var(--primary)] underline hover:no-underline whitespace-nowrap min-h-[44px] inline-flex items-center">Get a quote</a>
         </div>
-        <div class="space-y-4 mb-8">
+        <div class="space-y-0 mb-8">
           ${data.items.map(i => `
-            <div class="flex justify-between items-center border-b border-[var(--surface-border)] pb-4">
-              <div>${i.name}</div>
-              <div class="font-mono text-sm text-[var(--primary)]">${i.price}</div>
+            <div class="flex justify-between items-center py-4 border-b border-[var(--surface-border)]">
+              <span class="text-sm">${i.name}</span>
+              <span class="font-mono text-sm text-[var(--primary)]">${i.price}</span>
             </div>
           `).join('')}
         </div>
-        <p class="text-sm text-[var(--muted-ink)]">${data.note}</p>
+        <p class="text-xs text-[var(--muted-ink)]">${data.note}</p>
       `;
       content.innerHTML = '';
       content.appendChild(card);
-
-      animate.set(card, { opacity: 0, translateY: 20 });
-      animate({ targets: card, opacity: [0, 1], translateY: [20, 0], duration: 500, easing: 'easeOutExpo' });
     }
 
     steps.forEach(btn => {
       btn.addEventListener('click', () => {
         steps.forEach(b => {
-          b.classList.remove('bg-[var(--ink)]', 'text-[var(--paper)]');
-          b.classList.add('hover:bg-[var(--surface)]');
+          b.classList.remove('bg-[var(--primary)]', 'text-[#0a0a0a]', 'border-[var(--primary)]');
+          b.classList.add('text-[var(--muted-ink)]');
+          b.setAttribute('aria-selected', 'false');
         });
-        btn.classList.add('bg-[var(--ink)]', 'text-[var(--paper)]');
-        btn.classList.remove('hover:bg-[var(--surface)]');
+        btn.classList.add('bg-[var(--primary)]', 'text-[#0a0a0a]', 'border-[var(--primary)]');
+        btn.classList.remove('text-[var(--muted-ink)]');
+        btn.setAttribute('aria-selected', 'true');
         render(btn.dataset.step);
       });
     });
 
-    // Initialize first step
-    steps[0].classList.add('bg-[var(--ink)]', 'text-[var(--paper)]');
-    steps[0].classList.remove('hover:bg-[var(--surface)]');
     render('creative');
   }
 
-  // Portfolio canvas tactility
-  function initPortfolioCanvases() {
-    const canvases = document.querySelectorAll('.portfolio-card canvas');
-    canvases.forEach((canvas) => {
-      const ctx = canvas.getContext('2d');
-      const type = canvas.dataset.type;
-      const rect = canvas.getBoundingClientRect();
-      const cssW = rect.width;
-      const cssH = rect.height;
-      canvas.width = cssW * 2;
-      canvas.height = cssH * 2;
-      ctx.resetTransform();
-      ctx.scale(2, 2);
+  function initGSAP() {
+    if (prefersReducedMotion) return;
 
-      function draw() {
-        ctx.clearRect(0, 0, cssW, cssH);
-        ctx.strokeStyle = 'rgba(163, 106, 82, 0.25)';
-        ctx.lineWidth = 1;
+    gsap.registerPlugin(ScrollTrigger);
 
-        if (type === 'creative') {
-          for (let i = 0; i < 5; i++) {
-            ctx.beginPath();
-            ctx.moveTo(20 + i * 18, 30);
-            ctx.quadraticCurveTo(80 + i * 6, 90, 60 + i * 12, 140);
-            ctx.stroke();
+    const parallaxLayers = [
+      { sel: '.parallax-layer--deep', speed: 0.15 },
+      { sel: '.parallax-layer--mid',  speed: 0.30 },
+      { sel: '.parallax-layer--near', speed: 0.50 },
+    ];
+
+    parallaxLayers.forEach(({ sel, speed }) => {
+      const els = document.querySelectorAll(sel);
+      els.forEach(el => {
+        gsap.to(el, {
+          y: () => -(ScrollTrigger.maxScroll(window) * speed),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el.closest('section') || document.body,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.1,
           }
-        } else {
-          for (let x = 20; x < cssW; x += 22) {
-            for (let y = 18; y < cssH; y += 22) {
-              ctx.beginPath();
-              ctx.arc(x, y, 1.5, 0, Math.PI * 2);
-              ctx.stroke();
-            }
+        });
+      });
+    });
+
+    const legacyParallax = document.querySelectorAll('.parallax-bg:not([class*="parallax-layer"])');
+    legacyParallax.forEach(el => {
+      gsap.to(el, {
+        y: () => -(ScrollTrigger.maxScroll(window) * 0.3),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el.closest('section') || document.body,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.1,
+        }
+      });
+    });
+
+    const reveals = document.querySelectorAll('.section-reveal');
+    reveals.forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0.4, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            end: 'top 55%',
+            scrub: 0.1,
           }
         }
-      }
-      draw();
+      );
+    });
+
+    const hoverMediaEls = document.querySelectorAll('[data-hover-media]');
+    hoverMediaEls.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        gsap.to(el, { scale: 1.02, duration: 0.4, ease: 'power2.out' });
+      });
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, { scale: 1, duration: 0.4, ease: 'power2.out' });
+      });
+    });
+
+    const bentoCards = document.querySelectorAll('.bento-card');
+    bentoCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(card, {
+          rotateY: x * 2,
+          rotateX: -y * 2,
+          duration: 0.6,
+          ease: 'power2.out',
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+        });
+      });
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initTypingEffect();
-    initHeroReveal();
-    initScrollReveals();
-    initCards();
-    initPricing();
-    initPortfolioCanvases();
-  });
+  initContactForm();
+  initPricing();
+  initGSAP();
 </script>
