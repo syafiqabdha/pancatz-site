@@ -1,61 +1,29 @@
-# Pancatz Redesign — Creative Brief
+# Pancatz Single-Page Creative-Tech Prototype
 
-## Brand Identity
-Pancatz is a Malaysian creative+IT hybrid based in Johor Bahru. Two service lanes:
-- **Creative Hub** — design, print, branding
-- **IT Services** — repair, maintenance, AI workflow
+## Goal
+Turn Pancatz into one long, conversion-ready page. No navigation to `/pricing`, `/services`, `/portfolio`, `/about`, or `/contact`; every destination is a section anchor on `/`.
 
-Tone: Warm, personal, craft-focused, non-corporate. Malaysian small-business friendly.
+## Direction
+Bold creative-tech with dark, sharp, high-contrast K-pop energy. Use a near-black charcoal canvas, off-white type, electric lime as the primary action color, hot coral as a secondary signal, thin grid lines, oversized editorial typography, asymmetric composition, and restrained motion. It should feel like a small elite studio, not a generic SaaS landing page.
 
-## Design Direction: Calm Craft
+## Audience and offer
+Pancatz is one unified partner that makes businesses look better and run better: creative/brand/print, IT support, and AI/automation. Keep the current WhatsApp number, current services, portfolio images, and indicative MYR pricing so the prototype remains conversion-ready.
 
-### 1. Palette & Texture
-- Muted, warm base: cream/off-white backgrounds (`#FDF8F3`), warm taupe (`#8B7D6B`), deep charcoal (`#2D2A26`)
-- Accent: a warm terracotta or clay tone (`#C66B4B` or `#D4836A`)
-- "Liquid glass" translucency: cards with `backdrop-filter: blur()` and subtle glassmorphism on key UI elements
-- **Intentional imperfection**: add subtle paper/grain texture as a CSS overlay or background pattern on hero sections and cards. Think offset-printed feel — not sterile vector-perfect.
+## Page narrative
+1. Sticky header: logo, Work, Services, Pricing, WhatsApp CTA; mobile menu.
+2. Hero: assertive headline, short value proposition, primary WhatsApp CTA, secondary scroll CTA, small proof/status strip.
+3. What we solve: three bold capability blocks that explain the unified offer.
+4. Selected work: responsive portfolio grid with current images.
+5. Services: creative, IT, AI cards with WhatsApp intents.
+6. Pricing: anchored pricing selector, readable on mobile, existing data.
+7. Process / final CTA: simple three-step path and WhatsApp close.
+8. Footer: contact links.
 
-### 2. Typography
-- Warm serif or rounded sans-serif for headings (playful but readable)
-- Clean sans-serif for body text
-- Soft letter-spacing, generous line-height
+## Responsive rules
+Mobile-first. No horizontal page overflow. Hero type uses clamp; cards stack cleanly; portfolio images retain sensible aspect ratios; pricing rows wrap without clipping; minimum 44px tap targets; nav drawer closes on anchor click; preserve reduced-motion behavior.
 
-### 3. Conversational Pricing (Micro-Commitment)
-Replace the flat pricing table with a **step-by-step flow**:
-- Step 1: "What do you need?" → buttons: Design, Print, IT Repair, AI Setup, Retainer
-- Step 2: Based on selection, show relevant options/packages
-- Step 3: Reveal price + CTA to WhatsApp
-- This reduces cognitive load — show one thing at a time
+## Do not
+Do not add 3D, a heavy component library, fake testimonials, fake logos, or new business claims. Do not remove existing data or WhatsApp conversion paths. Keep Astro and current dependencies.
 
-### 4. Layout & Components
-- Softer corners (`rounded-2xl` / `rounded-3xl`)
-- Cards with subtle borders and background grain
-- Hero section: warm, textured background with a hand-drawn/illustrative feel
-- Testimonials: card-based with quote marks as decorative elements
-- CTA sections: warm clay/taupe backgrounds with soft white text
-
-### 5. Homepage Restructure
-```
-Hero (warm + textured) → "What do you need?" conversation starter
-→ Service Hubs (Creative / IT) with craft-style cards
-→ Testimonials (calm card grid)
-→ Pricing preview (3 retainer tiers in glass cards)
-→ FAQ (clean accordion)
-→ CTA (warm clay background)
-```
-
-## Implementation Notes
-- Keep Astro + Tailwind + Astryx components where they work
-- Override colours and styles to match the new palette
-- Add CSS grain overlay as a global background texture
-- The conversational pricing can be a client-side JS toggle (show/hide sections) — no backend needed
-- Responsive: mobile-first as always
-- Don't touch the Malay pages for now — redesign English first
-
-## What to Do
-1. Update global CSS with new palette and grain texture
-2. Redesign homepage with calm/craft aesthetic
-3. Redesign pricing page with conversational step flow
-4. Redesign the hero and CTA sections
-
-Start with the CSS/tokens first, then homepage, then pricing. This is a creative pass — make it feel warm, crafted, and human.
+## Quality bar
+Run `npm run build`. Inspect at desktop and mobile widths. Fix broken anchors, missing assets, console errors, and overflow before reporting done.
