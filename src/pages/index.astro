@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, contactIntents } from '../data/site';
+import { site } from '../data/site';
 ---
 
 <Layout>
@@ -299,7 +299,7 @@ import { site, contactIntents } from '../data/site';
         </p>
       </div>
       <div class="md:col-span-6 md:col-start-7">
-        <form id="contact-form" class="contact-form" novalidate>
+        <form id="contact-form" class="contact-form" data-webhook={site.contactWebhook} novalidate>
           <!-- Honeypot: hidden from humans, filled by bots -->
           <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
             <label for="contact-website">Website</label>
@@ -461,7 +461,10 @@ import { site, contactIntents } from '../data/site';
       };
 
       try {
-        const res = await fetch('https://n8n.pancatz.com/webhook/pancatz-contact', {
+        const webhook = form.dataset.webhook;
+        if (!webhook) throw new Error('Contact webhook is not configured');
+
+        const res = await fetch(webhook, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),

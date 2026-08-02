@@ -1,125 +1,200 @@
 <div align="center">
-  <img src="public/pancatz-logo.webp" alt="Pancatz Logo" width="120" height="120" style="border-radius: 20%; margin-bottom: 1rem;" />
-  
-  <h1>Pancatz 🐈‍⬛</h1>
-  <p><strong>Creative Hub + IT Services for modern teams</strong></p>
-  
-  [![Deploy Status](https://img.shields.io/github/actions/workflow/status/syafiqabdha/pancatz-site/docker-publish.yml?label=Docker%20Build&style=flat-square)](https://github.com/syafiqabdha/pancatz-site/actions)
-  [![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&style=flat-square)](https://pancatz-site.vercel.app)
-  [![Astro](https://img.shields.io/badge/Astro-v6-ff5a03?logo=astro&style=flat-square)](https://astro.build/)
-  [![Astryx](https://img.shields.io/badge/Astryx-Design_System-0a7f5a?style=flat-square)](https://github.com/astryxdesign)
+  <img src="public/pancatz-logo.webp" alt="Pancatz logo" width="120" height="120" />
 
-  <p>
-    <a href="https://pancatz-site.vercel.app"><b>View Live Site</b></a> •
-    <a href="#-getting-started"><b>Getting Started</b></a> •
-    <a href="CONTRIBUTING.md"><b>Contributing</b></a>
-  </p>
+  # Pancatz
+
+  **A single-page creative-tech studio site for businesses that want to look sharper and run smoother.**
+
+  [![Astro](https://img.shields.io/badge/Astro-6.4.8-ff5a03?logo=astro&logoColor=white)](https://astro.build/)
+  [![Node](https://img.shields.io/badge/Node-%3E%3D22.12.0-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+  [![Docker](https://img.shields.io/badge/Docker-Nginx%201.27-2496ed?logo=docker&logoColor=white)](https://www.docker.com/)
+
+  [Live site](https://pancatz.com) · [Development](#development) · [Deployment](#deployment)
 </div>
-
-<br/>
-
-Pancatz brings design, print, computer repair, and practical AI support into one clear service desk for people and small businesses that need useful work delivered fast.
 
 ---
 
-## ✨ Features
+## What this build is
 
-- **🎨 Creative Hub**: Design & Brand Assets, Print Production.
-- **💻 IT Services**: Computer Repair & Maintenance, AI & Digital Workflow Support.
-- **⚡ Fast Quote Flow**: Clear scope via WhatsApp before work starts.
-- **🌐 Online-first Service**: Operating with appointment-based support.
+Pancatz is an Astro static site for a Johor Bahru–based studio that combines three connected disciplines:
 
-## 🛠️ Tech Stack
+- **Creative:** brand identity, social assets, menus, signage, and print production
+- **IT support:** PC/laptop repair, Wi-Fi and network infrastructure, ongoing tech care
+- **AI & automation:** chatbots, n8n workflows, image-generation pipelines, lead routing
 
-- **Framework:** [Astro](https://astro.build/) (Static Site Generation)
-- **UI & Components:** [Astryx Design System](https://github.com/astryxdesign) + React
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Deployment:** Vercel (Primary) / Docker + Nginx (Self-Hosted)
+It is deliberately a **single long-form page**. Navigation, pricing, work, service selection, and the enquiry path are section anchors on `/`; there are no separate service, portfolio, pricing, or contact routes in the current build.
 
-## 🚀 Getting Started
+## Current experience
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) `>=22.12.0`
-- npm (or your preferred package manager)
+| Area | Implementation |
+|---|---|
+| Hero | Outcome-led positioning: businesses that “look sharper and run smoother,” with layered geometric parallax and primary/secondary conversion actions. |
+| Capabilities | A responsive asymmetric bento system explaining Creative, IT Support, and AI & Automation as one integrated offer. |
+| Selected work | Two clearly labelled editorial case-study placeholders — **not fake proof** — awaiting real project imagery. |
+| Services | Detailed service lanes with links that preselect the relevant enquiry category. |
+| Pricing | Client-side selector covering Creative, Print, IT Support, AI & Automation, and retainers; prices are indicative and in MYR. |
+| Enquiry | Name, contact, service, and project brief form posted to an n8n webhook; a hidden honeypot rejects simple bot submissions. |
+| Navigation | Fixed glass header, active-section state, responsive mobile drawer, and smooth anchor scrolling. |
+| Motion | GSAP ScrollTrigger parallax, scrubbed reveals, subtle project/card interaction, and a complete `prefers-reduced-motion` fallback. |
+| Accessibility | Visible focus states, semantic landmarks, labelled form controls, 44–48px touch targets, and motion reduction support. |
 
-### Local Development
+### Contact flow
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/syafiqabdha/pancatz-site.git
-   cd pancatz-site
-   ```
+The form posts JSON to:
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
-   *The site will be available locally at `http://localhost:4321`.*
-
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
-   *The output will be generated in the `./dist` directory.*
-
-## 🌍 Deployments
-
-### Vercel (Recommended)
-The site is automatically deployed to Vercel on every push to the `master` branch.
-**Live URL:** [https://pancatz-site.vercel.app](https://pancatz-site.vercel.app)
-
-### Docker & Coolify (Self-Hosted)
-A Docker image is automatically built and pushed to the GitHub Container Registry via GitHub Actions.
-
-Pull the latest production image on any server:
-```bash
-docker pull ghcr.io/syafiqabdha/pancatz-site:master
+```text
+https://n8n.pancatz.com/webhook/pancatz-contact
 ```
 
-Or build and run it locally using Docker Compose:
+The n8n workflow is responsible for receiving and routing the enquiry. The frontend shows a success state on a successful HTTP response and falls back to the configured email address if it fails.
+
+## Visual direction
+
+The design is intentionally dark, editorial, and creative-tech rather than generic SaaS:
+
+- Near-black canvas: `#0a0a0a`
+- Off-white reading color: `#f0ede8`
+- Electric lime action color: `#c8ff00`
+- Coral secondary signal: `#ff6b4a`
+- Geist + Geist Mono typography, glass surfaces, thin grid lines, large editorial type, and asymmetric bento layouts
+
+The current work section reserves exact image ratios for future case studies:
+
+| Asset | Desktop | Mobile | Format target |
+|---|---:|---:|---|
+| Each case study | 2400 × 1600 (3:2) | 1440 × 1800 (4:5, optional) | WebP or JPEG, ideally under 500 KB |
+
+See the [current design documentation](docs/design/) for the rationale and next-level art-direction requirements.
+
+## Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Astro 6 static-site build |
+| UI runtime | React 19 integration (available for islands/components) |
+| Styling | Tailwind CSS v4 through Vite + authored global CSS/tokens |
+| Motion | GSAP + ScrollTrigger |
+| Typography | Geist and Geist Mono via Google Fonts |
+| Contact delivery | n8n webhook |
+| Production serving | Nginx 1.27 Alpine in a multi-stage Docker image |
+| CI image publishing | GitHub Actions → GitHub Container Registry (`ghcr.io`) |
+| Self-hosting | Docker Compose; Coolify/Traefik compose configuration included |
+
+## Development
+
+### Requirements
+
+- Node.js `>=22.12.0`
+- npm
+
+### Run locally
+
 ```bash
-docker-compose up -d --build
+git clone https://github.com/syafiqabdha/pancatz-site.git
+cd pancatz-site
+npm ci
+npm run dev
 ```
-*(A `docker-compose.coolify.yml` is included for easy deployment on [Coolify](https://coolify.io/).)*
 
-## 🤖 AI Agent & Developer Handover
+Astro serves the development site at `http://localhost:4321` by default.
 
-We strictly use the **Astryx Design System**. 
+### Available commands
 
-Before contributing, please read [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to extend the site using the Astryx component workflow. This outlines the commands necessary for component generation, design tokens, and avoiding raw HTML/Tailwind practices.
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start Astro’s development server. |
+| `npm run build` | Produce an optimized static site in `dist/`. |
+| `npm run preview` | Serve the latest production build locally. |
+| `npm run astro -- …` | Run Astro CLI commands. |
+| `npm run astryx -- …` | Run the installed Astryx CLI. |
 
-## 📁 Project Structure
+### Production check
+
+```bash
+npm run build
+npm run preview
+```
+
+The build must pass before deployment. Review the site at desktop and mobile widths, test all anchor paths, pricing tabs, mobile navigation, and an enquiry submission against the intended n8n environment.
+
+## Deployment
+
+### Docker / Nginx
+
+The primary `Dockerfile` builds the static Astro output with Node 22 Alpine, then serves `dist/` with Nginx 1.27 Alpine. Nginx adds baseline security headers, gzip, clean static URL resolution, and long-lived caching for Astro assets.
+
+```bash
+docker build -t pancatz-site:local .
+docker run --rm -p 8088:80 pancatz-site:local
+```
+
+Open `http://localhost:8088`.
+
+### Docker Compose
+
+```bash
+docker compose up -d --build
+```
+
+The default host port is `8088`; override it with `PORT`:
+
+```bash
+PORT=8090 docker compose up -d --build
+```
+
+### Coolify / Traefik
+
+[`docker-compose.coolify.yml`](docker-compose.coolify.yml) attaches the container to the external `coolify` network and configures routes for `pancatz.com` and `www.pancatz.com` over TLS.
+
+### GitHub Container Registry
+
+The GitHub Actions workflow builds on pull requests and builds/publishes the image for pushes to `master` and version tags. Published images use the GitHub repository name under:
+
+```text
+ghcr.io/syafiqabdha/pancatz-site
+```
+
+## Repository map
 
 ```text
 pancatz-site/
-├── public/                 # Static assets (images, fonts, etc.)
-├── src/                    # Source code
-│   ├── assets/             # Internal assets
-│   ├── components/         # Reusable React/Astro components
-│   ├── data/               # Site data, navigation, and service details (site.ts)
-│   ├── layouts/            # Astro layout components (Layout.astro)
-│   ├── pages/              # Astro pages (index, about, services, contact, 404)
-│   └── styles/             # Global CSS and Astryx Theme configurations
-├── Dockerfile              # Docker configuration for serving static files
-├── docker-compose*.yml     # Docker Compose configurations
-├── nginx.conf              # Nginx server configuration
-├── astro.config.mjs        # Astro configuration
-└── package.json            # Dependencies and scripts
+├── src/
+│   ├── pages/index.astro       # The complete single-page experience and client interactions
+│   ├── layouts/Layout.astro    # Document shell, fixed navigation, footer, mobile drawer
+│   ├── data/site.ts            # Brand/contact configuration and enquiry intent labels
+│   └── styles/
+│       ├── global.css          # Design tokens, responsive layouts, motion and accessibility rules
+│       └── theme/              # Existing Astryx theme artifacts
+├── public/                     # Logo, OG image, favicon, and legacy/project image assets
+├── .github/workflows/          # Container build/publish workflow
+├── Dockerfile                  # Multi-stage Astro build + Nginx image
+├── Dockerfile.cloudrun         # Alternative static-server image for Cloud Run
+├── docker-compose.yml          # Local self-hosted compose setup
+├── docker-compose.coolify.yml  # Coolify/Traefik setup for pancatz.com
+├── nginx.conf                  # Static serving, caching, gzip, security headers
+├── docs/                       # Current design docs + archived planning context
+└── package.json                # Scripts, engines, and dependencies
 ```
 
-## 📬 Contact & Socials
+## Content and design guardrails
 
-- **WhatsApp:** +60 13-757 2507
-- **Email:** pancatz.design@gmail.com
-- **Instagram:** [@pancatz.design](https://www.instagram.com/pancatz.design)
-- **Facebook:** [pancatz](https://www.facebook.com/pancatz)
+- Do not invent client outcomes, testimonials, logos, or case studies.
+- Keep the site’s unified promise intact: Creative, IT, and AI are supporting disciplines, not competing homepages.
+- Replace the two work placeholders only with approved, real project material.
+- Content must remain visible without JavaScript; animation can enhance it, never gate it.
+- Preserve reduced-motion behavior and at least 44px interactive touch targets.
+- Treat the form webhook as production infrastructure: coordinate changes with its n8n workflow.
+- Review [`CONTRIBUTING.md`](CONTRIBUTING.md) before introducing Astryx components or changing its theme artifacts. Its Astryx guidance is legacy-oriented; the live page currently relies chiefly on Astro, Tailwind utilities, and `src/styles/global.css`.
+
+## Brand/contact configuration
+
+The editable site configuration is centralized in [`src/data/site.ts`](src/data/site.ts):
+
+- `pancatz.design@gmail.com`
+- [Instagram @pancatz.design](https://www.instagram.com/pancatz.design)
+- [Facebook /pancatz](https://www.facebook.com/pancatz)
+- Contact webhook URL and enquiry-category labels
 
 ---
-<div align="center">
-  <i>© Pancatz. All rights reserved.</i>
-</div>
+
+© Pancatz. All rights reserved.

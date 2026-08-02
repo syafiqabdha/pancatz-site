@@ -1,0 +1,25 @@
+# Version control and local editor metadata
+.git
+.vscode
+.idea
+
+# Local dependencies and generated output
+node_modules
+.astro
+dist
+
+# Local runtime state and logs
+.kanban-watchdog-state
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Secrets and machine-specific files
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Repository-only documentation
+/docs
