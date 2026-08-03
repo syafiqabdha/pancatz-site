@@ -631,51 +631,9 @@ p { text-wrap: pretty; }
   pointer-events: none;
 }
 
-/* ── Hero Cinema (Circular Rings + Wave) ── */
-
-@keyframes ring-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes ring-spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes ring-spin-reverse {
-  from { transform: rotate(360deg); }
-  to   { transform: rotate(0deg); }
-}
-
-@keyframes wave-drift {
-  from { transform: translateX(-2%); }
-  to   { transform: translateX(2%); }
-}
-
+/* ── Hero Canvas Background ── */
 .hero-cinema {
-  background: radial-gradient(ellipse at 50% 30%, rgba(200, 255, 0, 0.04) 0%, transparent 60%),
-              var(--canvas);
-}
-
-.hero-rings {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-ring {
-  position: absolute;
-  width: min(110vw, 110vh, 900px);
-  height: min(110vw, 110vh, 900px);
-}
-
-.hero-ring--outer { width: min(120vw, 120vh, 1000px); height: min(120vw, 120vh, 1000px); }
-.hero-ring--mid   { width: min(95vw, 95vh, 750px); height: min(95vw, 95vh, 750px); }
-.hero-ring--inner { width: min(70vw, 70vh, 520px); height: min(70vw, 70vh, 520px); }
-
-.hero-wave {
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  background: var(--canvas);
 }
 
 /* ── Horizontal Marquee ── */
