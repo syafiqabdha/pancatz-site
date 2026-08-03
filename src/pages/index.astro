@@ -4,61 +4,73 @@ import { site } from '../data/site';
 ---
 
 <Layout>
-  <section class="section relative overflow-hidden" id="hero" style="padding-top: clamp(7rem, 14vh, 11rem); padding-bottom: var(--space-2xl);">
-    <!-- Multi-layer parallax background tracks -->
-    <div class="parallax-bg parallax-layer--deep" style="top: -10%; left: -5%; width: 45%; height: 70%;">
-      <div class="parallax-geo parallax-geo--circle" style="top: 20%; left: 15%; width: 280px; height: 280px;"></div>
-      <div class="parallax-geo parallax-geo--diamond" style="top: 55%; left: 40%; width: 160px; height: 160px;"></div>
+  <section class="hero-cinema section relative flex items-center justify-center overflow-hidden" id="hero" style="min-height: 100vh; padding: clamp(1rem, 5vh, 4rem) var(--space-md);">
+    <!-- Circular text rings (SVG) -->
+    <div class="hero-rings absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+      <svg viewBox="0 0 800 800" class="hero-ring hero-ring--outer" style="animation: ring-spin-slow 60s linear infinite;">
+        <defs>
+          <path id="ring-outer" d="M400,40 a360,360 0 1,1 0,720 a360,360 0 1,1 0,-720" />
+        </defs>
+        <text fill="var(--accent)" opacity="0.12" font-size="18" font-family="var(--font-serif)" letter-spacing="0.12em">
+          <textPath href="#ring-outer">Creative · Brand Identity · UI/UX · Logo Design · Social Kits · Digital Assets · SEO Strategy ·</textPath>
+        </text>
+      </svg>
+      <svg viewBox="0 0 800 800" class="hero-ring hero-ring--mid" style="animation: ring-spin-reverse 45s linear infinite;">
+        <defs>
+          <path id="ring-mid" d="M400,80 a320,320 0 1,1 0,640 a320,320 0 1,1 0,-640" />
+        </defs>
+        <text fill="var(--primary)" opacity="0.10" font-size="16" font-family="var(--font-serif)" letter-spacing="0.10em">
+          <textPath href="#ring-mid">Print Production · Business Cards · Flyers · Banners · Signage · Packaging · Menus ·</textPath>
+        </text>
+      </svg>
+      <svg viewBox="0 0 800 800" class="hero-ring hero-ring--inner" style="animation: ring-spin 35s linear infinite;">
+        <defs>
+          <path id="ring-inner" d="M400,130 a270,270 0 1,1 0,540 a270,270 0 1,1 0,-540" />
+        </defs>
+        <text fill="var(--ink)" opacity="0.08" font-size="14" font-family="var(--font-serif)" letter-spacing="0.08em">
+          <textPath href="#ring-inner">Tech Support · Hosting · Web Apps · AI Chatbots · n8n Workflows · Automation · CRM ·</textPath>
+        </text>
+      </svg>
     </div>
-    <div class="parallax-bg parallax-layer--mid" style="top: 5%; right: -8%; width: 50%; height: 80%;">
-      <div class="parallax-geo parallax-geo--hex" style="top: 10%; right: 20%; width: 220px; height: 220px;"></div>
-      <div class="parallax-geo parallax-geo--square" style="bottom: 15%; right: 35%; width: 140px; height: 140px;"></div>
+
+    <!-- Wavy path text -->
+    <div class="hero-wave absolute bottom-[18%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-16" style="animation: wave-drift 12s ease-in-out infinite alternate;">
+        <defs>
+          <path id="wave-path" d="M0,30 Q75,5 150,30 Q225,55 300,30 Q375,5 450,30 Q525,55 600,30 Q675,5 750,30 Q825,55 900,30 Q975,5 1050,30 Q1125,55 1200,30" />
+        </defs>
+        <text fill="var(--muted-ink)" opacity="0.15" font-size="14" font-family="var(--font-serif)" letter-spacing="0.06em">
+          <textPath href="#wave-path" startOffset="50%" text-anchor="middle">Brand identity · Print production · IT support · AI automation · One studio ·</textPath>
+        </text>
+      </svg>
     </div>
-    <div class="parallax-bg parallax-layer--near" style="bottom: -5%; left: 10%; width: 40%; height: 50%;">
-      <div class="parallax-geo parallax-geo--triangle" style="bottom: 25%; left: 20%; width: 180px; height: 180px;"></div>
-    </div>
-    <div class="parallax-bg hero-accent-line" style="top: 0; right: 28%; height: 50%;"></div>
-    <div class="parallax-bg hero-accent-line" style="bottom: 0; left: 15%; height: 35%;"></div>
 
-    <div class="relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <div class="lg:col-span-7">
-          <div class="flex items-center gap-3 mb-8 section-reveal">
-            <span class="editorial-rule"></span>
-            <span class="section-label">Creative &middot; Print &middot; Tech &middot; AI</span>
-          </div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto">
+      <div class="flex items-center justify-center gap-3 mb-8 section-reveal">
+        <span class="editorial-rule"></span>
+        <span class="section-label">Creative · Print · Tech · AI</span>
+      </div>
 
-          <h1 class="hero-title section-reveal">
-            Businesses that<br />
-            <span class="text-[var(--primary)]">look sharper</span><br />
-            and <span class="text-[var(--accent)]">run smoother.</span>
-          </h1>
+      <h1 class="hero-title section-reveal" style="font-size: var(--step-4); line-height: 1.05; margin-bottom: var(--space-md);">
+        Businesses that<br />
+        <em class="text-[var(--primary)]" style="font-style: italic;">look sharper</em><br />
+        and <em class="text-[var(--accent)]" style="font-style: italic;">run smoother.</em>
+      </h1>
 
-          <div class="mt-10 section-reveal">
-            <p class="text-[var(--step-0)] text-[var(--muted-ink)] leading-relaxed max-w-md mb-8">
-              One partner for brand, infrastructure, and automation. We design what people see and fix what they don't.
-            </p>
-            <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-              <a href="#start" class="btn-primary">Start a project</a>
-              <a href="#work" class="btn-secondary">See selected work</a>
-            </div>
-          </div>
-
-          <div class="mt-12 proof-strip section-reveal">
-            <span>Johor based</span>
-            <span>Transparent MYR pricing</span>
-            <span>Creative &middot; Print &middot; Tech &middot; AI — one roof</span>
-          </div>
+      <div class="mt-8 section-reveal">
+        <p class="text-[var(--step-0)] text-[var(--muted-ink)] leading-relaxed max-w-lg mx-auto mb-8">
+          One partner for brand, infrastructure, and automation. We design what people see and fix what they don't.
+        </p>
+        <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+          <a href="#start" class="btn-primary">Start a project</a>
+          <a href="#work" class="btn-secondary">See selected work</a>
         </div>
+      </div>
 
-        <div class="lg:col-span-5 section-reveal">
-          <div class="signal-board" aria-hidden="true">
-            <div class="signal-cell signal-cell--a"></div>
-            <div class="signal-cell signal-cell--b"></div>
-            <div class="signal-cell signal-cell--c"></div>
-            <div class="signal-cell signal-cell--d"></div>
-          </div>
-        </div>
+      <div class="mt-12 proof-strip section-reveal">
+        <span>Johor based</span>
+        <span>Transparent MYR pricing</span>
+        <span>Creative · Print · Tech · AI — one roof</span>
       </div>
     </div>
   </section>
