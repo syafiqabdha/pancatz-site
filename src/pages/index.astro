@@ -203,6 +203,36 @@ import { site } from '../data/site';
     </article>
   </section>
 
+  <!-- Marquee strip between Work and Services -->
+  <div class="marquee-strip section-reveal" aria-hidden="true">
+    <div class="marquee-track py-4">
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Selected Work</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Creative</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Print</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Tech</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">AI</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Full Partnership</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Selected Work</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Creative</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Print</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Tech</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">AI</span>
+      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Full Partnership</span>
+    </div>
+  </div>
+
   <section class="section" id="services" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-14 section-reveal">
       <div class="md:col-span-4">
@@ -340,7 +370,7 @@ import { site } from '../data/site';
     </div>
   </section>
 
-  <section class="section" id="start" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
+  <section class="section contact-blur-bg" id="start" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); border-top: 1px solid var(--surface-border);">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 section-reveal">
       <div class="md:col-span-5">
         <div class="section-label mb-4">04 &mdash; START HERE</div>
@@ -474,7 +504,7 @@ import { site } from '../data/site';
     <div class="text-center section-reveal" style="padding-top: var(--space-lg); border-top: 1px solid var(--surface-border);">
       <p class="cta-text font-bold mb-2">Ready when<br />you are.</p>
       <p class="text-[var(--muted-ink)] text-sm mb-10 max-w-sm mx-auto">One conversation is all it takes. Fill in the form above or email us directly.</p>
-      <a href="#start" class="btn-primary">Start a conversation</a>
+      <a href="#start" class="btn-primary pulse">Start a conversation</a>
     </div>
   </section>
 </Layout>
@@ -615,7 +645,7 @@ import { site } from '../data/site';
           ${data.items.map(i => `
             <div class="flex justify-between items-center py-4 border-b border-[var(--surface-border)]">
               <span class="text-sm">${i.name}</span>
-              <span class="font-mono text-sm text-[var(--primary)]">${i.price}</span>
+              <span class="font-mono text-sm text-[var(--primary)] price-num" data-price="${i.price}">${i.price}</span>
             </div>
           `).join('')}
         </div>
@@ -623,6 +653,18 @@ import { site } from '../data/site';
       `;
       content.innerHTML = '';
       content.appendChild(card);
+      // Animate price numbers on render
+      requestAnimationFrame(() => {
+        card.querySelectorAll('.price-num').forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(8px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          requestAnimationFrame(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          });
+        });
+      });
     }
 
     steps.forEach(btn => {
@@ -647,90 +689,82 @@ import { site } from '../data/site';
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const parallaxLayers = [
-      { sel: '.parallax-layer--deep', speed: 0.15 },
-      { sel: '.parallax-layer--mid',  speed: 0.30 },
-      { sel: '.parallax-layer--near', speed: 0.50 },
-    ];
-
-    parallaxLayers.forEach(({ sel, speed }) => {
-      const els = document.querySelectorAll(sel);
-      els.forEach(el => {
-        gsap.to(el, {
-          y: () => -(ScrollTrigger.maxScroll(window) * speed),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: el.closest('section') || document.body,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.1,
-          }
-        });
-      });
-    });
-
-    const legacyParallax = document.querySelectorAll('.parallax-bg:not([class*="parallax-layer"])');
-    legacyParallax.forEach(el => {
-      gsap.to(el, {
-        y: () => -(ScrollTrigger.maxScroll(window) * 0.3),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el.closest('section') || document.body,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.1,
-        }
-      });
-    });
-
     const reveals = document.querySelectorAll('.section-reveal');
     reveals.forEach(el => {
       gsap.fromTo(el,
-        { opacity: 0.4, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            end: 'top 55%',
-            scrub: 0.1,
-          }
+        { opacity: 0.3, y: 20 },
+        { opacity: 1, y: 0, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 55%', scrub: 1 }
         }
       );
     });
 
-    const hoverMediaEls = document.querySelectorAll('[data-hover-media]');
-    hoverMediaEls.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        gsap.to(el, { scale: 1.02, duration: 0.4, ease: 'power2.out' });
-      });
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, { scale: 1, duration: 0.4, ease: 'power2.out' });
-      });
+    // ── Process: stage numbers scale + glow ──
+    const processNums = document.querySelectorAll('.process-num');
+    processNums.forEach((num, i) => {
+      gsap.fromTo(num,
+        { scale: 0.6, opacity: 0.2 },
+        { scale: 1, opacity: 1, duration: 0.8, delay: i * 0.2, ease: 'back.out(1.4)',
+          scrollTrigger: { trigger: num, start: 'top 82%', toggleActions: 'play none none reverse' }
+        }
+      );
     });
 
+    // ── Capabilities: staggered tilt cards ──
+    const capCards = document.querySelectorAll('#capabilities .bento-card');
+    capCards.forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40, rotateY: 8, rotateX: -4 },
+        { opacity: 1, y: 0, rotateY: 0, rotateX: 0, ease: 'power2.out', duration: 1, delay: i * 0.15,
+          scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // ── Services: depth reveal ──
+    const svcCards = document.querySelectorAll('#services .bento-card');
+    svcCards.forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 50, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, ease: 'power3.out', duration: 1, delay: i * 0.12,
+          scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // ── Work/Portfolio: pinned frames ──
+    const features = document.querySelectorAll('.editorial-feature');
+    features.forEach((f, i) => {
+      gsap.fromTo(f,
+        { opacity: 0, scale: 0.98, y: 30 },
+        { opacity: 1, scale: 1, y: 0, ease: 'power2.out', duration: 1.2, delay: i * 0.2,
+          scrollTrigger: { trigger: f, start: 'top 88%', toggleActions: 'play none none reverse' }
+        }
+      );
+    });
+
+    // ── Contact CTA: motion-blur reveal ──
+    const ctaSection = document.querySelector('#process .cta-text');
+    if (ctaSection) {
+      gsap.fromTo(ctaSection,
+        { filter: 'blur(8px)', opacity: 0, scale: 0.95 },
+        { filter: 'blur(0px)', opacity: 1, scale: 1, ease: 'power3.out', duration: 1.4,
+          scrollTrigger: { trigger: ctaSection, start: 'top 90%', toggleActions: 'play none none reverse' }
+        }
+      );
+    }
+
+    // ── Hover tilt on bento cards ──
     const bentoCards = document.querySelectorAll('.bento-card');
     bentoCards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        gsap.to(card, {
-          rotateY: x * 2,
-          rotateX: -y * 2,
-          duration: 0.6,
-          ease: 'power2.out',
-        });
+        gsap.to(card, { rotateY: x * 3, rotateX: -y * 3, duration: 0.7, ease: 'power2.out' });
       });
       card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          rotateY: 0,
-          rotateX: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-        });
+        gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'power2.out' });
       });
     });
   }
