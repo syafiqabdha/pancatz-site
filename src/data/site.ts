@@ -1,8 +1,8 @@
 export const site = {
   name: 'Pancatz',
-  tagline: 'Premium creative & intelligent technology',
+  tagline: 'Creative · Print · Tech · AI — one studio, four disciplines',
   description:
-    'A modern studio delivering exceptional design, print, and AI-powered systems for ambitious teams.',
+    'Pancatz is a Kulai, Johor-based studio offering Creative, Print, Tech, and AI services. Brand design, print production, IT support, web development, hosting, SEO, and AI automation — standalone or as a Full Partnership. Serving Malaysia and Singapore.',
   email: 'pancatz.design@gmail.com',
   instagramUrl: 'https://www.instagram.com/pancatz.design',
   facebookUrl: 'https://www.facebook.com/pancatz',
@@ -12,8 +12,8 @@ export const site = {
 
 export const contactIntents = {
   general: 'General enquiry',
-  creativeHub: 'Creative / Brand',
-  printing: 'Print production',
-  repair: 'IT / Repair',
-  itAi: 'AI / Automation',
+  creative: 'Creative — Brand, Design, UI/UX',
+  print: 'Print — Business cards, Flyers, Signage',
+  tech: 'Tech — IT Support, Hosting, Web Dev',
+  ai: 'AI — Chatbots, Automation, Workflows',
 };
