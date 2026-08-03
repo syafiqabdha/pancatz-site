@@ -666,16 +666,16 @@ p { text-wrap: pretty; }
 
 .hero-ring {
   position: absolute;
-  width: min(90vw, 90vh, 700px);
-  height: min(90vw, 90vh, 700px);
+  width: min(110vw, 110vh, 900px);
+  height: min(110vw, 110vh, 900px);
 }
 
-.hero-ring--outer { width: min(95vw, 95vh, 750px); height: min(95vw, 95vh, 750px); }
-.hero-ring--mid   { width: min(75vw, 75vh, 580px); height: min(75vw, 75vh, 580px); }
-.hero-ring--inner { width: min(55vw, 55vh, 420px); height: min(55vw, 55vh, 420px); }
+.hero-ring--outer { width: min(120vw, 120vh, 1000px); height: min(120vw, 120vh, 1000px); }
+.hero-ring--mid   { width: min(95vw, 95vh, 750px); height: min(95vw, 95vh, 750px); }
+.hero-ring--inner { width: min(70vw, 70vh, 520px); height: min(70vw, 70vh, 520px); }
 
 .hero-wave {
-  mask-image: linear-gradient(to right, transparent 5%, black 20%, black 80%, transparent 95%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 /* ── Horizontal Marquee ── */
