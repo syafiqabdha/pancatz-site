@@ -5,45 +5,8 @@ import { site } from '../data/site';
 
 <Layout>
   <section class="hero-cinema section relative flex items-center justify-center overflow-hidden" id="hero" style="min-height: 100vh; padding: clamp(1rem, 5vh, 4rem) var(--space-md);">
-    <!-- Circular text rings (SVG) -->
-    <div class="hero-rings absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-      <svg viewBox="0 0 800 800" class="hero-ring hero-ring--outer" style="animation: ring-spin-slow 60s linear infinite;">
-        <defs>
-          <path id="ring-outer" d="M400,40 a360,360 0 1,1 0,720 a360,360 0 1,1 0,-720" />
-        </defs>
-        <text fill="var(--accent)" opacity="0.22" font-size="20" font-family="var(--font-serif)" letter-spacing="0.14em">
-          <textPath href="#ring-outer">Creative · Brand Identity · UI/UX · Logo Design · Social Kits · Digital Assets · SEO Strategy ·</textPath>
-        </text>
-      </svg>
-      <svg viewBox="0 0 800 800" class="hero-ring hero-ring--mid" style="animation: ring-spin-reverse 45s linear infinite;">
-        <defs>
-          <path id="ring-mid" d="M400,80 a320,320 0 1,1 0,640 a320,320 0 1,1 0,-640" />
-        </defs>
-        <text fill="var(--primary)" opacity="0.18" font-size="17" font-family="var(--font-serif)" letter-spacing="0.12em">
-          <textPath href="#ring-mid">Print Production · Business Cards · Flyers · Banners · Signage · Packaging · Menus ·</textPath>
-        </text>
-      </svg>
-      <svg viewBox="0 0 800 800" class="hero-ring hero-ring--inner" style="animation: ring-spin 35s linear infinite;">
-        <defs>
-          <path id="ring-inner" d="M400,130 a270,270 0 1,1 0,540 a270,270 0 1,1 0,-540" />
-        </defs>
-        <text fill="var(--ink)" opacity="0.15" font-size="15" font-family="var(--font-serif)" letter-spacing="0.10em">
-          <textPath href="#ring-inner">Tech Support · Hosting · Web Apps · AI Chatbots · n8n Workflows · Automation · CRM ·</textPath>
-        </text>
-      </svg>
-    </div>
-
-    <!-- Wavy path text -->
-    <div class="hero-wave absolute bottom-[6%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-20" style="animation: wave-drift 12s ease-in-out infinite alternate;">
-        <defs>
-          <path id="wave-path" d="M0,40 Q90,5 180,40 Q270,75 360,40 Q450,5 540,40 Q630,75 720,40 Q810,5 900,40 Q990,75 1080,40 Q1170,5 1260,40 Q1350,75 1440,40" />
-        </defs>
-        <text fill="var(--muted-ink)" opacity="0.25" font-size="15" font-family="var(--font-serif)" letter-spacing="0.08em">
-          <textPath href="#wave-path" startOffset="50%" text-anchor="middle">Brand identity · Print production · IT support · AI automation · One studio ·</textPath>
-        </text>
-      </svg>
-    </div>
+    <!-- Canvas particle wave background -->
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0" aria-hidden="true"></canvas>
 
     <div class="relative z-10 text-center max-w-4xl mx-auto">
       <div class="flex items-center justify-center gap-3 mb-8 section-reveal">
@@ -769,6 +732,66 @@ import { site } from '../data/site';
     });
   }
 
+  function initHeroCanvas() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let w, h, animId;
+    const COLS = 100, ROWS = 50;
+
+    function resize() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function draw(t) {
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.28)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (let i = 0; i < COLS; i++) {
+        for (let j = 0; j < ROWS; j++) {
+          const x = (i / COLS) * w;
+          const z = j / ROWS;
+          const wave = Math.sin(i * 0.18 + t * 0.0007) * 35
+                     + Math.sin(z * 12 + t * 0.0004) * 18
+                     + Math.cos(i * 0.08 + z * 5 + t * 0.0005) * 12;
+          const perspective = 0.35 + z * 0.65;
+          const y = h * 0.78 - wave * perspective - z * 100;
+          const size = (0.6 + z * 1.6) * (1 + Math.sin(t * 0.002 + i * 0.3) * 0.25);
+          const crest = Math.max(0, 1 - Math.abs(wave) / 45);
+          const alpha = 0.12 + z * 0.40 + crest * 0.40;
+
+          // Pancatz colors: lime (#c8ff00) / coral (#ff6b4a) mix
+          const r = crest > 0.5 ? 255 : 200 - crest * 80;
+          const g = crest > 0.5 ? 107 + crest * 148 : 255 - crest * 55;
+          const b = crest > 0.5 ? 74 - crest * 74 : 0 + crest * 60;
+
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${Math.round(r)},${Math.round(g)},${Math.round(b)},${alpha})`;
+          ctx.fill();
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
+
+      if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
+    }
+
+    if (prefersReducedMotion) {
+      // Render a single static frame
+      resize();
+      draw(0);
+    } else {
+      animId = requestAnimationFrame(draw);
+    }
+  }
+
+  initHeroCanvas();
   initContactForm();
   initPricing();
   initGSAP();
