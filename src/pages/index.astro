@@ -739,7 +739,13 @@ import { site } from '../data/site';
     if (!ctx) return;
 
     let w, h, animId;
-    const COLS = 100, ROWS = 50;
+    const COLS = 70, ROWS = 40;
+    // Pre-generate random offsets per particle to break uniformity
+    const offsets = new Float32Array(COLS * ROWS * 2);
+    for (let i = 0; i < COLS * ROWS; i++) {
+      offsets[i * 2] = (Math.random() - 0.5) * 0.6;
+      offsets[i * 2 + 1] = (Math.random() - 0.5) * 0.5;
+    }
 
     function resize() {
       w = canvas.width = canvas.offsetWidth;
@@ -749,32 +755,35 @@ import { site } from '../data/site';
     window.addEventListener('resize', resize);
 
     function draw(t) {
-      ctx.fillStyle = 'rgba(10, 10, 10, 0.28)';
+      ctx.fillStyle = 'rgba(10, 10, 14, 0.35)';
       ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = 'lighter';
 
+      let k = 0;
       for (let i = 0; i < COLS; i++) {
         for (let j = 0; j < ROWS; j++) {
-          const x = (i / COLS) * w;
-          const z = j / ROWS;
-          const wave = Math.sin(i * 0.18 + t * 0.0007) * 35
-                     + Math.sin(z * 12 + t * 0.0004) * 18
-                     + Math.cos(i * 0.08 + z * 5 + t * 0.0005) * 12;
-          const perspective = 0.35 + z * 0.65;
-          const y = h * 0.78 - wave * perspective - z * 100;
-          const size = (0.6 + z * 1.6) * (1 + Math.sin(t * 0.002 + i * 0.3) * 0.25);
-          const crest = Math.max(0, 1 - Math.abs(wave) / 45);
-          const alpha = 0.12 + z * 0.40 + crest * 0.40;
+          const ox = offsets[k * 2], oy = offsets[k * 2 + 1];
+          const x = (i / COLS + ox * 0.15) * w;
+          const z = j / ROWS + oy * 0.08;
+          const wave = Math.sin(i * 0.15 + t * 0.0005 + ox * 3) * 25
+                     + Math.sin(z * 10 + t * 0.0003 + oy * 4) * 14
+                     + Math.cos(i * 0.06 + z * 4 + t * 0.0004) * 10;
+          const perspective = 0.4 + z * 0.6;
+          const y = h * 0.82 - wave * perspective - z * 90;
+          const size = (0.5 + z * 1.2) * (1 + Math.sin(t * 0.0015 + ox * 5) * 0.15);
+          const crest = Math.max(0, 1 - Math.abs(wave) / 35);
+          const alpha = 0.08 + z * 0.30 + crest * 0.25;
 
-          // Pancatz colors: lime (#c8ff00) / coral (#ff6b4a) mix
-          const r = crest > 0.5 ? 255 : 200 - crest * 80;
-          const g = crest > 0.5 ? 107 + crest * 148 : 255 - crest * 55;
-          const b = crest > 0.5 ? 74 - crest * 74 : 0 + crest * 60;
+          // Muted cosmic palette — deep violet to soft white, no harsh lime/coral
+          const cr = 120 + crest * 100 + z * 40;
+          const cg = 100 + crest * 80 + z * 30;
+          const cb = 180 + crest * 75 + z * 50;
 
           ctx.beginPath();
           ctx.arc(x, y, size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${Math.round(r)},${Math.round(g)},${Math.round(b)},${alpha})`;
+          ctx.fillStyle = `rgba(${Math.round(cr)},${Math.round(cg)},${Math.round(cb)},${alpha.toFixed(3)})`;
           ctx.fill();
+          k++;
         }
       }
       ctx.globalCompositeOperation = 'source-over';
@@ -783,7 +792,6 @@ import { site } from '../data/site';
     }
 
     if (prefersReducedMotion) {
-      // Render a single static frame
       resize();
       draw(0);
     } else {
