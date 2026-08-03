@@ -755,6 +755,12 @@ import { site } from '../data/site';
     window.addEventListener('resize', resize);
 
     function draw(t) {
+      ctx.save();
+      const cx = w / 2, cy = h * 0.55;
+      ctx.translate(cx, cy);
+      ctx.rotate(-Math.PI / 4);
+      ctx.translate(-cx, -cy);
+
       ctx.fillStyle = 'rgba(10, 10, 14, 0.35)';
       ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = 'lighter';
@@ -772,7 +778,7 @@ import { site } from '../data/site';
           const y = h * 0.82 - wave * perspective - z * 90;
           const size = (0.5 + z * 1.2) * (1 + Math.sin(t * 0.0015 + ox * 5) * 0.15);
           const crest = Math.max(0, 1 - Math.abs(wave) / 35);
-          const alpha = 0.08 + z * 0.30 + crest * 0.25;
+          const alpha = Math.min(0.30, 0.06 + z * 0.20 + crest * 0.18);
 
           // Muted cosmic palette — deep violet to soft white, no harsh lime/coral
           const cr = 120 + crest * 100 + z * 40;
@@ -787,6 +793,7 @@ import { site } from '../data/site';
         }
       }
       ctx.globalCompositeOperation = 'source-over';
+      ctx.restore();
 
       if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
     }
