@@ -6,7 +6,7 @@ import { site } from '../data/site';
 <Layout>
   <section class="hero-cinema section relative flex items-center justify-center overflow-hidden" id="hero" style="min-height: 100vh; padding: clamp(1rem, 5vh, 4rem) var(--space-md);">
     <!-- Canvas particle wave background -->
-    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0" aria-hidden="true"></canvas>
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0" aria-hidden="true" style="transform: perspective(1000px) rotateX(45deg); transform-origin: center bottom; opacity: 0.8;"></canvas>
 
     <div class="relative z-10 text-center max-w-4xl mx-auto">
       <div class="flex items-center justify-center gap-3 mb-8 section-reveal">
@@ -755,12 +755,6 @@ import { site } from '../data/site';
     window.addEventListener('resize', resize);
 
     function draw(t) {
-      ctx.save();
-      const cx = w / 2, cy = h * 0.55;
-      ctx.translate(cx, cy);
-      ctx.rotate(-Math.PI / 4);
-      ctx.translate(-cx, -cy);
-
       ctx.fillStyle = 'rgba(10, 10, 14, 0.35)';
       ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = 'lighter';
@@ -793,7 +787,6 @@ import { site } from '../data/site';
         }
       }
       ctx.globalCompositeOperation = 'source-over';
-      ctx.restore();
 
       if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
     }
