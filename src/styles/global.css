@@ -645,7 +645,7 @@ p { text-wrap: pretty; }
   background: var(--canvas);
 }
 
-/* ── Horizontal Marquee ── */
+/* ── Dual-Direction Logo Marquee ── */
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -654,17 +654,16 @@ p { text-wrap: pretty; }
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 70s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
 }
 
 .marquee-track:hover {
   animation-play-state: paused;
-}
-
-.marquee-strip {
-  overflow: hidden;
-  border-top: 1px solid var(--surface-border);
-  border-bottom: 1px solid var(--surface-border);
 }
 
 /* ── Process Glow ── */

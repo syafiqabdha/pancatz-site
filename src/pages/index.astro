@@ -1,6 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
+
+const logosRow1 = [
+  { name: "Acme Corp", url: "https://placehold.co/120x40/transparent/333?text=Acme+Corp" },
+  { name: "Globex", url: "https://placehold.co/100x40/transparent/333?text=Globex" },
+  { name: "Soylent", url: "https://placehold.co/140x40/transparent/333?text=Soylent" },
+  { name: "Initech", url: "https://placehold.co/110x40/transparent/333?text=Initech" },
+  { name: "Umbrella Corporation", url: "https://placehold.co/130x40/transparent/333?text=Umbrella" },
+  { name: "Cyberdyne Systems", url: "https://placehold.co/150x40/transparent/333?text=Cyberdyne" },
+  { name: "Massive Dynamic", url: "https://placehold.co/120x40/transparent/333?text=Massive" }
+];
+
+const logosRow2 = [
+  { name: "Stark Industries", url: "https://placehold.co/140x40/transparent/333?text=Stark+Ind" },
+  { name: "Wayne Enterprises", url: "https://placehold.co/130x40/transparent/333?text=Wayne+Ent" },
+  { name: "LexCorp", url: "https://placehold.co/110x40/transparent/333?text=LexCorp" },
+  { name: "Oscorp", url: "https://placehold.co/150x40/transparent/333?text=Oscorp" },
+  { name: "Tyrell Corporation", url: "https://placehold.co/100x40/transparent/333?text=Tyrell" },
+  { name: "Weyland-Yutani", url: "https://placehold.co/120x40/transparent/333?text=Weyland" },
+  { name: "Vault-Tec", url: "https://placehold.co/130x40/transparent/333?text=Vault-Tec" }
+];
 ---
 
 <Layout>
@@ -164,33 +184,28 @@ import { site } from '../data/site';
     </article>
   </section>
 
-  <!-- Marquee strip between Work and Services -->
-  <div class="marquee-strip section-reveal" aria-hidden="true">
-    <div class="marquee-track py-4">
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Selected Work</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Creative</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Print</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Tech</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">AI</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Full Partnership</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
+  <!-- Dual-Direction Logo Marquee between Work and Services -->
+  <div class="flex flex-col gap-3 py-6 bg-transparent border-none overflow-hidden section-reveal" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);" aria-hidden="true">
+    <!-- Row 1 -->
+    <div class="marquee-track flex w-max items-center gap-12 px-6">
+      {logosRow1.map(logo => (
+        <img src={logo.url} alt={logo.name} class="h-10 w-auto object-contain grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100" />
+      ))}
       <!-- Duplicate for seamless loop -->
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Selected Work</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Creative</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Print</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Tech</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">AI</span>
-      <span class="text-[var(--primary)] opacity-30 px-4">·</span>
-      <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">Full Partnership</span>
+      {logosRow1.map(logo => (
+        <img src={logo.url} alt={logo.name} class="h-10 w-auto object-contain grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100" />
+      ))}
+    </div>
+
+    <!-- Row 2 -->
+    <div class="marquee-track reverse flex w-max items-center gap-12 px-6">
+      {logosRow2.map(logo => (
+        <img src={logo.url} alt={logo.name} class="h-10 w-auto object-contain grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100" />
+      ))}
+      <!-- Duplicate for seamless loop -->
+      {logosRow2.map(logo => (
+        <img src={logo.url} alt={logo.name} class="h-10 w-auto object-contain grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100" />
+      ))}
     </div>
   </div>
 
