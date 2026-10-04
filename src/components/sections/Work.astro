@@ -1,0 +1,44 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+// Placeholder frames until real, approved case studies are supplied.
+const cases = [
+  { n: '01', mediaFirst: true },
+  { n: '02', mediaFirst: false },
+];
+---
+
+<section class="section section--block" id="work">
+  <SectionHeader
+    label="02 — SELECTED WORK"
+    title={['Featured', 'projects.']}
+    intro="Two editorial case studies from our practice. Visuals pending — real project material will replace the compositions below."
+    layout="wide"
+  />
+
+  {cases.map(({ n, mediaFirst }, i) => (
+    <article class:list={['editorial-feature section-reveal', i < cases.length - 1 && 'mb-8']}>
+      <div class="grid grid-cols-1 md:grid-cols-12">
+        <div class:list={['md:col-span-8 relative overflow-hidden', !mediaFirst && 'order-1 md:order-2']}>
+          <div class={`project-placeholder project-placeholder--${n}`} data-hover-media>
+            <div class="project-placeholder-frame" aria-hidden="true"></div>
+            <div class="project-placeholder-label">PROJECT {n} — REPLACEMENT VISUAL PENDING</div>
+          </div>
+        </div>
+        <div class:list={['md:col-span-4 p-6 md:p-8 lg:p-10 flex flex-col justify-between', !mediaFirst && 'order-2 md:order-1']}>
+          <div>
+            <div class="editorial-meta mb-4">Case Study {n}</div>
+            <h3 class="text-[var(--step-2)] font-bold tracking-tight mb-4">Editorial feature placeholder</h3>
+            <p class="text-[var(--muted-ink)] text-sm leading-relaxed mb-6">
+              This frame is reserved for a real project case study. The final composition will include client context, deliverables, and visual evidence at 2400 × 1600 px (3:2) for desktop and 1440 × 1800 px (4:5) for mobile.
+            </p>
+          </div>
+          <div>
+            <div class="editorial-rule mb-4"></div>
+            <div class="editorial-meta">Deliverables · Context · Outcome</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  ))}
+</section>

@@ -1,0 +1,56 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { pricing } from '../../data/pricing';
+
+const tab = 'step-btn px-5 py-2.5 rounded-full border border-[var(--surface-border)] text-sm font-medium';
+const active = 'bg-[var(--primary)] text-[#0a0a0a] border-[var(--primary)]';
+const inactive = 'text-[var(--muted-ink)] hover:text-[var(--ink)]';
+---
+
+<section class="section section--block" id="pricing">
+  <SectionHeader
+    label="05 — PRICING"
+    title={['Transparent', 'MYR pricing.']}
+    intro="Indicative pricing for common scopes. Custom work is quoted after a quick conversation. All prices in Malaysian Ringgit."
+    class="mb-12"
+  />
+
+  <div class="mb-8 section-reveal">
+    <div class="flex flex-wrap gap-2.5" id="pricing-steps" role="tablist" aria-label="Pricing categories">
+      {pricing.map((tier, i) => (
+        <button data-step={tier.id} class:list={[tab, i === 0 ? active : inactive]} role="tab" aria-selected={i === 0 ? 'true' : 'false'}>
+          {tier.tab}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div id="pricing-content" class="space-y-6 section-reveal" role="tabpanel">
+    {pricing.map((tier, i) => (
+      <div class="bento-card" data-panel={tier.id} hidden={i !== 0}>
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-6 gap-3">
+          <h3 class="text-[var(--step-2)] font-bold tracking-tight">{tier.title}</h3>
+          <a href="#start" class="text-sm text-[var(--primary)] underline hover:no-underline whitespace-nowrap min-h-[44px] inline-flex items-center">Get a quote</a>
+        </div>
+        <div class="space-y-0 mb-8">
+          {tier.items.map((item) => (
+            <div class="flex justify-between items-center py-4 border-b border-[var(--surface-border)]">
+              <span class="text-sm">{item.name}</span>
+              <span class="font-mono text-sm text-[var(--primary)] price-num">{item.price}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-[var(--muted-ink)]">{tier.note}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-8 text-xs text-[var(--muted-ink)] max-w-md section-reveal">
+    All prices in MYR. Custom work quoted after a quick chat. Monthly retainers include priority support and rollover hours.
+  </div>
+</section>
+
+<script>
+  import { initPricing } from '../../scripts/pricing';
+  initPricing();
+</script>

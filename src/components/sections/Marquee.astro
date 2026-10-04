@@ -1,0 +1,17 @@
+---
+import { marqueeWords } from '../../data/disciplines';
+
+// The track is rendered twice so the CSS loop at -50% is seamless.
+const loop = [...marqueeWords, ...marqueeWords];
+---
+
+<div class="marquee-strip section-reveal" aria-hidden="true">
+  <div class="marquee-track py-4">
+    {loop.map((word, i) => (
+      <>
+        <span class="text-[var(--muted-ink)] text-sm tracking-widest uppercase px-8 whitespace-nowrap font-mono">{word}</span>
+        {i < loop.length - 1 && <span class="text-[var(--primary)] opacity-30 px-4">·</span>}
+      </>
+    ))}
+  </div>
+</div>

@@ -16,7 +16,7 @@
 
 ## What this build is
 
-Pancatz is an Astro static site for a Johor Bahru–based studio that combines three connected disciplines:
+Pancatz is an Astro static site for a Kulai, Johor–based studio that combines three connected disciplines:
 
 - **Creative:** brand identity, social assets, menus, signage, and print production
 - **IT support:** PC/laptop repair, Wi-Fi and network infrastructure, ongoing tech care
@@ -71,7 +71,6 @@ See the [current design documentation](docs/design/) for the rationale and next-
 | Layer | Choice |
 |---|---|
 | Framework | Astro 6 static-site build |
-| UI runtime | React 19 integration (available for islands/components) |
 | Styling | Tailwind CSS v4 through Vite + authored global CSS/tokens |
 | Motion | GSAP + ScrollTrigger |
 | Typography | Geist and Geist Mono via Google Fonts |
@@ -106,7 +105,6 @@ Astro serves the development site at `http://localhost:4321` by default.
 | `npm run build` | Produce an optimized static site in `dist/`. |
 | `npm run preview` | Serve the latest production build locally. |
 | `npm run astro -- …` | Run Astro CLI commands. |
-| `npm run astryx -- …` | Run the installed Astryx CLI. |
 
 ### Production check
 
@@ -159,20 +157,22 @@ ghcr.io/syafiqabdha/pancatz-site
 ```text
 pancatz-site/
 ├── src/
-│   ├── pages/index.astro       # The complete single-page experience and client interactions
+│   ├── pages/index.astro       # Page composition: imports each section in order
 │   ├── layouts/Layout.astro    # Document shell, fixed navigation, footer, mobile drawer
-│   ├── data/site.ts            # Brand/contact configuration and enquiry intent labels
-│   └── styles/
-│       ├── global.css          # Design tokens, responsive layouts, motion and accessibility rules
-│       └── theme/              # Existing Astryx theme artifacts
-├── public/                     # Logo, OG image, favicon, and legacy/project image assets
+│   ├── components/
+│   │   ├── SectionHeader.astro # Shared label + title + intro block
+│   │   └── sections/           # Hero, Capabilities, Work, Marquee, Services, Contact, Pricing, Process
+│   ├── data/                   # site.ts (brand/contact), disciplines.ts (services copy), pricing.ts
+│   ├── scripts/                # nav, contact-form, pricing tabs, GSAP motion
+│   └── styles/global.css       # Design tokens, responsive layouts, motion and accessibility rules
+├── public/                     # Logo, OG image, favicon
 ├── .github/workflows/          # Container build/publish workflow
 ├── Dockerfile                  # Multi-stage Astro build + Nginx image
 ├── Dockerfile.cloudrun         # Alternative static-server image for Cloud Run
 ├── docker-compose.yml          # Local self-hosted compose setup
 ├── docker-compose.coolify.yml  # Coolify/Traefik setup for pancatz.com
 ├── nginx.conf                  # Static serving, caching, gzip, security headers
-├── docs/                       # Current design docs + archived planning context
+├── docs/                       # Design docs and agent notes
 └── package.json                # Scripts, engines, and dependencies
 ```
 
@@ -184,11 +184,11 @@ pancatz-site/
 - Content must remain visible without JavaScript; animation can enhance it, never gate it.
 - Preserve reduced-motion behavior and at least 44px interactive touch targets.
 - Treat the form webhook as production infrastructure: coordinate changes with its n8n workflow.
-- Review [`CONTRIBUTING.md`](CONTRIBUTING.md) before introducing Astryx components or changing its theme artifacts. Its Astryx guidance is legacy-oriented; the live page currently relies chiefly on Astro, Tailwind utilities, and `src/styles/global.css`.
+- Review [`CONTRIBUTING.md`](CONTRIBUTING.md) for where each kind of change lives.
 
 ## Brand/contact configuration
 
-The editable site configuration is centralized in [`src/data/site.ts`](src/data/site.ts):
+The editable site configuration is centralized in [`src/data/site.ts`](src/data/site.ts); service copy and prices live alongside it in `src/data/`:
 
 - `pancatz.design@gmail.com`
 - [Instagram @pancatz.design](https://www.instagram.com/pancatz.design)

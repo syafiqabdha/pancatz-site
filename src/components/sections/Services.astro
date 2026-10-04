@@ -1,0 +1,45 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { services } from '../../data/disciplines';
+
+// Full class names so Tailwind can see them.
+const dot = { primary: 'bg-[var(--primary)]', accent: 'bg-[var(--accent)]' };
+---
+
+<section class="section section--block" id="services">
+  <SectionHeader
+    label="03 — SERVICES"
+    title={['What we', 'deliver.']}
+    intro="Each lane has its own craft and workflow. Choose where you need help, or combine them for a full partnership."
+  />
+
+  <div class="bento-grid section-reveal">
+    {services.map((s) => (
+      <div class:list={['bento-card', `bento-card--${s.size}`, s.featured && 'bento-card--featured']}>
+        <div class="flex items-start justify-between mb-6">
+          <div class="section-label" style={`color: var(--${s.tone});`}>{s.label}</div>
+          <div class="editorial-meta">{s.meta}</div>
+        </div>
+        <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-6">{s.headline[0]}<br />{s.headline[1]}</h3>
+        <div class="text-[var(--muted-ink)] space-y-2.5 mb-8 text-sm leading-relaxed">
+          {s.items.map((item) => (
+            <div class="flex items-baseline gap-3">
+              <span class:list={['w-1.5 h-1.5 rounded-full opacity-40 flex-shrink-0 mt-1.5', dot[s.tone]]}></span>
+              {item}
+            </div>
+          ))}
+        </div>
+        <a href="#start" class="btn-secondary text-sm" data-intent={s.intent}>{s.cta}</a>
+      </div>
+    ))}
+
+    <div class="bento-card bento-card--sm">
+      <div class="section-label mb-4" style="color: var(--muted-ink);">FULL PARTNERSHIP</div>
+      <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-3">Four disciplines,<br />one studio.</h3>
+      <p class="text-[var(--muted-ink)] text-xs leading-relaxed mb-6">
+        Creative, Print, Tech, and AI — delivered together. One point of contact, one standard of quality.
+      </p>
+      <a href="#start" class="btn-secondary text-xs" data-intent="general">Discuss partnership</a>
+    </div>
+  </div>
+</section>

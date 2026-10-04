@@ -1,0 +1,25 @@
+---
+interface Props {
+  /** e.g. "01 — CAPABILITIES" */
+  label: string;
+  /** Headline lines; rendered with a line break between each. */
+  title: string[];
+  intro: string;
+  /** "split" gives the title 4 columns, "wide" gives it 5. */
+  layout?: 'split' | 'wide';
+  class?: string;
+}
+
+const { label, title, intro, layout = 'split', class: className = 'mb-14' } = Astro.props;
+const wide = layout === 'wide';
+---
+
+<div class:list={['grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 section-reveal', className]}>
+  <div class={wide ? 'md:col-span-5' : 'md:col-span-4'}>
+    <div class="section-label mb-4">{label}</div>
+    <h2 class="page-title">{title.map((line, i) => <>{i > 0 && <br />}{line}</>)}</h2>
+  </div>
+  <div class={wide ? 'md:col-span-6 md:col-start-7 flex items-end' : 'md:col-span-7 md:col-start-6 flex items-end'}>
+    <p class:list={['text-[var(--muted-ink)] text-[var(--step-0)] leading-relaxed', !wide && 'max-w-lg']}>{intro}</p>
+  </div>
+</div>
