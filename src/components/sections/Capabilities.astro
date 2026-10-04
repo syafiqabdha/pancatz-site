@@ -1,0 +1,39 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { capabilities } from '../../data/disciplines';
+---
+
+<section class="section section--block" id="capabilities">
+  <SectionHeader
+    label="01 — CAPABILITIES"
+    title={['Four disciplines.', 'One studio.']}
+    intro="Most businesses juggle four vendors for what one integrated team delivers. Pancatz unifies brand, print, systems, and automation so nothing falls between the cracks."
+  />
+
+  <div class="bento-grid section-reveal">
+    {capabilities.map((c) => {
+      const small = c.size === 'sm';
+      return (
+        <div class={`bento-card bento-card--${c.size}`}>
+          <div class:list={['section-label', small ? 'mb-4' : 'mb-5']} style={`color: var(--${c.tone});`}>{c.label}</div>
+          <h3 class:list={['font-bold tracking-tight', small ? 'text-[var(--step-1)] mb-3' : 'text-[var(--step-2)] mb-4']}>{c.title}</h3>
+          <p class:list={['text-[var(--muted-ink)] leading-relaxed', small ? 'text-xs' : 'text-sm mb-6', c.size === 'wide' && 'max-w-md']}>{c.body}</p>
+          {c.meta && (
+            <>
+              <div class="editorial-rule mb-4"></div>
+              <div class="editorial-meta">{c.meta}</div>
+            </>
+          )}
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="bento-card mt-6 section-reveal text-center">
+    <div class="section-label mb-4" style="color: var(--muted-ink);">FULL PARTNERSHIP</div>
+    <h3 class="text-[var(--step-1)] font-bold tracking-tight mb-3">One partner, four disciplines.</h3>
+    <p class="text-[var(--muted-ink)] text-sm leading-relaxed max-w-md mx-auto">
+      Creative, Print, Tech, and AI — bundled together. One point of contact, one standard of quality, no gaps between vendors.
+    </p>
+  </div>
+</section>

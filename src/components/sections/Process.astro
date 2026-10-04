@@ -1,0 +1,31 @@
+---
+import { processSteps } from '../../data/disciplines';
+---
+
+<section class="section section--block" id="process">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-16 section-reveal">
+    <div class="md:col-span-4">
+      <div class="section-label mb-4">06 — PROCESS</div>
+      <h2 class="page-title">Three steps.<br />No fluff.</h2>
+    </div>
+    <div class="md:col-span-7 md:col-start-6">
+      <div class="space-y-10">
+        {processSteps.map((step, i) => (
+          <div class="flex gap-6 items-start">
+            <div class="process-num">{String(i + 1).padStart(2, '0')}</div>
+            <div>
+              <h3 class="text-lg font-bold mb-2">{step.title}</h3>
+              <p class="text-sm text-[var(--muted-ink)] leading-relaxed">{step.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="process-cta text-center section-reveal">
+    <p class="cta-text font-bold mb-2">Ready when<br />you are.</p>
+    <p class="text-[var(--muted-ink)] text-sm mb-10 max-w-sm mx-auto">One conversation is all it takes. Fill in the form above or email us directly.</p>
+    <a href="#start" class="btn-primary pulse">Start a conversation</a>
+  </div>
+</section>

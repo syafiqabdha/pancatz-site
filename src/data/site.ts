@@ -13,7 +13,7 @@ export const site = {
 export const contactIntents = {
   general: 'General enquiry',
   creative: 'Creative — Brand, Design, UI/UX',
-  print: 'Print — Business cards, Flyers, Signage',
+  print: 'Print — Cards, Flyers, Signage',
   tech: 'Tech — IT Support, Hosting, Web Dev',
   ai: 'AI — Chatbots, Automation, Workflows',
 };
