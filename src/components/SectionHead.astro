@@ -1,0 +1,16 @@
+---
+interface Props { index?: string; label: string; title: string; lead?: string }
+const { index, label, title, lead } = Astro.props;
+---
+<div style="display:grid;gap:1.5rem 3rem;margin-bottom:clamp(2.5rem,5vw,4.5rem)" class="section-head">
+  <p class="label">{index && <b>[{index}]</b>} {label}</p>
+  <h2 class="h2" data-split set:html={title} />
+  {lead && <p class="lead" style="max-width:38ch" data-reveal>{lead}</p>}
+  <slot />
+</div>
+<style>
+  @media (min-width: 900px) {
+    .section-head { grid-template-columns: 1fr 1fr; align-items: end; }
+    .section-head > p.label { grid-column: 1 / -1; }
+  }
+</style>

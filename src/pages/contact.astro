@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, contactIntents, whatsappLink } from '../data/site';
+---
+<Layout title="Contact" description="Start a project with Pancatz. WhatsApp, email or send a brief. Kulai, Johor, serving Malaysia and Singapore.">
+  <section class="wrap" style="padding-top:calc(var(--header-h) + clamp(3rem,10vh,7rem));padding-bottom:clamp(5rem,10vw,9rem)">
+    <div class="contact-grid">
+      <div>
+        <p class="label" style="margin-bottom:1.5rem"><b>[ Contact ]</b> We reply within a few hours</p>
+        <h1 class="display" data-split="hero">Tell us<br/>what’s up.</h1>
+        <p class="lead" style="max-width:34ch;margin-top:2rem" data-reveal>Describe the problem in plain words. We’ll come back with questions, a plan and a price.</p>
+        <div style="display:grid;gap:0;margin-top:clamp(2rem,4vw,3rem)" data-reveal>
+          <a class="contact-line" href={whatsappLink()} target="_blank" rel="noopener"><span class="label">WhatsApp</span><span>+{site.whatsapp.replace(/^60(\d{2})(\d{3})(\d+)$/, '60 $1-$2 $3')}</span></a>
+          <a class="contact-line" href={`mailto:${site.email}`}><span class="label">Email</span><span>{site.email}</span></a>
+          <div class="contact-line"><span class="label">Studio</span><span>{site.location} · {site.serviceArea}</span></div>
+        </div>
+      </div>
+
+      <form data-contact-form data-webhook={site.contactWebhook} novalidate style="display:grid;gap:1.75rem;align-content:start" data-reveal>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px">
+          <label for="f-website">Website</label>
+          <input id="f-website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <fieldset style="border:0;padding:0;margin:0;display:grid;gap:.6rem">
+          <legend class="label" style="margin-bottom:.6rem">I need help with</legend>
+          <div class="intent-pills">
+            {Object.entries(contactIntents).map(([value, label], i) => (
+              <label><input type="radio" name="service" value={value} checked={i === 0} /><span>{label.split(':')[0]}</span></label>
+            ))}
+          </div>
+        </fieldset>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" required autocomplete="name" /></div>
+        <div class="field"><label for="f-contact">Email or phone</label><input id="f-contact" name="contact" required autocomplete="email" /></div>
+        <div class="field"><label for="f-msg">The project</label><textarea id="f-msg" name="message" rows="4" placeholder="What do you need, by when, rough budget…"></textarea></div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center">
+          <button type="submit" class="btn btn--lg" data-magnetic>Send brief <span class="arrow" aria-hidden="true">→</span></button>
+          <span class="label">or <a class="link-u" style="color:var(--ink)" href={whatsappLink()} target="_blank" rel="noopener">WhatsApp instead</a></span>
+        </div>
+        <p class="form-msg" data-form-ok hidden role="status" style="color:var(--tech)">Got it. We’ll get back to you shortly.</p>
+        <p class="form-msg" data-form-err hidden role="alert" style="color:var(--design)">That didn’t go through. Please WhatsApp us or email {site.email}.</p>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid { display: grid; gap: clamp(3rem, 6vw, 6rem); }
+  @media (min-width: 1000px) { .contact-grid { grid-template-columns: 1.1fr 1fr; } }
+  .contact-line { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 1rem; border-top: 1px solid var(--line-strong); font-size: var(--t-lg); font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; transition: padding 0.4s var(--ease-out); }
+  a.contact-line:hover { padding-left: 0.75rem; }
+  .contact-line:last-child { border-bottom: 1px solid var(--line-strong); }
+  .contact-line .label { align-self: center; }
+</style>
