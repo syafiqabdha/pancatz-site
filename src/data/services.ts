@@ -95,7 +95,7 @@ export const services: Record<Side, Service[]> = {
     {
       id: 'ai',
       intent: 'ai',
-      title: 'AI & automation',
+      title: 'AI',
       summary: 'Bots and workflows that answer customers and move data while you sleep.',
       items: ['Telegram & web chatbots', 'n8n workflow automation', 'Lead routing & CRM', 'AI image pipelines'],
     },
@@ -147,7 +147,7 @@ export const pricing: PriceGroup[] = [
   {
     id: 'ai',
     side: 'tech',
-    title: 'AI & automation',
+    title: 'AI',
     items: [
       { name: 'Simple chatbot', price: 'RM 1,250' },
       { name: 'Workflow setup', price: 'RM 980' },

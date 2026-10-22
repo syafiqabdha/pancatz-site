@@ -39,6 +39,10 @@ function initMenu() {
     btn.setAttribute('aria-expanded', String(open));
     if (label) label.textContent = open ? 'Close' : 'Menu';
     menu.toggleAttribute('inert', !open);
+    // Keep focus inside the menu while it covers the page.
+    document.querySelectorAll<HTMLElement>('.skip-link, #main, footer, .site-header .brand, .site-header .nav, .site-header .header-cta').forEach((el) => el.toggleAttribute('inert', open));
+    if (open) links[0]?.focus();
+    else if (document.activeElement === document.body || menu.contains(document.activeElement)) btn.focus();
     if (open && !reduced) {
       gsap.fromTo(links, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, stagger: 0.05, duration: 0.8, ease: 'expo.out', delay: 0.2 });
     }

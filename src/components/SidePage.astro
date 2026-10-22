@@ -59,7 +59,7 @@ const defaultIntent = list[0].intent;
 
   <section class="section rule">
     <div class="wrap">
-      <SectionHead index="03" label="Pricing" title="Clear prices,<br/>in Ringgit." lead="Starting points for common jobs. Bigger or custom work gets a fixed quote after a quick chat." />
+      <SectionHead index="03" label="Pricing" title="Clear prices,<br/>in Ringgit." lead="Starting points for common projects. Bigger or custom work gets a fixed quote after a quick chat." />
       <div class="price-grid">{prices.map((g) => <PriceCard group={g} />)}</div>
       <p class="label" style="margin-top:1.5rem">All prices in MYR. <a class="link-u" href="/pricing" style="color:var(--ink)">See all pricing →</a></p>
     </div>
@@ -67,7 +67,7 @@ const defaultIntent = list[0].intent;
 
   <section class="section rule">
     <div class="wrap">
-      <SectionHead index="04" label="Work" title="Recent<br/>jobs." />
+      <SectionHead index="04" label="Work" title="Selected<br/>work." />
       <div class="work-grid work-grid--3">{items.map((w, i) => <WorkCard item={w} index={i} />)}</div>
     </div>
   </section>
