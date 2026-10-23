@@ -62,7 +62,7 @@ export const Intro = () => {
         }}
       >
         <span>[ Studio ]</span>
-        <span>Kulai, Johor</span>
+        <span>Kulai, Johor, Malaysia</span>
       </div>
     </AbsoluteFill>
   );

@@ -16,7 +16,7 @@
 
 ## What this build is
 
-Pancatz is an Astro static site for a Kulai, Johor studio with two sides under one brand:
+Pancatz is an Astro static site for a studio in Kulai, Johor, Malaysia (also serving Singapore) with two sides under one brand:
 
 - **Design & Print:** brand identity, social and digital design, print production, signage
 - **Tech, AI & Photography:** IT support and networks, web/hosting/SEO, AI chatbots and n8n automation, commercial photography

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { title, description = site.description, side } = Astro.props;
-const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Design, Print, Tech & AI studio in Kulai, Johor`;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Design, Print, Tech & AI studio in Kulai, Johor, Malaysia`;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = new URL(Astro.url.pathname, site.url).href;
 ---
@@ -43,7 +43,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
       telephone: `+${site.whatsapp}`,
       image: new URL('/pancatz-logo.jpg', site.url).href,
       address: { '@type': 'PostalAddress', addressLocality: 'Kulai', addressRegion: 'Johor', addressCountry: 'MY' },
-      areaServed: ['Johor', 'Malaysia', 'Singapore'],
+      areaServed: ['Malaysia', 'Singapore'],
       sameAs: [site.instagramUrl, site.facebookUrl],
     })} />
   </head>
@@ -119,7 +119,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
         <div class="footer-mark" data-footer-mark aria-hidden="true" style="margin-top:clamp(3rem,8vw,6rem)">Pancatz</div>
         <div class="label" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-block:1.25rem;border-top:1px solid var(--line)">
           <span>© {new Date().getFullYear()} {site.name}</span>
-          <span>{site.serviceArea}</span>
+          <span>{site.location} · {site.serviceArea}</span>
         </div>
       </div>
     </footer>

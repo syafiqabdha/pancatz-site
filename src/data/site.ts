@@ -3,9 +3,9 @@ export const site = {
   url: 'https://pancatz.com',
   tagline: 'Design, print, tech, AI and photography from one Johor studio',
   description:
-    'Pancatz is a Kulai, Johor studio for design, print, IT support, AI automation and photography. One team that makes your business look sharper and run smarter. Serving Malaysia and Singapore.',
-  location: 'Kulai, Johor',
-  serviceArea: 'Johor, Malaysia & Singapore',
+    'Pancatz is a studio in Kulai, Johor, Malaysia for design, print, IT support, AI automation and photography. One team that makes your business look sharper and run smarter. Also serving Singapore.',
+  location: 'Kulai, Johor, Malaysia',
+  serviceArea: 'Also serving Singapore',
   email: 'pancatz.design@gmail.com',
   // International format, digits only — used for wa.me links
   whatsapp: '60137572507',
