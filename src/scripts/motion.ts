@@ -320,7 +320,9 @@ function initCursor() {
   window.addEventListener('pointermove', (e) => { dot.classList.add('on'); x(e.clientX); y(e.clientY); });
   document.addEventListener('pointerleave', () => dot.classList.remove('on'));
   document.addEventListener('pointerover', (e) => {
-    const hit = (e.target as Element).closest('a, button, [data-stage], label');
+    const el = e.target as Element;
+    // Pan has its own grab cursor; a big inverted dot would recolour it.
+    const hit = !el.closest('[data-mascot]') && el.closest('a, button, [data-stage], label');
     dot.classList.toggle('big', !!hit);
   });
 }
@@ -388,7 +390,7 @@ initStage();
 initContactForm();
 initFilters();
 
-// Pan the panda loads once the page has settled, so it never slows first paint.
+// Pan the mascot loads once the page has settled, so it never slows first paint.
 const mascot = document.querySelector<HTMLElement>('[data-mascot]');
 if (mascot) {
   const later = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1200));

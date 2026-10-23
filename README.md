@@ -137,11 +137,13 @@ The poster is the no-JavaScript fallback for the reel. Remotion's agent skills a
 
 ## Pan, the mascot
 
-Pan is the panda in the corner of every page. It's modelled in Blender from primitives (`video/blender/panda.py`), exported to `public/models/panda.glb`, and drawn with OGL using a cel shader (`src/scripts/mascot.ts`). Pan follows the pointer, blinks, naps after 12 seconds of no input, giggles and talks when poked, and points people to `/try` when the pointer heads for the tab bar. Visitors can hide Pan for the session. With reduced motion or without WebGL2, Pan is the still image `public/images/panda.webp`.
+Pan is the Pancatz mascot: half panda, half cat, after the logo (eye patches, cat nose and "w" mouth, the forehead scratch), with cat ears, whiskers, a ringed tail and a collar. It's modelled in Blender from primitives (`video/blender/pancatz.py`), exported to `public/models/pancatz.glb`, and drawn with OGL using a cel shader (`src/scripts/mascot.ts`).
+
+Pan roams every page. It drops in from the top, perches on headings (`main h1, h2, h3`) and rides them as the page scrolls, hops to another heading when its perch scrolls away, and drops to the bottom of the window when there's nowhere to sit. While you scroll it runs or holds on, its ears and tail lag behind, and it looks the way you're going. Visitors can poke it, or pick it up and throw it. It also follows the pointer, blinks, naps after 12 seconds of no input, waves at the end of the page, and points people to `/try` when the pointer heads for the tab bar. Add `data-mascot-skip` to a section to keep Pan off its headings. Visitors can hide Pan for the session. With reduced motion or without WebGL2, Pan is the still image `public/images/pancatz-mascot.webp` in the corner.
 
 ```sh
 pip install bpy            # Blender as a Python module
-python video/blender/panda.py --render
+python video/blender/pancatz.py --render
 ```
 
 ## Deployment

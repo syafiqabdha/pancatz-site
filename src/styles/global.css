@@ -510,12 +510,11 @@ body.menu-open .brand img { border-color: var(--paper); }
 @media (min-width: 900px) { .bm-stage { position: sticky; top: calc(var(--header-h) + 1.5rem); } }
 
 /* ───────────────── Pan, the mascot ───────────────── */
-.mascot { position: fixed; right: clamp(0.5rem, 2vw, 1.5rem); bottom: 0; z-index: 90; width: clamp(104px, 10.5vw, 170px); }
+.mascot { position: fixed; right: clamp(0.5rem, 2vw, 1.5rem); bottom: 0.5rem; z-index: 90; width: clamp(104px, 10.5vw, 170px); }
 .mascot[hidden] { display: none; }
 body.menu-open .mascot { display: none; }
 .mascot-poke { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
-.mascot-stage { display: block; position: relative; width: 100%; aspect-ratio: 1; margin-bottom: -18%; transform: translateY(18%); transition: transform 0.6s var(--ease-out); }
-.mascot.is-ready .mascot-stage, .mascot-stage.is-still { transform: none; }
+.mascot-stage { display: block; position: relative; width: 100%; aspect-ratio: 1; transition: transform 0.6s var(--ease-out); }
 .mascot-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
 .mascot.is-ready .mascot-still { display: none; }
 .mascot-still { width: 100%; height: auto; }
@@ -532,6 +531,17 @@ body.menu-open .mascot { display: none; }
 }
 .mascot.is-talking .mascot-bubble { opacity: 1; transform: none; pointer-events: auto; }
 .mascot-bubble a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+/* Roaming: Pan walks the page. mascot.ts sets the transform every frame. */
+.mascot.is-roaming { left: 0; top: 0; right: auto; bottom: auto; width: var(--pan-size, 130px); will-change: transform; pointer-events: none; }
+.mascot.is-roaming .mascot-stage { transform: none; transition: none; }
+.mascot.is-roaming .mascot-poke { pointer-events: none; }
+.mascot-hit { position: absolute; left: 26%; right: 26%; top: 10%; bottom: 6%; pointer-events: auto; touch-action: none; cursor: grab; }
+.mascot.is-held .mascot-hit { cursor: grabbing; }
+.mascot.is-roaming .mascot-close { pointer-events: auto; top: 6%; right: 14%; }
+.mascot.is-roaming .mascot-bubble { right: auto; left: 64%; bottom: 88%; border-radius: 14px 14px 14px 2px; transform-origin: bottom left; }
+.mascot.is-roaming.bubble-left .mascot-bubble { left: auto; right: 64%; border-radius: 14px 14px 2px 14px; transform-origin: bottom right; }
+.mascot.is-roaming.bubble-below .mascot-bubble { bottom: auto; top: 96%; transform-origin: top left; }
+.mascot.is-roaming.bubble-below.bubble-left .mascot-bubble { transform-origin: top right; }
 .mascot-z { position: absolute; right: 18%; top: -6%; display: flex; gap: 2px; font-family: var(--font-dot); font-weight: 800; color: var(--tech); pointer-events: none; }
 .mascot-z i { font-style: normal; opacity: 0; }
 .mascot.is-asleep .mascot-z i { animation: zzz 2.4s infinite; }
