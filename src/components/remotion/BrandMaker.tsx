@@ -187,7 +187,7 @@ export default function BrandMaker({ whatsapp, siteUrl }: Props) {
           initialFrame={reduced ? 222 : 0}
           clickToPlay={false}
           spaceKeyToPlayOrPause={false}
-          style={{ width: '100%' }}
+          style={{ width: '100%', lineHeight: 'normal' }}
           acknowledgeRemotionLicense
         />
       </div>

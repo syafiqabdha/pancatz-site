@@ -180,6 +180,8 @@ function initSplits() {
       ease: 'expo.out',
       delay: hero ? 0.15 : 0,
       scrollTrigger: hero ? undefined : { trigger: el, start: 'top 88%', once: true },
+      // Line masks clip ascenders and accents; put the plain heading back once it's in.
+      onComplete: () => split.revert(),
     });
   });
 }
@@ -286,12 +288,17 @@ function initFooterMark() {
   const mark = document.querySelector<HTMLElement>('[data-footer-mark]');
   if (!mark) return;
   const split = SplitText.create(mark, { type: 'chars' });
+  mark.classList.add('is-rising');
   gsap.from(split.chars, {
     yPercent: 100,
     stagger: 0.04,
     duration: 1.1,
     ease: 'expo.out',
     scrollTrigger: { trigger: mark, start: 'top 98%', once: true },
+    onComplete: () => {
+      split.revert();
+      mark.classList.remove('is-rising');
+    },
   });
 }
 

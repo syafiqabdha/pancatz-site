@@ -66,7 +66,7 @@ export default function ServiceMotion({ id }: { id: string }) {
         clickToPlay={false}
         doubleClickToFullscreen={false}
         spaceKeyToPlayOrPause={false}
-        style={{ width: '100%' }}
+        style={{ width: '100%', lineHeight: 'normal' }}
         acknowledgeRemotionLicense
       />
     </div>

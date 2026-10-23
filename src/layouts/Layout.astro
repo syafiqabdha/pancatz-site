@@ -58,9 +58,9 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
           <span>Pancatz</span>
         </a>
         <nav class="nav" aria-label="Primary">
-          {nav.map((n) => (
+          {[...nav, { href: '/contact', label: 'Contact' }].map((n) => (
             <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>
-              <span data-text={n.label}>{n.label}</span>
+              <span class="roll"><span data-text={n.label}>{n.label}</span></span>
             </a>
           ))}
         </nav>

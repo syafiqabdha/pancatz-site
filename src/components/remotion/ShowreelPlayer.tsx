@@ -65,7 +65,7 @@ export default function ShowreelPlayer({ whatsapp, url }: { whatsapp: string; ur
         initialFrame={userPaused.current ? STILL_FRAME : 0}
         clickToPlay={false}
         spaceKeyToPlayOrPause={false}
-        style={{ width: '100%', aspectRatio: '16 / 9' }}
+        style={{ width: '100%', aspectRatio: '16 / 9', lineHeight: 'normal' }}
         acknowledgeRemotionLicense
       />
       <div className="reel-bar">
