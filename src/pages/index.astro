@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import WorkCard from '../components/WorkCard.astro';
 import CTA from '../components/CTA.astro';
+import ShowreelPlayer from '../components/remotion/ShowreelPlayer';
 import { site } from '../data/site';
 import { sides, work, process } from '../data/services';
 
@@ -25,13 +26,13 @@ const journey = [
     <div class="hero-copy wrap">
       <p class="label hero-kicker" style="margin-bottom:clamp(1rem,3vh,2rem)">[ Studio ] Design · Print · Tech · AI · Photo — {site.location}</p>
       <h1 id="hero-title" class="hero-h1" data-split="hero">
-        <span class="ln">Look sharper.</span>
-        <span class="ln">Run smarter.</span>
+        <span class="ln">Look <em>sharper.</em></span>
+        <span class="ln">Run <strong>smarter.</strong></span>
       </h1>
     </div>
     <div class="hero-bar">
       <div class="wrap">
-        <p class="lead" style="max-width:46ch;color:var(--ink)">One studio for the things customers <em style="font-style:normal;color:var(--design)">see</em> and the systems they <strong style="color:var(--tech)">don’t</strong>. Brand and print, IT and AI, photos that sell.</p>
+        <p class="lead" style="max-width:46ch;color:var(--ink)">One studio for the things customers <em class="voice-design">see</em> and the systems they <strong class="voice-tech">don’t</strong>. Brand and print, IT and AI, photos that sell.</p>
         <div style="display:flex;flex-wrap:wrap;gap:.6rem">
           <a href="/contact" class="btn" data-magnetic>Start a project <span class="arrow" aria-hidden="true">→</span></a>
           <a href="#sides" class="btn btn--ghost">What we do</a>
@@ -56,18 +57,13 @@ const journey = [
     </p>
   </section>
 
-  <!-- ── Showreel (rendered with Remotion, source in /video) ── -->
+  <!-- ── Showreel: a live Remotion <Player>, source in src/remotion/showreel ── -->
   <section class="reel-section" aria-label="Showreel">
     <div class="wrap">
-      <div class="reel" data-reel>
-        <video muted loop playsinline preload="none" poster="/video/poster.jpg" width="1280" height="720" aria-label="Pancatz showreel: design, print, tech, AI and photography">
-          <source src="/video/showreel.webm" type="video/webm" />
-          <source src="/video/showreel.mp4" type="video/mp4" />
-        </video>
-        <div class="reel-bar">
-          <span class="label" style="color:inherit">[ Reel ] 17 sec · Pancatz in motion</span>
-          <button type="button" class="reel-toggle" data-reel-toggle aria-pressed="false">Play</button>
-        </div>
+      <div class="reel" data-reel role="img" aria-label="Pancatz showreel: design, print, tech, AI and photography">
+        <ShowreelPlayer client:only="react" whatsapp={site.whatsappDisplay} url={site.url.replace(/^https?:\/\//, '')}>
+          <img slot="fallback" src="/video/poster.jpg" width="1280" height="720" alt="" loading="lazy" style="width:100%;height:auto" />
+        </ShowreelPlayer>
       </div>
     </div>
   </section>
@@ -79,7 +75,7 @@ const journey = [
       <div class="stage" data-stage>
         <div class="stage-panel stage-panel--tech" data-side="tech">
           <p class="label" style="color:#fff">[B] {sides.tech.name}</p>
-          <h2>Tech, AI<br />& Photo</h2>
+          <h2>Tech, AI<br />& <strong>Photo</strong></h2>
           <div style="display:grid;gap:1rem;justify-items:end">
             <div class="stage-chips">{sides.tech.disciplines.map((d) => <span class="chip">{d}</span>)}</div>
             <span class="stage-cta">Explore tech →</span>
@@ -87,7 +83,7 @@ const journey = [
         </div>
         <div class="stage-panel stage-panel--design" data-side="design">
           <p class="label" style="color:var(--ink)">[A] {sides.design.name}</p>
-          <h2>Design<br />& Print</h2>
+          <h2>Design<br />& <em>Print</em></h2>
           <div style="display:grid;gap:1rem">
             <div class="stage-chips">{sides.design.disciplines.map((d) => <span class="chip">{d}</span>)}</div>
             <span class="stage-cta">Explore design →</span>

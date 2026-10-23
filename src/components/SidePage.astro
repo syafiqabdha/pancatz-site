@@ -4,6 +4,7 @@ import SectionHead from './SectionHead.astro';
 import WorkCard from './WorkCard.astro';
 import PriceCard from './PriceCard.astro';
 import CTA from './CTA.astro';
+import ServiceMotion from './remotion/ServiceMotion';
 import { sides, services, pricing, work, type Side } from '../data/services';
 
 interface Props { side: Side; title: string; description: string; heading: string; statement: string }
@@ -47,9 +48,12 @@ const defaultIntent = list[0].intent;
           <div class="svc">
             <a class="svc-row" href={`/contact?service=${s.intent}`}>
               <span class="idx">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{s.title}</h3>
-              <p class="muted" style="max-width:42ch">{s.summary}</p>
+              <div class="svc-text">
+                <h3>{s.title}</h3>
+                <p class="muted" style="max-width:42ch">{s.summary}</p>
+              </div>
               <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+              <div class="svc-visual"><ServiceMotion client:only="react" id={s.id} /></div>
             </a>
           </div>
         ))}

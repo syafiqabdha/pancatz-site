@@ -1,5 +1,5 @@
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { color, display, easeOut, mono, useLayout } from "../theme";
+import { color, easeOut, mono, useLayout, wide } from "../../theme";
 
 // Logo + location, then the wordmark slams in letter by letter.
 export const Intro = () => {
@@ -12,7 +12,7 @@ export const Intro = () => {
     <AbsoluteFill style={{ backgroundColor: color.paper, justifyContent: "center", alignItems: "center" }}>
       <GridLines />
       <Img
-        src={staticFile("logo.webp")}
+        src={staticFile("pancatz-logo.webp")}
         style={{
           width: 180 * u,
           height: 180 * u,
@@ -28,10 +28,10 @@ export const Intro = () => {
           <span
             key={i}
             style={{
-              fontFamily: display,
+              ...wide,
               fontWeight: 800,
               fontSize: (vertical ? 230 : 300) * u,
-              letterSpacing: "-0.06em",
+              letterSpacing: "-0.037em",
               lineHeight: 0.9,
               color: color.ink,
               display: "inline-block",

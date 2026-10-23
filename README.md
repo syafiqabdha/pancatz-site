@@ -44,7 +44,7 @@ Work items in `src/data/services.ts` are marked `placeholder: true` and show a "
 
 - Paper canvas `#f2f0eb`, ink `#0d0d0f`
 - Side colours: Design & Print orange `#ff4f1a`, Tech & AI cobalt `#2b35ff`
-- Bricolage Grotesque (display), Inter (body), JetBrains Mono (labels)
+- Mona Sans, expanded for display and normal width for body. Instrument Serif italic is the Design & Print voice, Doto dot matrix is the Tech voice, and Geist Mono is used for labels
 - Sharp edges, visible column grid, print grain
 
 ## Motion
@@ -68,8 +68,8 @@ Content is visible without JavaScript. Everything animated is skipped under `pre
 | Framework | Astro 6 static-site build |
 | UI runtime | React 19 integration (available for islands/components) |
 | Styling | Tailwind CSS v4 through Vite + authored global CSS/tokens |
-| Motion | GSAP (ScrollTrigger, SplitText), Lenis, OGL (WebGL) |
-| Typography | Bricolage Grotesque, Inter, JetBrains Mono via Google Fonts |
+| Motion | GSAP (ScrollTrigger, SplitText), Lenis, OGL (WebGL), Remotion Player (React islands) |
+| Typography | Mona Sans, Instrument Serif, Doto and Geist Mono, self-hosted with @fontsource |
 | Contact delivery | n8n webhook |
 | Production serving | Nginx 1.27 Alpine in a multi-stage Docker image |
 | CI image publishing | GitHub Actions → GitHub Container Registry (`ghcr.io`) |
@@ -112,20 +112,26 @@ npm run preview
 
 The build must pass before deployment. Review the site at desktop and mobile widths, test all anchor paths, pricing tabs, mobile navigation, and an enquiry submission against the intended n8n environment.
 
-## Showreel video
+## Remotion motion
 
-The home page showreel is generated in code with [Remotion](https://www.remotion.dev) in `video/`. Scenes live in `video/src/scenes/`, and the compositions are `Showreel` (1920×1080) and `ShowreelVertical` (1080×1920, for Reels and TikTok). The contact details shown in the outro are props in `video/src/Root.tsx`.
+Some of the site's motion is made with [Remotion](https://www.remotion.dev) and played live in the page with `@remotion/player`. Nothing is pre-rendered.
+
+- `src/remotion/showreel/` holds the 17-second brand reel on the home page (`src/components/remotion/ShowreelPlayer.tsx`).
+- `src/remotion/services/` holds one looping visual per service on `/design` and `/tech` (`src/components/remotion/ServiceMotion.tsx`). Each visual turns to the side colour when its row is hovered or focused.
+- `src/remotion/theme.ts` mirrors the site's colour and type tokens.
+
+`video/` is the Remotion Studio and render project for the same compositions. Use it to preview or edit them, or to export MP4s for social media.
 
 ```sh
 cd video && npm install
-npm run dev                      # Remotion Studio, live preview
+npm run dev                      # Remotion Studio
 # In a headless container, add --browser-executable=<path to chrome-headless-shell> to render commands
-npx remotion render Showreel out/showreel.mp4 --width=1280 --height=720 --crf=24
-npx remotion render Showreel out/showreel.webm --codec=vp9 --width=1280 --height=720
-npx remotion still Showreel out/poster.jpg --frame=95 --width=1280 --height=720 --image-format=jpeg
+npx remotion render Showreel out/pancatz-showreel-1080p.mp4
+npx remotion render ShowreelVertical out/pancatz-showreel-vertical.mp4   # Reels / TikTok
+npx remotion still Showreel ../public/video/poster.jpg --frame=95 --width=1280 --height=720 --image-format=jpeg
 ```
 
-Copy `showreel.mp4`, `showreel.webm` and `poster.jpg` into `public/video/` to update the site. Remotion's agent skills are in `.claude/skills/remotion-*`. Remotion is free for individuals and companies of up to 3 people.
+The poster is the no-JavaScript fallback for the reel. Remotion's agent skills are in `.claude/skills/remotion-*`. Remotion is free for individuals and companies of up to 3 people.
 
 ## Deployment
 

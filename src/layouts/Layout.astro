@@ -1,4 +1,8 @@
 ---
+import '@fontsource-variable/mona-sans/wdth.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/doto/index.css';
+import '@fontsource-variable/geist-mono/index.css';
 import '../styles/global.css';
 import { site, nav, whatsappLink } from '../data/site';
 
@@ -30,8 +34,6 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL('/pancatz_og.png', site.url).href} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',

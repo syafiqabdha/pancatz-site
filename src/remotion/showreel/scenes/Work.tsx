@@ -1,5 +1,5 @@
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { color, display, easeInOut, easeOut, mono, useLayout } from "../theme";
+import { color, easeInOut, easeOut, mono, useLayout, wide } from "../../theme";
 import { GridLines } from "./Intro";
 
 const shots = ["portfolio-cafe.png", "portfolio-clinic.png", "portfolio-retail.png", "portfolio-property.png"];
@@ -14,7 +14,7 @@ export const Work = () => {
     <AbsoluteFill style={{ backgroundColor: color.paper, padding: pad, gap: 36 * u }}>
       <GridLines />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-        <div style={{ fontFamily: display, fontWeight: 800, fontSize: (vertical ? 120 : 130) * u, letterSpacing: "-0.05em", lineHeight: 0.9, color: color.ink }}>
+        <div style={{ ...wide, fontWeight: 800, fontSize: (vertical ? 120 : 130) * u, letterSpacing: "-0.031em", lineHeight: 0.9, color: color.ink }}>
           Proof, not
           <br />
           promises.
@@ -36,7 +36,7 @@ export const Work = () => {
               }}
             >
               <Img
-                src={staticFile(s)}
+                src={staticFile(`images/${s}`)}
                 style={{
                   width: "100%",
                   height: "100%",

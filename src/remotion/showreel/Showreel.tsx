@@ -9,9 +9,12 @@ import { RapidFire } from "./scenes/RapidFire";
 import { Split } from "./scenes/Split";
 import { Work } from "./scenes/Work";
 
+// 30fps: scenes 2 + 3 + 3.6 + 3.6 + 3.2 + 3.4 = 18.8s (564f) minus 5 transitions x 12f = 504f
+export const SHOWREEL_FRAMES = 504;
+
 export type ShowreelProps = { readonly whatsapp: string; readonly url: string };
 
-// Total = sum of sequences - sum of transitions. Keep SHOWREEL_FRAMES in Root in sync.
+// Total = sum of sequences - sum of transitions. Keep SHOWREEL_FRAMES in sync.
 export const Showreel = ({ whatsapp, url }: ShowreelProps) => {
   const { fps } = useVideoConfig();
   const t = linearTiming({ durationInFrames: Math.round(0.4 * fps) });

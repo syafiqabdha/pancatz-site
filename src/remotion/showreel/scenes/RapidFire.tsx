@@ -1,16 +1,16 @@
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import { color, display, easeOut, mono, useLayout } from "../theme";
+import { color, dotStyle, easeOut, mono, serifStyle, useLayout, wide } from "../../theme";
 
-const words: { t: string; bg: string; fg: string; tag: string }[] = [
-  { t: "Brands", bg: color.design, fg: color.ink, tag: "Design" },
+const words: { t: string; bg: string; fg: string; tag: string; v?: "d" | "t" }[] = [
+  { v: "d", t: "Brands", bg: color.design, fg: color.ink, tag: "Design" },
   { t: "Print", bg: color.paper, fg: color.design, tag: "Print" },
-  { t: "Signage", bg: color.ink, fg: color.design, tag: "Print" },
+  { v: "d", t: "Signage", bg: color.ink, fg: color.design, tag: "Print" },
   { t: "IT support", bg: color.tech, fg: color.paper, tag: "Tech" },
-  { t: "Networks", bg: color.paper, fg: color.tech, tag: "Tech" },
+  { v: "t", t: "Networks", bg: color.paper, fg: color.tech, tag: "Tech" },
   { t: "Websites", bg: color.ink, fg: color.paper, tag: "Tech" },
-  { t: "AI bots", bg: color.tech, fg: color.paper, tag: "AI" },
+  { v: "t", t: "AI bots", bg: color.tech, fg: color.paper, tag: "AI" },
   { t: "Automation", bg: color.paper, fg: color.ink, tag: "AI" },
-  { t: "Photos", bg: color.design, fg: color.paper, tag: "Photo" },
+  { v: "d", t: "Photos", bg: color.design, fg: color.paper, tag: "Photo" },
 ];
 
 /** Kinetic word cuts, one discipline every few frames. */
@@ -27,10 +27,10 @@ export const RapidFire = () => {
     <AbsoluteFill style={{ backgroundColor: w.bg, justifyContent: "center", alignItems: "center" }}>
       <div
         style={{
-          fontFamily: display,
-          fontWeight: 800,
+          ...wide,
+          ...(w.v === "d" ? serifStyle : w.v === "t" ? dotStyle : { fontWeight: 800 }),
           fontSize: (vertical ? 200 : 300) * u,
-          letterSpacing: "-0.06em",
+          letterSpacing: "-0.037em",
           lineHeight: 0.9,
           color: w.fg,
           textAlign: "center",

@@ -9,6 +9,7 @@ export const site = {
   email: 'pancatz.design@gmail.com',
   // International format, digits only — used for wa.me links
   whatsapp: '60137572507',
+  whatsappDisplay: '+60 13-757 2507',
   instagramUrl: 'https://www.instagram.com/pancatz.design',
   facebookUrl: 'https://www.facebook.com/pancatz',
   // Contact form webhook — n8n receives and routes to Telegram
