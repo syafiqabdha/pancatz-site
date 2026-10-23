@@ -120,6 +120,8 @@ Some of the site's motion is made with [Remotion](https://www.remotion.dev) and 
 - `src/remotion/services/` holds one looping visual per service on `/design` and `/tech` (`src/components/remotion/ServiceMotion.tsx`). Each visual turns to the side colour when its row is hovered or focused.
 - `src/remotion/theme.ts` mirrors the site's colour and type tokens.
 
+- `src/remotion/brand-maker/` is the "brand your shop in 10 seconds" animation on `/try` (`src/components/remotion/BrandMaker.tsx`). Visitors save it as MP4 or PNG with `@remotion/web-renderer`, which renders in their own browser, so no server is involved. Share links (`/try?n=…&k=…`) replay the same brand.
+
 `video/` is the Remotion Studio and render project for the same compositions. Use it to preview or edit them, or to export MP4s for social media.
 
 ```sh
@@ -132,6 +134,15 @@ npx remotion still Showreel ../public/video/poster.jpg --frame=95 --width=1280 -
 ```
 
 The poster is the no-JavaScript fallback for the reel. Remotion's agent skills are in `.claude/skills/remotion-*`. Remotion is free for individuals and companies of up to 3 people.
+
+## Pan, the mascot
+
+Pan is the panda in the corner of every page. It's modelled in Blender from primitives (`video/blender/panda.py`), exported to `public/models/panda.glb`, and drawn with OGL using a cel shader (`src/scripts/mascot.ts`). Pan follows the pointer, blinks, naps after 12 seconds of no input, giggles and talks when poked, and points people to `/try` when the pointer heads for the tab bar. Visitors can hide Pan for the session. With reduced motion or without WebGL2, Pan is the still image `public/images/panda.webp`.
+
+```sh
+pip install bpy            # Blender as a Python module
+python video/blender/panda.py --render
+```
 
 ## Deployment
 

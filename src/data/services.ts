@@ -35,7 +35,7 @@ export const sides: Record<Side, { name: string; short: string; href: string; pi
     short: 'Design',
     href: '/design',
     pitch: 'Brands people remember, and the print that puts them in people’s hands.',
-    disciplines: ['Brand identity', 'Logo', 'Social kits', 'UI/UX', 'Menus', 'Packaging', 'Signage', 'Large format'],
+    disciplines: ['Brand identity', 'Logo', 'Social kits', 'Marketing', 'UI/UX', 'Menus', 'Packaging', 'Signage', 'Large format'],
   },
   tech: {
     name: 'Tech, AI & Photography',
@@ -75,6 +75,13 @@ export const services: Record<Side, Service[]> = {
       title: 'Signage & large format',
       summary: 'Shopfronts, banners and displays that read from across the road.',
       items: ['Shop signage', 'Banners & buntings', 'Event backdrops', 'Window & wall graphics'],
+    },
+    {
+      id: 'marketing',
+      intent: 'marketing',
+      title: 'Marketing',
+      summary: 'Campaigns, content and ads that get your brand in front of the right people, and leads into your WhatsApp.',
+      items: ['Social media management', 'Meta & Google ads', 'Campaign strategy', 'Content calendars'],
     },
   ],
   tech: [
@@ -131,6 +138,17 @@ export const pricing: PriceGroup[] = [
       { name: 'Full signage set', price: 'Quoted' },
     ],
     note: 'Printed locally. Design can be bundled.',
+  },
+  {
+    id: 'marketing',
+    side: 'design',
+    title: 'Marketing',
+    items: [
+      { name: 'Social media management', price: 'Quoted' },
+      { name: 'Ad campaign setup', price: 'Quoted' },
+      { name: 'Campaign plan & content calendar', price: 'Quoted' },
+    ],
+    note: 'Priced by channels, posting volume and ad budget.',
   },
   {
     id: 'tech',

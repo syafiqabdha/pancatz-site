@@ -20,6 +20,8 @@ _Avoid_: AI & Automation, AI & Auto
 
 **Photography**: Product, food, interior/property, corporate and event photography.
 
+**Marketing**: Social media management, paid ads, campaign strategy and content calendars. Listed on the Design & Print side.
+
 **Side**: How the site groups Disciplines for visitors. **Design & Print** (Creative + Print) and **Tech, AI & Photography** (Tech + AI + Photography). Each Side has its own page and colour (orange / cobalt). One brand, one contact for both.
 
 **Full Partnership**: All Disciplines bundled. One point of contact, one standard.

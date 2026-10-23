@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BrandMaker from '../components/remotion/BrandMaker';
+import { site } from '../data/site';
+---
+<Layout title="Brand your shop in 10 seconds" description="Type your shop's name and watch Pancatz build a mini brand for it: logo, colours, signboard, card and post. Save it as a video and share it.">
+  <section class="wrap try-page">
+  <div class="try-hero">
+    <p class="label" style="margin-bottom:1.5rem"><b>[ Try it ]</b> Free · no sign-up · made in your browser</p>
+    <h1 class="display" data-split="hero">Your shop,<br/>branded in <em>10&nbsp;sec.</em></h1>
+    <p class="lead" style="max-width:44ch;margin-top:1.5rem" data-reveal>Type a name, pick what you sell, and watch it come alive. Save the video, send it to a friend, or post it. A real brand takes us about ten days.</p>
+  </div>
+    <BrandMaker client:only="react" whatsapp={site.whatsapp} siteUrl={site.url.replace(/\/$/, '')}>
+      <p slot="fallback" class="lead">Loading the brand maker…</p>
+    </BrandMaker>
+  </section>
+</Layout>

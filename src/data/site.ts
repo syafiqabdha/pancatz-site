@@ -21,6 +21,7 @@ export const contactIntents = {
   general: 'Not sure yet / a bit of everything',
   creative: 'Design: brand, logo, social, UI/UX',
   print: 'Print: cards, flyers, banners, signage',
+  marketing: 'Marketing: social, ads, campaigns',
   tech: 'Tech: IT support, network, web & hosting',
   ai: 'AI: chatbots, automation, workflows',
   photo: 'Photography: product, food, event, corporate',
@@ -37,4 +38,5 @@ export const nav = [
   { href: '/tech', label: 'Tech & AI' },
   { href: '/work', label: 'Work' },
   { href: '/pricing', label: 'Pricing' },
+  { href: '/try', label: 'Try it' },
 ];

@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { Automation } from "./Automation";
 import { Brand } from "./Brand";
 import { LOOP, type ServiceMotionProps } from "./kit";
+import { Marketing } from "./Marketing";
 import { Network } from "./Network";
 import { Photo } from "./Photo";
 import { Print } from "./Print";
@@ -18,6 +19,7 @@ export const SERVICE_MOTION: { id: string; component: ComponentType<ServiceMotio
   { id: "digital", component: Social, durationInFrames: LOOP },
   { id: "print", component: Print, durationInFrames: LOOP },
   { id: "signage", component: Signage, durationInFrames: LOOP },
+  { id: "marketing", component: Marketing, durationInFrames: LOOP },
   { id: "it", component: Network, durationInFrames: LOOP },
   { id: "web", component: Web, durationInFrames: LOOP },
   { id: "ai", component: Automation, durationInFrames: LOOP },

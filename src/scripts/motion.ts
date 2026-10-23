@@ -388,6 +388,13 @@ initStage();
 initContactForm();
 initFilters();
 
+// Pan the panda loads once the page has settled, so it never slows first paint.
+const mascot = document.querySelector<HTMLElement>('[data-mascot]');
+if (mascot) {
+  const later = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1200));
+  later(() => import('./mascot').then((m) => m.initMascot(mascot)));
+}
+
 if (!reduced) {
   root.classList.add('js-motion');
   initLenis();

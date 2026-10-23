@@ -100,7 +100,9 @@ void main() {
   col = mix(col, ink, line * lineAlpha);
 
   // Fine print grain
-  float g = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+  // Hash on a wrapped coordinate so large pixel values cannot lose precision.
+  vec2 gp = mod(gl_FragCoord.xy, 256.0);
+  float g = fract(sin(dot(gp, vec2(12.9898, 78.233))) * 43758.5453);
   col += (g - 0.5) * 0.035;
 
   fragColor = vec4(col, 1.0);

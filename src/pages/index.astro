@@ -7,7 +7,7 @@ import ShowreelPlayer from '../components/remotion/ShowreelPlayer';
 import { site } from '../data/site';
 import { sides, work, process } from '../data/services';
 
-const marquee = ['Brand identity', 'Print', 'Signage', 'IT support', 'Networks', 'Websites', 'AI chatbots', 'Automation', 'Photography', 'Social kits'];
+const marquee = ['Brand identity', 'Marketing', 'Print', 'Signage', 'IT support', 'Networks', 'Websites', 'AI chatbots', 'Automation', 'Photography', 'Social kits'];
 
 const journey = [
   { side: 'design', title: 'Name, logo & identity', text: 'A brand that looks like it belongs on the main road, not in a template.' },
@@ -65,6 +65,20 @@ const journey = [
           <img slot="fallback" src="/video/poster.jpg" width="1280" height="720" alt="" loading="lazy" style="width:100%;height:auto" />
         </ShowreelPlayer>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Brand maker teaser: a plain GET form, so it works without JS ── -->
+  <section class="section rule try-teaser" aria-labelledby="try-title">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:1.5rem"><b>[ Try it ]</b> Free · 10 seconds · no sign-up</p>
+      <h2 id="try-title" class="h2" data-split>See your shop<br/>as a <em>brand.</em></h2>
+      <form class="try-line" action="/try" method="get">
+        <label for="try-n">My shop is called</label>
+        <input id="try-n" name="n" maxlength="24" placeholder="Kedai Ali" autocomplete="off" required />
+        <button class="btn" type="submit" data-magnetic>Brand it <span class="arrow" aria-hidden="true">→</span></button>
+      </form>
+      <p class="muted" style="margin-top:1rem;max-width:52ch">We animate a logo, colours, signboard, card and post for it, right in your browser. Save the video and send it to a friend.</p>
     </div>
   </section>
 

@@ -1,4 +1,5 @@
 import { Composition, Folder } from "remotion";
+import { BRAND_FRAMES, BRAND_H, BRAND_W, BrandReveal } from "../../src/remotion/brand-maker/BrandReveal";
 import { SERVICE_MOTION } from "../../src/remotion/services";
 import { Showreel, SHOWREEL_FRAMES } from "../../src/remotion/showreel/Showreel";
 
@@ -21,6 +22,15 @@ export const RemotionRoot = () => (
       width={1080}
       height={1920}
       defaultProps={{ whatsapp: "+60 13-757 2507", url: "pancatz.com" }}
+    />
+    <Composition
+      id="BrandMaker"
+      component={BrandReveal}
+      durationInFrames={BRAND_FRAMES}
+      fps={30}
+      width={BRAND_W}
+      height={BRAND_H}
+      defaultProps={{ name: "Kedai Ali", kind: "cafe" as const }}
     />
     <Folder name="Services">
       {SERVICE_MOTION.map((s) => (
