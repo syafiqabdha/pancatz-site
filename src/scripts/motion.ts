@@ -371,12 +371,47 @@ function initLoader(): Promise<void> {
   });
 }
 
+function initReel() {
+  const reel = document.querySelector<HTMLElement>('[data-reel]');
+  const video = reel?.querySelector('video');
+  const toggle = reel?.querySelector<HTMLButtonElement>('[data-reel-toggle]');
+  if (!reel || !video || !toggle) return;
+  // Autoplay only when visible and motion is allowed; the button always works.
+  let userPaused = reduced;
+  const sync = () => {
+    toggle.textContent = video.paused ? 'Play' : 'Pause';
+    toggle.setAttribute('aria-pressed', String(!video.paused));
+  };
+  video.addEventListener('play', sync);
+  video.addEventListener('pause', sync);
+  toggle.addEventListener('click', () => {
+    if (video.paused) { userPaused = false; video.play().catch(() => {}); }
+    else { userPaused = true; video.pause(); }
+  });
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && !userPaused) video.play().catch(() => {});
+    else if (!entry.isIntersecting) video.pause();
+  }, { threshold: 0.35 }).observe(reel);
+  sync();
+}
+
+function initReelScale() {
+  const reel = document.querySelector<HTMLElement>('[data-reel]');
+  if (!reel) return;
+  gsap.fromTo(reel, { scale: 0.86 }, {
+    scale: 1,
+    ease: 'none',
+    scrollTrigger: { trigger: reel, start: 'top bottom', end: 'top 25%', scrub: true },
+  });
+}
+
 // ───────────── Boot ─────────────
 initHeader();
 initMenu();
 initStage();
 initContactForm();
 initFilters();
+initReel();
 
 if (!reduced) {
   root.classList.add('js-motion');
@@ -386,6 +421,7 @@ if (!reduced) {
   initReveals();
   initMarquee();
   initTrail();
+  initReelScale();
   Promise.all([document.fonts.ready, initLoader()]).then(() => {
     initStageIntro();
     initSplits();

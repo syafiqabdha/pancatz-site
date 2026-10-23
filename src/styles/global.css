@@ -438,3 +438,11 @@ body.menu-open .brand img { border-color: var(--paper); }
 
 @media (max-width: 599px) { .header-cta { display: none !important; } }
 .menu .btn { --btn-bg: var(--paper); --btn-fg: var(--ink); }
+
+/* ───────────────── Showreel ───────────────── */
+.reel-section { padding-bottom: clamp(4rem, 8vw, 8rem); }
+.reel { position: relative; border: 1px solid var(--ink); background: var(--ink); overflow: hidden; transform-origin: center top; }
+.reel video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.reel-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.6rem 0.9rem; background: var(--ink); color: var(--paper); }
+.reel-toggle { font: inherit; font-family: var(--font-mono); font-size: var(--t-xs); text-transform: uppercase; color: var(--paper); background: transparent; border: 1px solid currentColor; min-height: 44px; min-width: 72px; padding: 0 0.9rem; cursor: pointer; }
+.reel-toggle:hover { background: var(--paper); color: var(--ink); }

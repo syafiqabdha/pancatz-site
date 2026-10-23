@@ -23,3 +23,7 @@ pnpm-debug.log*
 
 # Repository-only documentation
 /docs
+
+# Remotion video source (rendered files live in public/video)
+/video
+/.claude

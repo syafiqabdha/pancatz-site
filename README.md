@@ -112,6 +112,21 @@ npm run preview
 
 The build must pass before deployment. Review the site at desktop and mobile widths, test all anchor paths, pricing tabs, mobile navigation, and an enquiry submission against the intended n8n environment.
 
+## Showreel video
+
+The home page showreel is generated in code with [Remotion](https://www.remotion.dev) in `video/`. Scenes live in `video/src/scenes/`, and the compositions are `Showreel` (1920×1080) and `ShowreelVertical` (1080×1920, for Reels and TikTok). The contact details shown in the outro are props in `video/src/Root.tsx`.
+
+```sh
+cd video && npm install
+npm run dev                      # Remotion Studio, live preview
+# In a headless container, add --browser-executable=<path to chrome-headless-shell> to render commands
+npx remotion render Showreel out/showreel.mp4 --width=1280 --height=720 --crf=24
+npx remotion render Showreel out/showreel.webm --codec=vp9 --width=1280 --height=720
+npx remotion still Showreel out/poster.jpg --frame=95 --width=1280 --height=720 --image-format=jpeg
+```
+
+Copy `showreel.mp4`, `showreel.webm` and `poster.jpg` into `public/video/` to update the site. Remotion's agent skills are in `.claude/skills/remotion-*`. Remotion is free for individuals and companies of up to 3 people.
+
 ## Deployment
 
 ### Docker / Nginx
