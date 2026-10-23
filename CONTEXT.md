@@ -1,6 +1,6 @@
 # Pancatz
 
-A creative + print + tech + AI studio based in Kulai, Johor. Serves businesses across Malaysia and Singapore with brand, systems, and automation — sold standalone or as a full partnership.
+A creative + print + tech + AI + photography studio based in Kulai (district), Johor (state), Malaysia. Serves businesses in Malaysia and across the border in Singapore with brand, systems, and automation — sold standalone or as a full partnership.
 
 ## Language
 
@@ -18,7 +18,13 @@ _Avoid_: IT Services, IT Support (that's the offering, not the discipline)
 **AI**: Chatbots, n8n workflow automation, AI image pipelines, lead routing, CRM integration.
 _Avoid_: AI & Automation, AI & Auto
 
-**Full Partnership**: All four Disciplines bundled. One point of contact, one standard.
+**Photography**: Product, food, interior/property, corporate and event photography.
+
+**Marketing**: Social media management, paid ads, campaign strategy and content calendars. Listed on the Design & Print side.
+
+**Side**: How the site groups Disciplines for visitors. **Design & Print** (Creative + Print) and **Tech, AI & Photography** (Tech + AI + Photography). Each Side has its own page and colour (orange / cobalt). One brand, one contact for both.
+
+**Full Partnership**: All Disciplines bundled. One point of contact, one standard.
 
 ### Sales & Delivery
 

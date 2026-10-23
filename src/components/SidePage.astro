@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHead from './SectionHead.astro';
+import WorkCard from './WorkCard.astro';
+import PriceCard from './PriceCard.astro';
+import CTA from './CTA.astro';
+import ServiceMotion from './remotion/ServiceMotion';
+import { sides, services, pricing, work, type Side } from '../data/services';
+
+interface Props { side: Side; title: string; description: string; heading: string; statement: string }
+const { side, title, description, heading, statement } = Astro.props;
+const info = sides[side];
+const other: Side = side === 'design' ? 'tech' : 'design';
+const otherInfo = sides[other];
+const list = services[side];
+const prices = pricing.filter((p) => p.side === side || p.side === 'both');
+const items = work.filter((w) => w.side === side);
+const defaultIntent = list[0].intent;
+---
+<Layout title={title} description={description} side={side}>
+  <section class="side-hero">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:1.5rem;color:inherit">[ {side === 'design' ? 'A' : 'B'} ] {info.name}</p>
+      <h1 data-split="hero" set:html={heading} />
+      <div style="display:grid;gap:1.5rem;margin-top:clamp(2rem,5vw,4rem);padding-bottom:clamp(2.5rem,6vw,5rem)" class="side-hero-foot">
+        <p class="lead" style="max-width:40ch">{info.pitch}</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:end">
+          <a class="btn" href={`/contact?service=${defaultIntent}`} data-magnetic>Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#services" style="border-color:currentColor">Services</a>
+        </div>
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true" style="border-color:currentColor">
+      <div class="marquee-track">{[...info.disciplines, ...info.disciplines].map((d) => <span>{d}</span>)}</div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <p class="label" style="margin-bottom:2rem"><b>[01]</b> The short version</p>
+    <p class="statement" data-statement set:html={statement} />
+  </section>
+
+  <section id="services" class="section rule">
+    <div class="wrap">
+      <SectionHead index="02" label="Services" title="What we<br/>do here." />
+      <div>
+        {list.map((s, i) => (
+          <div class="svc">
+            <a class="svc-row" href={`/contact?service=${s.intent}`}>
+              <span class="idx">{String(i + 1).padStart(2, '0')}</span>
+              <div class="svc-text">
+                <h3>{s.title}</h3>
+                <p class="muted" style="max-width:42ch">{s.summary}</p>
+              </div>
+              <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+              <div class="svc-visual"><ServiceMotion client:only="react" id={s.id} /></div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule">
+    <div class="wrap">
+      <SectionHead index="03" label="Pricing" title="Clear prices,<br/>in Ringgit." lead="Starting points for common projects. Bigger or custom work gets a fixed quote after a quick chat." />
+      <div class="price-grid">{prices.map((g) => <PriceCard group={g} />)}</div>
+      <p class="label" style="margin-top:1.5rem">All prices in MYR. <a class="link-u" href="/pricing" style="color:var(--ink)">See all pricing →</a></p>
+    </div>
+  </section>
+
+  <section class="section rule">
+    <div class="wrap">
+      <SectionHead index="04" label="Work" title="Selected<br/>work." />
+      <div class="work-grid work-grid--3">{items.map((w, i) => <WorkCard item={w} index={i} />)}</div>
+    </div>
+  </section>
+
+  <a class="crosslink" href={otherInfo.href} style={`--other:var(--${other})`}>
+    <div class="wrap">
+      <div>
+        <p class="label" style="margin-bottom:.75rem">Need the other side too?</p>
+        <h2>{otherInfo.name}</h2>
+      </div>
+      <span class="big-arrow" aria-hidden="true">→</span>
+    </div>
+  </a>
+
+  <CTA intent={defaultIntent} />
+</Layout>

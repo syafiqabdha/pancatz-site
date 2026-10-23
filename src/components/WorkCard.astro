@@ -1,0 +1,17 @@
+---
+import type { WorkItem } from '../data/services';
+interface Props { item: WorkItem; index: number }
+const { item, index } = Astro.props;
+---
+<article class="work-card" data-side={item.side} data-group={item.side} data-reveal>
+  <div class="work-media" data-clip data-parallax>
+    {item.placeholder && <span class="flag">Sample · real project soon</span>}
+    <span class="side-dot" aria-hidden="true"></span>
+    <img src={item.image} alt={`${item.title} (sample visual)`} width="1280" height="720" loading="lazy" decoding="async" />
+  </div>
+  <div class="work-meta">
+    <h3>{item.title}</h3>
+    <span class="label">{String(index + 1).padStart(2, '0')}</span>
+  </div>
+  <p class="label" style="margin-top:.35rem">{item.tags.join(' / ')}</p>
+</article>

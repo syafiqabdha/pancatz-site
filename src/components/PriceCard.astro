@@ -1,0 +1,20 @@
+---
+import type { PriceGroup } from '../data/services';
+interface Props { group: PriceGroup }
+const { group } = Astro.props;
+const side = group.side === 'both' ? undefined : group.side;
+const intent = group.id === 'brand' ? 'creative' : group.id === 'retainer' ? 'general' : group.id;
+---
+<article class:list={['price-card', { both: group.side === 'both' }]} data-side={side} data-group={group.side} data-reveal>
+  <header>
+    <h3>{group.title}</h3>
+    <span class="tag" aria-hidden="true"></span>
+  </header>
+  {group.items.map((i) => (
+    <div class="price-row"><span>{i.name}</span><span class="p">{i.price}</span></div>
+  ))}
+  <footer>
+    <p>{group.note}</p>
+    <a class="link-u" href={`/contact?service=${intent}`} style="display:inline-block;margin-top:.75rem;color:var(--ink);font-weight:600;min-height:24px">Get a quote →</a>
+  </footer>
+</article>

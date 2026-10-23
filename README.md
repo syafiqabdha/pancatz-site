@@ -3,7 +3,7 @@
 
   # Pancatz
 
-  **A single-page creative-tech studio site for businesses that want to look sharper and run smoother.**
+  **Studio site for businesses that want to look sharper and run smarter.**
 
   [![Astro](https://img.shields.io/badge/Astro-6.4.8-ff5a03?logo=astro&logoColor=white)](https://astro.build/)
   [![Node](https://img.shields.io/badge/Node-%3E%3D22.12.0-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -16,55 +16,50 @@
 
 ## What this build is
 
-Pancatz is an Astro static site for a Johor Bahru–based studio that combines three connected disciplines:
+Pancatz is an Astro static site for a studio in Kulai, Johor, Malaysia (also serving Singapore) with two sides under one brand:
 
-- **Creative:** brand identity, social assets, menus, signage, and print production
-- **IT support:** PC/laptop repair, Wi-Fi and network infrastructure, ongoing tech care
-- **AI & automation:** chatbots, n8n workflows, image-generation pipelines, lead routing
+- **Design & Print:** brand identity, social and digital design, print production, signage
+- **Tech, AI & Photography:** IT support and networks, web/hosting/SEO, AI chatbots and n8n automation, commercial photography
 
-It is deliberately a **single long-form page**. Navigation, pricing, work, service selection, and the enquiry path are section anchors on `/`; there are no separate service, portfolio, pricing, or contact routes in the current build.
+All enquiries go to one email, one WhatsApp and one form.
 
-## Current experience
+## Pages
 
-| Area | Implementation |
+| Route | Purpose |
 |---|---|
-| Hero | Outcome-led positioning: businesses that “look sharper and run smoother,” with layered geometric parallax and primary/secondary conversion actions. |
-| Capabilities | A responsive asymmetric bento system explaining Creative, IT Support, and AI & Automation as one integrated offer. |
-| Selected work | Two clearly labelled editorial case-study placeholders — **not fake proof** — awaiting real project imagery. |
-| Services | Detailed service lanes with links that preselect the relevant enquiry category. |
-| Pricing | Client-side selector covering Creative, Print, IT Support, AI & Automation, and retainers; prices are indicative and in MYR. |
-| Enquiry | Name, contact, service, and project brief form posted to an n8n webhook; a hidden honeypot rejects simple bot submissions. |
-| Navigation | Fixed glass header, active-section state, responsive mobile drawer, and smooth anchor scrolling. |
-| Motion | GSAP ScrollTrigger parallax, scrubbed reveals, subtle project/card interaction, and a complete `prefers-reduced-motion` fallback. |
-| Accessibility | Visible focus states, semantic landmarks, labelled form controls, 44–48px touch targets, and motion reduction support. |
+| `/` | WebGL hero, "pick a side" split panel, horizontal "opening a café" story, selected work, process, CTA |
+| `/design` | Design & Print: services, pricing, work, cross-link to Tech |
+| `/tech` | Tech, AI & Photography: services, pricing, work, cross-link to Design |
+| `/work` | All work, filterable by side |
+| `/pricing` | All indicative MYR pricing, filterable by side |
+| `/contact` | Brief form (n8n webhook), WhatsApp, email. `?service=<key>` preselects the service |
 
-### Contact flow
+Content lives in `src/data/site.ts` (contact details, nav) and `src/data/services.ts` (services, pricing, work, process).
 
-The form posts JSON to:
+### Replacing sample work
 
-```text
-https://n8n.pancatz.com/webhook/pancatz-contact
-```
-
-The n8n workflow is responsible for receiving and routing the enquiry. The frontend shows a success state on a successful HTTP response and falls back to the configured email address if it fails.
+Work items in `src/data/services.ts` are marked `placeholder: true` and show a "Sample" flag. To swap in a real project, drop the image in `public/images/`, update `image`, `title` and `tags`, and set `placeholder: false`. Images are shown at 4:3.
 
 ## Visual direction
 
-The design is intentionally dark, editorial, and creative-tech rather than generic SaaS:
+- Paper canvas `#f2f0eb`, ink `#0d0d0f`
+- Side colours: Design & Print orange `#ff4f1a`, Tech & AI cobalt `#2b35ff`
+- Mona Sans, expanded for display and normal width for body. Instrument Serif italic is the Design & Print voice, Doto dot matrix is the Tech voice, and Geist Mono is used for labels
+- Sharp edges, visible column grid, print grain
 
-- Near-black canvas: `#0a0a0a`
-- Off-white reading color: `#f0ede8`
-- Electric lime action color: `#c8ff00`
-- Coral secondary signal: `#ff6b4a`
-- Geist + Geist Mono typography, glass surfaces, thin grid lines, large editorial type, and asymmetric bento layouts
+## Motion
 
-The current work section reserves exact image ratios for future case studies:
+| Effect | Where | Library |
+|---|---|---|
+| Topographic noise field swirled by the cursor | Home hero | OGL (WebGL2, flowmap) |
+| Smooth scrolling | Everywhere | Lenis |
+| Line-masked headline reveals, scroll-filled statements | Everywhere | GSAP SplitText |
+| Scroll-velocity marquee, pinned horizontal story, reveals, parallax | Everywhere | GSAP ScrollTrigger |
+| Split panel that follows the cursor (auto-sways on touch) | Home | GSAP |
+| Image trail, magnetic buttons, cursor dot | CTA, buttons | GSAP |
+| Cross-page fade | Navigation | CSS view transitions |
 
-| Asset | Desktop | Mobile | Format target |
-|---|---:|---:|---|
-| Each case study | 2400 × 1600 (3:2) | 1440 × 1800 (4:5, optional) | WebP or JPEG, ideally under 500 KB |
-
-See the [current design documentation](docs/design/) for the rationale and next-level art-direction requirements.
+Content is visible without JavaScript. Everything animated is skipped under `prefers-reduced-motion`, and the hero falls back to a static background without WebGL2.
 
 ## Stack
 
@@ -73,8 +68,8 @@ See the [current design documentation](docs/design/) for the rationale and next-
 | Framework | Astro 6 static-site build |
 | UI runtime | React 19 integration (available for islands/components) |
 | Styling | Tailwind CSS v4 through Vite + authored global CSS/tokens |
-| Motion | GSAP + ScrollTrigger |
-| Typography | Geist and Geist Mono via Google Fonts |
+| Motion | GSAP (ScrollTrigger, SplitText), Lenis, OGL (WebGL), Remotion Player (React islands) |
+| Typography | Mona Sans, Instrument Serif, Doto and Geist Mono, self-hosted with @fontsource |
 | Contact delivery | n8n webhook |
 | Production serving | Nginx 1.27 Alpine in a multi-stage Docker image |
 | CI image publishing | GitHub Actions → GitHub Container Registry (`ghcr.io`) |
@@ -116,6 +111,40 @@ npm run preview
 ```
 
 The build must pass before deployment. Review the site at desktop and mobile widths, test all anchor paths, pricing tabs, mobile navigation, and an enquiry submission against the intended n8n environment.
+
+## Remotion motion
+
+Some of the site's motion is made with [Remotion](https://www.remotion.dev) and played live in the page with `@remotion/player`. Nothing is pre-rendered.
+
+- `src/remotion/showreel/` holds the 17-second brand reel on the home page (`src/components/remotion/ShowreelPlayer.tsx`).
+- `src/remotion/services/` holds one looping visual per service on `/design` and `/tech` (`src/components/remotion/ServiceMotion.tsx`). Each visual turns to the side colour when its row is hovered or focused.
+- `src/remotion/theme.ts` mirrors the site's colour and type tokens.
+
+- `src/remotion/brand-maker/` is the "brand your shop in 10 seconds" animation on `/try` (`src/components/remotion/BrandMaker.tsx`). Visitors save it as MP4 or PNG with `@remotion/web-renderer`, which renders in their own browser, so no server is involved. Share links (`/try?n=…&k=…`) replay the same brand.
+
+`video/` is the Remotion Studio and render project for the same compositions. Use it to preview or edit them, or to export MP4s for social media.
+
+```sh
+cd video && npm install
+npm run dev                      # Remotion Studio
+# In a headless container, add --browser-executable=<path to chrome-headless-shell> to render commands
+npx remotion render Showreel out/pancatz-showreel-1080p.mp4
+npx remotion render ShowreelVertical out/pancatz-showreel-vertical.mp4   # Reels / TikTok
+npx remotion still Showreel ../public/video/poster.jpg --frame=95 --width=1280 --height=720 --image-format=jpeg
+```
+
+The poster is the no-JavaScript fallback for the reel. Remotion's agent skills are in `.claude/skills/remotion-*`. Remotion is free for individuals and companies of up to 3 people.
+
+## Pan, the mascot
+
+Pan is the Pancatz mascot: half panda, half cat, after the logo (eye patches, cat nose and "w" mouth, the forehead scratch), with cat ears, whiskers, a ringed tail and a collar. It's modelled in Blender from primitives (`video/blender/pancatz.py`), exported to `public/models/pancatz.glb`, and drawn with OGL using a cel shader (`src/scripts/mascot.ts`).
+
+Pan roams every page. It drops in from the top, perches on headings (`main h1, h2, h3`) and rides them as the page scrolls, hops to another heading when its perch scrolls away, and drops to the bottom of the window when there's nowhere to sit. While you scroll it runs or holds on, its ears and tail lag behind, and it looks the way you're going. Visitors can poke it, or pick it up and throw it. It also follows the pointer, blinks, naps after 12 seconds of no input, waves at the end of the page, and points people to `/try` when the pointer heads for the tab bar. Add `data-mascot-skip` to a section to keep Pan off its headings. Visitors can hide Pan for the session. With reduced motion or without WebGL2, Pan is the still image `public/images/pancatz-mascot.webp` in the corner.
+
+```sh
+pip install bpy            # Blender as a Python module
+python video/blender/pancatz.py --render
+```
 
 ## Deployment
 

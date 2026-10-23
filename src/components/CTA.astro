@@ -1,0 +1,17 @@
+---
+import { whatsappLink } from '../data/site';
+import { work } from '../data/services';
+interface Props { title?: string; intent?: string }
+const { title = "Let's talk", intent } = Astro.props;
+const contactHref = intent ? `/contact?service=${intent}` : '/contact';
+---
+<section class="trail inverse section" data-trail={JSON.stringify(work.map((w) => w.image))} style="padding-block:clamp(6rem,14vw,14rem)">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:1.5rem"><b style="color:var(--design)">●</b> Taking new projects · Malaysia & Singapore</p>
+    <h2 class="cta-big" data-split>{title}<span class="dot">.</span></h2>
+    <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(2rem,5vw,3.5rem)">
+      <a class="btn btn--lg btn--wa" href={whatsappLink()} target="_blank" rel="noopener" data-magnetic>WhatsApp us <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--lg btn--ghost" href={contactHref} data-magnetic>Send a brief <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>

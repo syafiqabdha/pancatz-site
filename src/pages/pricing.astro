@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PriceCard from '../components/PriceCard.astro';
+import CTA from '../components/CTA.astro';
+import { pricing } from '../data/services';
+---
+<Layout title="Pricing" description="Transparent MYR pricing for design, print, IT support, websites, AI automation, photography and monthly retainers at Pancatz.">
+  <section class="wrap" style="padding-top:calc(var(--header-h) + clamp(3rem,10vh,7rem));padding-bottom:clamp(2rem,5vw,4rem)">
+    <p class="label" style="margin-bottom:1.5rem"><b>[ Pricing ]</b> All prices in MYR</p>
+    <h1 class="display" data-split="hero">Know the<br/>number first.</h1>
+    <p class="lead" style="max-width:44ch;margin-top:2rem" data-reveal>Starting prices for the projects we do most. Anything bigger or unusual gets a fixed quote after a short chat, before any work starts.</p>
+    <div class="filter" data-filter="#price-list" style="margin-top:clamp(2rem,4vw,3rem)" role="group" aria-label="Filter pricing">
+      <button data-value="all" aria-pressed="true">Everything</button>
+      <button data-value="design" aria-pressed="false">Design & Print</button>
+      <button data-value="tech" aria-pressed="false">Tech, AI & Photo</button>
+    </div>
+  </section>
+  <section class="wrap rule" style="padding-block:clamp(2rem,5vw,4rem) clamp(5rem,10vw,9rem)">
+    <div id="price-list" class="price-grid">{pricing.map((g) => <PriceCard group={g} />)}</div>
+    <p class="label" style="margin-top:1.5rem">Retainers let you mix design and tech hours each month.</p>
+  </section>
+  <CTA title="Get a quote" />
+</Layout>
